@@ -33,7 +33,7 @@
 </template>
 <script>
 import axios from "axios";
-const FileSaver = require('file-saver');
+const FileSaver = require("file-saver");
 export default {
   name: "user-card",
   props: {
@@ -54,10 +54,6 @@ export default {
     };
   },
   mounted() {
-    console.log(
-      'localStorage.getItem("admin_token")' +
-        localStorage.getItem("admin_token")
-    );
     axios
       .get("https://aace.ml/api/user/" + this.user_id, {
         headers: {
@@ -66,48 +62,38 @@ export default {
         }
       })
       .then(res => {
-        console.log("res.data :", res.data)
         this.first_name = res.data.first_name;
         this.last_name = res.data.last_name;
         this.headline = res.data.headline;
         this.summary = res.data.summary;
         this.profile_picture =
           "https://aace.ml/static/files/" + res.data.profile_picture;
-          this.medias = res.data.document_ids;
-          console.log("The media is: ", this.medias)
+        this.medias = res.data.document_ids;
       });
-
-
-
   },
   methods: {
-    downloadDoc(docID){
-      console.log("inside downloads")
-      console.log("tring to download doc with ID: " + docID)
-
-
+    downloadDoc(docID) {
       axios
         .get("https://aace.ml/api/admin/media/" + docID, {
-          responseType: 'arraybuffer',
+          responseType: "arraybuffer",
           headers: {
             "Content-Type": "application/json",
             Authorization: "Bearer " + localStorage.getItem("admin_token"),
-            'Accept': 'application/pdf'
+            Accept: "application/pdf"
           }
         })
         .then(res => {
-            console.log("Media with id " + docID + " downloaded successfully")
-            console.log(res);
-            // response.data is an empty object
-            const blob = new Blob([res.data], {
-              type: 'application/pdf',
-            });
-            FileSaver.saveAs(blob);
+          // response.data is an empty object
+          const blob = new Blob([res.data], {
+            type: "application/pdf"
+          });
+          FileSaver.saveAs(
+            blob,
+            this.first_name + "_" + this.last_name + docID
+          );
         });
-    
+    }
   }
-  }
-
 };
 </script>
 <style>

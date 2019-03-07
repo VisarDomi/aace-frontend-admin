@@ -1,74 +1,64 @@
 <template>
   <div class="row">
         <div class="login">
-            <input type="text" placeholder="Email" id="username" v-model="login_email">  
-        <input type="password" placeholder="password" id="password" v-model="login_password">  
-        <input type="submit" value="Sign In" @click="login">
+            <input type="text" placeholder="Email" id="username" v-model="username">  
+        <input type="password" placeholder="password" id="password" v-model="password">  
+        <input type="submit" value="Sign In" @click="login(username,password)">
         </div>
         <div class="shadow"></div>
-
   </div>
 </template>
 
 
 <script>
-import axios from "axios";
-
+import { mapState } from "vuex";
+import { LOGIN } from "@/store/actions.type";
 
 export default {
   name: "AdminLogin",
   data() {
     return {
-      login_email: "",
-      login_password: "",
+      username: "",
+      password: ""
     };
-  },  
+  },
   methods: {
-    login() {
-        axios.post('https://aace.ml/api/auth/login', 
-        {}, 
-        {
-          auth:{
-            username: this.login_email,
-            password: this.login_password
-        },
-          // headers: {
-          //     'Content-Type': 'application/json',
-          //     'Authorization': 'Basic'
-          // }
-        })
-        .then((res) => {
-          this.loading = "";
-          console.log("the res was")
-          console.log(res)
-          if (res.status == 200) {
-              console.log("success")
-            // store the data in localStorage
-            localStorage.setItem("admin_token", res.data.token);
-            localStorage.setItem("user", JSON.stringify(res.data));
-            // now send the user to the next route
-            console.log(this.$router)
-            this.$router.push({
-              name: "Dashboard"
-            });
-          } else {
-            this.status = res.status;
-          }
-        })
-        .catch((err) => {
-          console.log("AXIOS ERROR: ", err);
-        })    
-
-    }      
-  } 
+    login(username, password) {
+      this.$store
+        .dispatch(LOGIN, { username, password })
+        .then(() => this.$router.push({ name: "Dashboard" }));
+    }
+  },
+  computed: {
+    ...mapState({
+      errors: state => state.auth.errors
+    })
+  }
 };
 </script>
 
 <style scoped>
-html { height: 100% }
-::-moz-selection { background: #fe57a1; color: #fff; text-shadow: none; }
-::selection { background: #fe57a1; color: #fff; text-shadow: none; }
-body { background-image: radial-gradient( cover, rgba(92,100,111,1) 0%,rgba(31,35,40,1) 100%), url('http://i.minus.com/io97fW9I0NqJq.png') }
+html {
+  height: 100%;
+}
+::-moz-selection {
+  background: #fe57a1;
+  color: #fff;
+  text-shadow: none;
+}
+::selection {
+  background: #fe57a1;
+  color: #fff;
+  text-shadow: none;
+}
+body {
+  background-image: radial-gradient(
+      cover,
+      rgba(92, 100, 111, 1) 0%,
+      rgba(31, 35, 40, 1) 100%
+    ),
+    url("http://i.minus.com/io97fW9I0NqJq.png");
+}
 .login {
   background: #eceeee;
   border: 1px solid #42464b;
@@ -85,14 +75,16 @@ body { background-image: radial-gradient( cover, rgba(92,100,111,1) 0%,rgba(31,3
   color: #727678;
   display: block;
   height: 43px;
-  font: 600 14px/1 'Open Sans', sans-serif;
+  font: 600 14px/1 "Open Sans", sans-serif;
   padding-top: 14px;
   margin: 0;
   text-align: center;
-  text-shadow: 0 -1px 0 rgba(0,0,0,0.2), 0 1px 0 #fff;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.2), 0 1px 0 #fff;
 }
-input[type="password"], input[type="text"] {
-  background: url('http://i.minus.com/ibhqW9Buanohx2.png') center left no-repeat, linear-gradient(top, #d6d7d7, #dee0e0);
+input[type="password"],
+input[type="text"] {
+  background: url("http://i.minus.com/ibhqW9Buanohx2.png") center left no-repeat,
+    linear-gradient(top, #d6d7d7, #dee0e0);
   border: 1px solid #a1a3a3;
   border-radius: 4px;
   box-shadow: 0 1px #fff;
@@ -104,7 +96,8 @@ input[type="password"], input[type="text"] {
   transition: box-shadow 0.3s;
   width: 240px;
 }
-input[type="password"]:focus, input[type="text"]:focus {
+input[type="password"]:focus,
+input[type="text"]:focus {
   box-shadow: 0 0 4px 1px rgba(55, 166, 155, 0.3);
   outline: 0;
 }
@@ -133,7 +126,9 @@ input[type="checkbox"]:checked {
   width: 87px;
   z-index: -1;
 }
-input[type="checkbox"]:checked + .toggle { background-position: 0 -16px }
+input[type="checkbox"]:checked + .toggle {
+  background-position: 0 -16px;
+}
 .forgot {
   color: #7f7f7f;
   display: inline-block;
@@ -143,33 +138,36 @@ input[type="checkbox"]:checked + .toggle { background-position: 0 -16px }
   position: relative;
   text-decoration: none;
   top: 5px;
-  transition: color .4s;
+  transition: color 0.4s;
 }
-.forgot:hover { color: #3b3b3b }
+.forgot:hover {
+  color: #3b3b3b;
+}
 input[type="submit"] {
-  width:240px;
-  height:35px;
-  display:block;
-  font-family:Arial, "Helvetica", sans-serif;
-  font-size:16px;
-  font-weight:bold;
-  color:#fff;
-  text-decoration:none;
-  text-transform:uppercase;
-  text-align:center;
-  text-shadow:1px 1px 0px #37a69b;
-  padding-top:6px;
+  width: 240px;
+  height: 35px;
+  display: block;
+  font-family: Arial, "Helvetica", sans-serif;
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff;
+  text-decoration: none;
+  text-transform: uppercase;
+  text-align: center;
+  text-shadow: 1px 1px 0px #37a69b;
+  padding-top: 6px;
   margin: 29px 0 0 29px;
-  position:relative;
-  cursor:pointer;
-  border: none;  
+  position: relative;
+  cursor: pointer;
+  border: none;
   background-color: #37a69b;
-  background-image: linear-gradient(top,#3db0a6,#3111);
+  background-image: linear-gradient(top, #3db0a6, #3111);
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
-  border-bottom-left-radius:5px;
-  box-shadow: inset 0px 1px 0px #2ab7ec, 0px 5px 0px 0px #497a78, 0px 10px 5px #999;
+  border-bottom-left-radius: 5px;
+  box-shadow: inset 0px 1px 0px #2ab7ec, 0px 5px 0px 0px #497a78,
+    0px 10px 5px #999;
 }
 
 .shadow {
@@ -182,9 +180,9 @@ input[type="submit"] {
   width: 270px;
 }
 
-
 input[type="submit"]:active {
-  top:3px;
-  box-shadow: inset 0px 1px 0px #2ab7ec, 0px 2px 0px 0px #31524d, 0px 5px 3px #999;
+  top: 3px;
+  box-shadow: inset 0px 1px 0px #2ab7ec, 0px 2px 0px 0px #31524d,
+    0px 5px 3px #999;
 }
 </style>

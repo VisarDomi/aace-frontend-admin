@@ -3,7 +3,9 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import App from "./App";
-import axios from 'axios';
+import store from "./store";
+import "./registerServiceWorker";
+import JwtService from "@/common/jwt.service";
 // router setup
 import routes from "./routes/routes";
 
@@ -11,6 +13,10 @@ import routes from "./routes/routes";
 import GlobalComponents from "./globalComponents";
 import GlobalDirectives from "./globalDirectives";
 import Notifications from "./components/NotificationPlugin";
+
+import ApiService from "./common/api.service";
+import DateFilter from "./common/date.filter";
+import ErrorFilter from "./common/error.filter";
 
 // MaterialDashboard plugin
 import MaterialDashboard from "./material-dashboard";
@@ -25,21 +31,16 @@ const router = new VueRouter({
 });
 
 router.beforeEach((to, from, next) => {
-  console.log("to " + to.fullPath)
   if (to.matched.some(record => record.meta.requiresAuth)) {
-    console.log("route " + to.fullPath + " requires admin privileges")
-    if (localStorage.getItem("admin_token") == null) {
-      console.log("no access, token null, sending you to login");
+    if (JwtService.getToken() == null) {
       next({
         path: "/login",
         params: { nextUrl: to.fullPath }
       });
     } else {
-      console.log("go");
-      console.log("you may access the page")
       next();
     }
-  } else{
+  } else {
     next();
   }
 });
@@ -52,18 +53,18 @@ Vue.use(Notifications);
 
 Vue.prototype.$Chartist = Chartist;
 
-axios.defaults.headers.common = {
-  "Secure-Api-Key": "asdfasdfetyeq",
-  "Content-type": "application/json"
-};
+Vue.config.productionTip = false;
+Vue.filter("date", DateFilter);
+Vue.filter("error", ErrorFilter);
 
+ApiService.init();
 /* eslint-disable no-new */
 new Vue({
   el: "#app",
   render: h => h(App),
   router,
+  store,
   data: {
     Chartist: Chartist
   }
 });
-
