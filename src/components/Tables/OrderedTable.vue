@@ -4,9 +4,10 @@
       <md-table-row
         slot="md-table-row"
         slot-scope="{ item }"
-        v-on:click="open_user_profile(item)"
-        v-bind:class="{ 'table-success': item.register_status == 'approved',
+        @click="open_user_profile(item)"
+        :class="{ 'table-success': item.register_status == 'approved',
         'table-info' : item.register_status =='applying',
+        'table-info2' : item.register_status =='reapplying',
         'table-danger' : item.register_status =='rejected',
         'table-warning' : item.register_status =='rebutted' }"
       >
@@ -39,7 +40,7 @@ export default {
   },
   mounted() {
     axios
-      .get("https://aace.ml/api/admin/user/applying", {
+      .get("https://aace.ml/api/user/all", {
         headers: {
           "Content-Type": "application/json",
           Authorization: "Bearer " + localStorage.getItem("admin_token")
@@ -47,9 +48,11 @@ export default {
       })
       .then(res => {
         this.users = res.data;
-
+        console.log("this.users: ", this.users);
         if (this.users.register_status == "applying") {
           this.tableStatus == "table-info";
+        } else if (this.users.register_status == "reapplying") {
+          this.tableStatus == "table-info2";
         } else if (this.users.register_status == "rebutted") {
           this.tableStatus == "table-warning";
         } else if (this.users.register_status == "approved") {
@@ -75,6 +78,9 @@ export default {
 <style scoped>
 .table-info {
   background-color: #b8ecf3;
+}
+.table-info2 {
+  background-color: #91a8da;
 }
 
 .table-success {
