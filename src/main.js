@@ -17,6 +17,8 @@ import MaterialDashboard from "./material-dashboard";
 
 import Chartist from "chartist";
 
+Vue.config.productionTip = false;
+
 // configure router
 const router = new VueRouter({
   mode: "history",

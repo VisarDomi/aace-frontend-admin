@@ -6,7 +6,7 @@
       </div>
 
       <md-card-content>
-        <h6 class="category text-gray">{{this.headline}}</h6>
+        <h6 class="category text-gray">{{this.profession}}</h6>
         <h4 class="card-title">{{this.first_name}} {{this.last_name}}</h4>
         <p class="card-description">{{this.summary}}</p>
         <!-- <md-button class="md-round md-success">Follow</md-button> -->
@@ -15,25 +15,27 @@
 
     <md-card class="md-card-profile">
       <md-card-content>
-        
-        <template v-for="document in this.medias" >
-          <button :key="document.id" type="button" class="md-button md-raised md-info text-right md-theme-default" @click="downloadDoc(document)">
+        <template v-for="education_media in this.education_medias">
+          <button
+            :key="education_media.id"
+            type="button"
+            class="md-button md-raised md-info text-right md-theme-default"
+            @click="downloadDoc(education_media)"
+          >
             <div class="md-ripple">
               <i class="material-icons">attachment</i>
-              <div class="md-button-content">Download Document {{document}}</div>
+              <div class="md-button-content">Download education_media {{education_media}}</div>
               <span></span>
             </div>
           </button>
         </template>
-
-
       </md-card-content>
     </md-card>
   </div>
 </template>
 <script>
 import axios from "axios";
-const FileSaver = require('file-saver');
+const FileSaver = require("file-saver");
 export default {
   name: "user-card",
   props: {
@@ -47,10 +49,10 @@ export default {
     return {
       first_name: "",
       last_name: "",
-      headline: "",
+      profession: "",
       summary: "",
       profile_picture: null,
-      medias: []
+      education_medias: []
     };
   },
   mounted() {
@@ -59,55 +61,49 @@ export default {
         localStorage.getItem("admin_token")
     );
     axios
-      .get("https://aace.ml/api/user/" + this.user_id, {
+      .get("https://aace.ml/api/admin/user/" + this.user_id, {
         headers: {
           "Content-Type": "application/json",
           Authorization: "Bearer " + localStorage.getItem("admin_token")
         }
       })
       .then(res => {
-        console.log("res.data :", res.data)
+        console.log("res.data :", res.data);
         this.first_name = res.data.first_name;
         this.last_name = res.data.last_name;
-        this.headline = res.data.headline;
+        this.profession = res.data.profession;
         this.summary = res.data.summary;
-        this.profile_picture =
-          "https://aace.ml/static/files/" + res.data.profile_picture;
-          this.medias = res.data.document_ids;
-          console.log("The media is: ", this.medias)
+        // this.profile_picture =
+        //   "https://aace.ml/static/files/" + res.data.profile_picture;
+        this.education_medias = res.data.media_education_ids;
+        console.log("The media is: ", this.education_medias);
       });
-
-
-
   },
   methods: {
-    downloadDoc(docID){
-      console.log("inside downloads")
-      console.log("tring to download doc with ID: " + docID)
-
+    downloadDoc(docID) {
+      console.log("inside downloads");
+      console.log("tring to download doc with ID: " + docID);
 
       axios
-        .get("https://aace.ml/api/admin/media/" + docID, {
-          responseType: 'arraybuffer',
+        .get("https://aace.ml/api/admin/media_education/" + docID, {
+          responseType: "arraybuffer",
           headers: {
             "Content-Type": "application/json",
             Authorization: "Bearer " + localStorage.getItem("admin_token"),
-            'Accept': 'application/pdf'
+            Accept: "application/pdf"
           }
         })
         .then(res => {
-            console.log("Media with id " + docID + " downloaded successfully")
-            console.log(res);
-            // response.data is an empty object
-            const blob = new Blob([res.data], {
-              type: 'application/pdf',
-            });
-            FileSaver.saveAs(blob);
+          console.log("Media with id " + docID + " downloaded successfully");
+          console.log("res :", res);
+          // response.data is an empty object
+          const blob = new Blob([res.data], {
+            type: "application/pdf"
+          });
+          FileSaver.saveAs(blob);
         });
-    
+    }
   }
-  }
-
 };
 </script>
 <style>
