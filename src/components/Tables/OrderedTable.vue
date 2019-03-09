@@ -1,15 +1,22 @@
 <template>
   <div>
-    <md-table v-model="users" :table-header-color="tableHeaderColor">
+    <div class="row text-center" >
+      <md-button class="md-raised md-info text-right" @click="get_applying" style="margin-right:5px;">Applying</md-button>
+      <md-button class="md-raised md-warning text-right" @click="get_rebutted" style="margin-right:5px;">Rebutted</md-button>
+      <md-button class="md-raised md-success text-right" @click="get_approved" style="margin-right:5px;">Accepted</md-button>
+      <md-button class="md-raised md-danger text-right" @click="get_rejected">Rejected</md-button>
+    </div>
+    <br>
+    <md-table v-model="members" :table-header-color="tableHeaderColor">
       <md-table-row
         slot="md-table-row"
         slot-scope="{ item }"
         @click="open_user_profile(item)"
         :class="{ 'table-success': item.register_status == 'approved',
-        'table-info' : item.register_status =='applying',
-        'table-info2' : item.register_status =='reapplying',
-        'table-danger' : item.register_status =='rejected',
-        'table-warning' : item.register_status =='rebutted' }"
+          'table-info' : item.register_status =='applying',
+          'table-info2' : item.register_status =='reapplying',
+          'table-danger' : item.register_status =='rejected',
+          'table-warning' : item.register_status =='rebutted' }"
       >
         <md-table-cell md-label="ID">{{ item.id }}</md-table-cell>
         <md-table-cell md-label="Name">{{ item.first_name }}</md-table-cell>
@@ -23,7 +30,9 @@
 </template>
 
 <script>
-import axios from "axios";
+import { mapGetters } from "vuex";
+import store from "@/store";
+import { FETCH_MEMBERS } from "@/store/actions.type";
 
 export default {
   name: "ordered-table",
@@ -33,36 +42,19 @@ export default {
       default: ""
     }
   },
-  data() {
-    return {
-      users: []
-    };
-  },
-  mounted() {
-    axios
-      .get("https://aace.ml/api/user/all", {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + localStorage.getItem("admin_token")
-        }
-      })
-      .then(res => {
-        this.users = res.data;
-        console.log("this.users: ", this.users);
-        if (this.users.register_status == "applying") {
-          this.tableStatus == "table-info";
-        } else if (this.users.register_status == "reapplying") {
-          this.tableStatus == "table-info2";
-        } else if (this.users.register_status == "rebutted") {
-          this.tableStatus == "table-warning";
-        } else if (this.users.register_status == "approved") {
-          this.tableStatus == "table-success";
-        } else {
-          this.tableStatus == "table-danger";
-        }
-      });
-  },
   methods: {
+    get_applying: function(){
+      this.$store.dispatch(FETCH_MEMBERS, { users: "applying" });
+    },
+    get_rebutted: function(){
+      this.$store.dispatch(FETCH_MEMBERS, { users: "rebutted" });
+    },
+    get_approved: function(){
+      this.$store.dispatch(FETCH_MEMBERS, { users: "approved" });
+    },
+    get_rejected: function(){
+      this.$store.dispatch(FETCH_MEMBERS, { users: "rejected" });
+    },
     open_user_profile: function(item) {
       this.$router.push({
         name: "User Profile",
@@ -71,6 +63,12 @@ export default {
         }
       });
     }
+  },
+  computed: {
+    ...mapGetters(["members"])
+  },
+  mounted() {
+    this.$store.dispatch(FETCH_MEMBERS, { users: "all" });
   }
 };
 </script>
@@ -94,4 +92,5 @@ export default {
 .table-warning {
   background-color: #fff9c8;
 }
+
 </style>

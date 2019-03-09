@@ -13,3 +13,7 @@ export const FETCH_COMMS = "fetchComms";
 export const FETCH_COMM = "fetchComm";
 export const FETCH_STATUS = "fetchStatus";
 export const FETCH_DOCS = "fetchDocs";
+export const FETCH_MEMBERS = "fetchMembers";
+export const ACCEPT_APPLICANT = "acceptApplicant";
+export const REJECT_APPLICANT = "rejectApplicant";
+export const REBUTT_APPLICANT = "rebuttApplicant";

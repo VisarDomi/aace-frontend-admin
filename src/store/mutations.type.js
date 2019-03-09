@@ -12,3 +12,5 @@ export const SET_PICTURE = "setPicture";
 export const SET_COMM = "setComm";
 export const SET_COMMS = "setComms";
 export const SET_COMM_DOCS = "setCommDocs";
+//admin
+export const SET_MEMBERS = "setMembers";

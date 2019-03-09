@@ -67,6 +67,13 @@ export const MemberService = {
   },
   accepted() {
     return ApiService.get("user/accepted");
+  },
+  //admin
+  getMember(slug) {
+    return ApiService.get("admin/user", slug);
+  },
+  changeStatus(slug, params){
+    return ApiService.put(`admin/user/${slug}`, params);
   }
 };
 

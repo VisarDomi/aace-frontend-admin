@@ -24,7 +24,7 @@ import MaterialDashboard from "./material-dashboard";
 import Chartist from "chartist";
 
 Vue.config.productionTip = false;
-
+ApiService.init();
 // configure router
 const router = new VueRouter({
   mode: "history",
@@ -33,6 +33,7 @@ const router = new VueRouter({
 });
 
 router.beforeEach((to, from, next) => {
+  ApiService.setHeader();
   if (to.matched.some(record => record.meta.requiresAuth)) {
     if (JwtService.getToken() == null) {
       next({
@@ -55,11 +56,10 @@ Vue.use(Notifications);
 
 Vue.prototype.$Chartist = Chartist;
 
-Vue.config.productionTip = false;
 Vue.filter("date", DateFilter);
 Vue.filter("error", ErrorFilter);
 
-ApiService.init();
+
 /* eslint-disable no-new */
 new Vue({
   el: "#app",

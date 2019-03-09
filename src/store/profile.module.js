@@ -1,4 +1,4 @@
-import ApiService from "@/common/api.service";
+
 import UserService from "@/common/userstorage.service";
 import {
   MemberService,
@@ -6,13 +6,23 @@ import {
   EducationService,
   ExperienceService
 } from "@/common/api.service";
-import { FETCH_PROFILE, FETCH_STATUS } from "./actions.type";
+import {
+  FETCH_PROFILE,
+  FETCH_STATUS,
+  //admin
+  FETCH_MEMBERS,
+  ACCEPT_APPLICANT,
+  REJECT_APPLICANT,
+  REBUTT_APPLICANT
+} from "./actions.type";
 import {
   SET_PROFILE,
   SET_PICTURE,
   SET_EDUCATION,
   SET_EXPERIENCE,
-  SET_STATUS
+  SET_STATUS,
+  //admin
+  SET_MEMBERS
 } from "./mutations.type";
 
 const state = {
@@ -21,7 +31,9 @@ const state = {
   profilePicture: "",
   educations: {},
   experience: {},
-  status: ""
+  status: "",
+  //admin
+  members: {}
 };
 
 const getters = {
@@ -39,6 +51,10 @@ const getters = {
   },
   status(state) {
     return state.status;
+  },
+  //admin
+  members(state) {
+    return state.members;
   }
 };
 
@@ -81,6 +97,32 @@ const actions = {
         context.commit(SET_EXPERIENCE, data);
       })
       .catch(() => {});
+  },
+  //admin
+  async [FETCH_MEMBERS](context, payload) {
+    const { users } = payload;
+    if (users == "all") {
+      const { data } = await MemberService.get(users);
+      context.commit(SET_MEMBERS, data);
+    } else {
+      const { data } = await MemberService.getMember(users);
+      context.commit(SET_MEMBERS, data);
+    }
+  },
+  async [ACCEPT_APPLICANT](context, payload) {
+    const { id } = payload.id;
+    const { comment_from_administrator } = payload;
+    MemberService.changeStatus(id, { comment_from_administrator , register_status: "approved"});
+  },
+  async [REBUTT_APPLICANT](context, payload) {
+    const { id } = payload.id;
+    const { comment_from_administrator } = payload;
+    MemberService.changeStatus(id, { comment_from_administrator , register_status: "rebutted"});
+  },
+  async [REJECT_APPLICANT](context, payload) {
+    const { id } = payload.id;
+    const { comment_from_administrator } = payload;
+    MemberService.changeStatus(id, { comment_from_administrator , register_status: "rejected"});
   }
 };
 
@@ -103,6 +145,10 @@ const mutations = {
   },
   [SET_STATUS](state, status) {
     state.status = status;
+  },
+  //admin
+  [SET_MEMBERS](state, data){
+    state.members = data;
   }
 };
 

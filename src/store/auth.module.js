@@ -27,9 +27,6 @@ const getters = {
 
 const actions = {
   [LOGIN](context, credentials) {
-    console.log("credentials");
-    console.log(credentials);
-    console.log({ auth: credentials });
     return new Promise(resolve => {
       ApiService.login("auth/login", { auth: credentials })
         .then(({ data }) => {
@@ -101,6 +98,7 @@ const mutations = {
     state.errors = {};
     JwtService.saveToken(state.user.token);
     UserService.saveUser(user);
+    ApiService.setHeader();
   },
   [PURGE_AUTH](state) {
     state.isAuthenticated = false;
