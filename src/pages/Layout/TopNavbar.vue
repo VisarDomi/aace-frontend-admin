@@ -13,7 +13,7 @@
 
         <div class="md-collapse">
           <div class="md-autocomplete">
-            <md-autocomplete class="search" v-model="selectedEmployee" :md-options="employees">
+            <md-autocomplete class="search" v-model="selectedEmployee" :md-options="memberNames">
               <label>Search...</label>
             </md-autocomplete>
           </div>
@@ -53,26 +53,27 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+import {
+  FETCH_MEMBER_NAMES
+} from "@/store/actions.type";
+import store from "@/store";
 export default {
   data() {
     return {
-      selectedEmployee: null,
-      employees: [
-        "Jim Halpert",
-        "Dwight Schrute",
-        "Michael Scott",
-        "Pam Beesly",
-        "Angela Martin",
-        "Kelly Kapoor",
-        "Ryan Howard",
-        "Kevin Malone"
-      ]
+      selectedEmployee: null
     };
   },
   methods: {
     toggleSidebar() {
       this.$sidebar.displaySidebar(!this.$sidebar.showSidebar);
     }
+  },
+  computed: {
+    ...mapGetters(["memberNames"])
+  },
+  mounted(){
+    this.$store.dispatch(FETCH_MEMBER_NAMES);
   }
 };
 </script>

@@ -6,6 +6,7 @@ import search from "./search.module";
 import media from "./media.module";
 import profile from "./profile.module";
 import communication from "./communication.module";
+import group from "./group.module";
 Vue.use(Vuex);
 
 export default new Vuex.Store({
@@ -14,6 +15,7 @@ export default new Vuex.Store({
     search,
     media,
     profile,
-    communication
+    communication,
+    group
   }
 });

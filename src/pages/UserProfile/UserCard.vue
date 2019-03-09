@@ -20,7 +20,7 @@
             :key="education_media.id"
             type="button"
             class="md-button md-raised md-info text-right md-theme-default"
-            @click="downloadDoc(education_media.id)"
+            @click="downloadDoc(education_media.id,education_media.filename)"
           >
             <div class="md-ripple">
               <i class="material-icons">attachment</i>
@@ -34,7 +34,7 @@
             :key="experience_media.id"
             type="button"
             class="md-button md-raised md-info text-right md-theme-default"
-            @click="downloadDoc(experience_media.id)"
+            @click="downloadDoc(experience_media.id,experience_media.filename)"
           >
             <div class="md-ripple">
               <i class="material-icons">attachment</i>

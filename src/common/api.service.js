@@ -109,3 +109,9 @@ export const CommunicationService = {
     return ApiService.get("officialcommunication", id);
   }
 };
+
+export const GroupService = {
+  getGroup(slug){
+    return ApiService.get("organizationgroup", slug)
+  }
+}

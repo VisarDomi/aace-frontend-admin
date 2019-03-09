@@ -12,9 +12,9 @@
         <md-icon>person</md-icon>
         <p>User Applications</p>
       </sidebar-link> -->
-      <sidebar-link to="/table">
+      <sidebar-link to="/groups">
         <md-icon>content_paste</md-icon>
-        <p>Applicant list</p>
+        <p>Groups</p>
       </sidebar-link>
       <!-- <sidebar-link to="/typography">
         <md-icon>library_books</md-icon>

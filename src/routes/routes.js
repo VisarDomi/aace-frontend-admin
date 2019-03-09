@@ -7,7 +7,7 @@ import Icons from "@/pages/Icons.vue";
 import Maps from "@/pages/Maps.vue";
 import Notifications from "@/pages/Notifications.vue";
 import AdminLogin from "@/pages/AdminLogin.vue";
-
+import Groups from "@/pages/Groups.vue";
 const routes = [
   {
     path: "/",
@@ -23,6 +23,11 @@ const routes = [
         path: "user/:id",
         name: "User Profile",
         component: UserProfile
+      },
+      {
+        path: "groups",
+        name: "Groups",
+        component: Groups
       },
       {
         path: "table",

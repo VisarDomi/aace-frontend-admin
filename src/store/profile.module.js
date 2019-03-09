@@ -11,6 +11,7 @@ import {
   FETCH_STATUS,
   //admin
   FETCH_MEMBERS,
+  FETCH_MEMBER_NAMES,
   ACCEPT_APPLICANT,
   REJECT_APPLICANT,
   REBUTT_APPLICANT
@@ -22,7 +23,8 @@ import {
   SET_EXPERIENCE,
   SET_STATUS,
   //admin
-  SET_MEMBERS
+  SET_MEMBERS,
+  SET_MEMBER_NAMES
 } from "./mutations.type";
 
 const state = {
@@ -33,7 +35,8 @@ const state = {
   experience: {},
   status: "",
   //admin
-  members: {}
+  members: {},
+  memberNames: []
 };
 
 const getters = {
@@ -55,6 +58,9 @@ const getters = {
   //admin
   members(state) {
     return state.members;
+  },
+  memberNames(state){
+    return state.memberNames;
   }
 };
 
@@ -123,6 +129,14 @@ const actions = {
     const { id } = payload.id;
     const { comment_from_administrator } = payload;
     MemberService.changeStatus(id, { comment_from_administrator , register_status: "rejected"});
+  },
+  async [FETCH_MEMBER_NAMES](context){
+    const { data } = await MemberService.get('all');
+    var memberNames = [];
+    for (var name in data) {
+      memberNames.push(data[name].first_name + " " + data[name].last_name);
+    }
+    context.commit(SET_MEMBER_NAMES, memberNames)
   }
 };
 
@@ -147,8 +161,11 @@ const mutations = {
     state.status = status;
   },
   //admin
-  [SET_MEMBERS](state, data){
+  [SET_MEMBERS](state, data) {
     state.members = data;
+  },
+  [SET_MEMBER_NAMES](state, data) {
+    state.memberNames = data;
   }
 };
 
