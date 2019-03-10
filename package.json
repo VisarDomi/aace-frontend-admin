@@ -3,7 +3,7 @@
   "version": "1.0.2",
   "private": true,
   "scripts": {
-    "build": "vue-cli-service build",
+    "build": "vue-cli-service build && cp netlify.toml dist/netlify.toml",
     "serve": "vue-cli-service serve",
     "test:unit": "vue-cli-service test:unit"
   },
@@ -42,5 +42,4 @@
     "sass-loader": "7.1.0",
     "vue-template-compiler": "2.5.17"
   }
-
 }
