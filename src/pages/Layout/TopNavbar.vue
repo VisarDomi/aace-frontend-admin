@@ -12,8 +12,8 @@
         </md-button>
 
         <div class="md-collapse">
-          <div class="md-autocomplete">
-            <md-autocomplete class="search" v-model="selectedEmployee" :md-options="memberNames">
+          <div class="md-autocomplete" >
+            <md-autocomplete class="search" v-model="selectedMember"  @md-selected="openProfile(members)" :md-open-on-focus="false" :md-options="memberNames">
               <label>Search...</label>
             </md-autocomplete>
           </div>
@@ -61,16 +61,34 @@ import store from "@/store";
 export default {
   data() {
     return {
-      selectedEmployee: null
+      selectedMember: null
     };
   },
   methods: {
     toggleSidebar() {
       this.$sidebar.displaySidebar(!this.$sidebar.showSidebar);
+    },
+    openProfile: function(members) {
+      
+      var userId;
+      for(var i in members){
+        if( this.selectedMember == members[i].first_name + " " + members[i].last_name){
+          userId = members[i].id;
+        }
+      }
+
+      this.$router.push({
+        name: "User Profile",
+        params: {
+          id: userId
+        }
+      });
+      
+
     }
   },
   computed: {
-    ...mapGetters(["memberNames"])
+    ...mapGetters(["memberNames","members"])
   },
   mounted(){
     this.$store.dispatch(FETCH_MEMBER_NAMES);
