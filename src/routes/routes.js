@@ -10,60 +10,161 @@ import AdminLogin from "@/pages/AdminLogin.vue";
 import Groups from "@/pages/Groups.vue";
 const routes = [
   {
-    path: "/",
+    path: "",
     component: DashboardLayout,
     // redirect: "/dashboard",
     children: [
       {
-        path: "dashboard",
+        path: "/dashboard",
         name: "Dashboard",
-        component: Dashboard
-      },
-      {
-        path: "user/:id",
-        name: "User Profile",
-        component: UserProfile
-      },
-      {
-        path: "groups",
-        name: "Groups",
-        component: Groups
-      },
-      {
-        path: "table",
-        name: "Table List",
-        component: TableList
-      },
-      {
-        path: "icons",
-        name: "Icons",
-        component: Icons
-      },
-      {
-        path: "maps",
-        name: "Maps",
+        component: Dashboard,
         meta: {
-          hideFooter: true
-        },
-        component: Maps
+          title: "Dashboard",
+          metaTags: [
+            {
+              name: "description",
+              content: "The dashboard page of AACE admin."
+            },
+            {
+              property: "og:description",
+              content: "The dashboard page of AACE admin."
+            }
+          ]
+        }
       },
       {
-        path: "notifications",
+        path: "/user/:id",
+        name: "User Profile",
+        component: UserProfile,
+        meta: {
+          title: "User Profile",
+          metaTags: [
+            {
+              name: "description",
+              content: "The user profile page of AACE admin."
+            },
+            {
+              property: "og:description",
+              content: "The user profile page of AACE admin."
+            }
+          ]
+        }
+      },
+      {
+        path: "/groups",
+        name: "Groups",
+        component: Groups,
+        meta: {
+          title: "Groups",
+          metaTags: [
+            {
+              name: "description",
+              content: "The groups page of AACE admin."
+            },
+            {
+              property: "og:description",
+              content: "The groups page of AACE admin."
+            }
+          ]
+        }
+      },
+      {
+        path: "/table",
+        name: "Table List",
+        component: TableList,
+        meta: {
+          title: "Table List",
+          metaTags: [
+            {
+              name: "description",
+              content: "The table list page of AACE admin."
+            },
+            {
+              property: "og:description",
+              content: "The table list page of AACE admin."
+            }
+          ]
+        }
+      },
+      {
+        path: "/icons",
+        name: "Icons",
+        component: Icons,
+        meta: {
+          title: "Icons",
+          metaTags: [
+            {
+              name: "description",
+              content: "The icons page of AACE admin."
+            },
+            {
+              property: "og:description",
+              content: "The icons page of AACE admin."
+            }
+          ]
+        }
+      },
+      {
+        path: "/maps",
+        name: "Maps",
+        component: Maps,
+        meta: {
+          hideFooter: true,
+          title: "Maps",
+          metaTags: [
+            {
+              name: "description",
+              content: "The maps page of AACE admin."
+            },
+            {
+              property: "og:description",
+              content: "The maps page of AACE admin."
+            }
+          ]
+        }
+      },
+      {
+        path: "/notifications",
         name: "Notifications",
-        component: Notifications
+        component: Notifications,
+        meta: {
+          title: "Notifications",
+          metaTags: [
+            {
+              name: "description",
+              content: "The notifications page of AACE admin."
+            },
+            {
+              property: "og:description",
+              content: "The notifications page of AACE admin."
+            }
+          ]
+        }
       }
     ],
-    meta: { 
+    meta: {
       requiresAuth: true,
-      is_admin : true
+      is_admin: true
     }
   },
   {
     path: "/login",
     name: "AdminLogin",
-    component: AdminLogin
+    component: AdminLogin,
+    meta: {
+      title: "Login",
+      metaTags: [
+        {
+          name: "description",
+          content: "The login page of AACE admin."
+        },
+        {
+          property: "og:description",
+          content: "The login page of AACE admin."
+        }
+      ]
+    }
   }
 ];
-
 
 export default routes;
