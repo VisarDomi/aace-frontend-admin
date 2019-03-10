@@ -1,11 +1,11 @@
 <template>
   <div class="row">
-        <div class="login">
-            <input type="text" placeholder="Email" id="username" v-model="username">  
-        <input type="password" placeholder="password" id="password" v-model="password">  
-        <input type="submit" value="Sign In" @click="login(username,password)">
-        </div>
-        <div class="shadow"></div>
+    <div class="login">
+      <input type="text" placeholder="Email" id="username" v-model="username">
+      <input type="password" placeholder="password" id="password" v-model="password">
+      <input type="submit" value="Sign In" @click="login(username,password)">
+    </div>
+    <div class="shadow"></div>
   </div>
 </template>
 
@@ -83,7 +83,8 @@ body {
 }
 input[type="password"],
 input[type="text"] {
-  background: url("https://i.minus.com/ibhqW9Buanohx2.png") center left no-repeat,
+  background: url("https://i.minus.com/ibhqW9Buanohx2.png") center left
+      no-repeat,
     linear-gradient(top, #d6d7d7, #dee0e0);
   border: 1px solid #a1a3a3;
   border-radius: 4px;
