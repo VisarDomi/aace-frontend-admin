@@ -48,6 +48,7 @@ router.beforeEach((to, from, next) => {
   }
 });
 
+
 Vue.use(VueRouter);
 Vue.use(MaterialDashboard);
 Vue.use(GlobalComponents);

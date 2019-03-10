@@ -113,5 +113,14 @@ export const CommunicationService = {
 export const GroupService = {
   getGroup(slug){
     return ApiService.get("organizationgroup", slug)
+  },
+  getGroupMembers(slug){
+    return ApiService.get("organizationgroup", `${slug}/user/all`);
+  },
+  setGroupMember(slug, user){
+    return ApiService.put(`organizationgroup/${slug}/user/${user.id}`)
+  },
+  removeGroupMember(group, user){
+    return ApiService.delete(`organizationgroup/${group}/user/${user.id}`)
   }
 }
