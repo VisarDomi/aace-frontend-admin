@@ -1,13 +1,14 @@
-import DashboardLayout from "@/pages/Layout/DashboardLayout.vue";
+import DashboardLayout from "@/pages/Layout/DashboardLayout";
 
-import Dashboard from "@/pages/Dashboard.vue";
-import UserProfile from "@/pages/UserProfile.vue";
-import TableList from "@/pages/TableList.vue";
-import Icons from "@/pages/Icons.vue";
-import Maps from "@/pages/Maps.vue";
-import Notifications from "@/pages/Notifications.vue";
-import AdminLogin from "@/pages/AdminLogin.vue";
-import Groups from "@/pages/Groups.vue";
+import Dashboard from "@/pages/Dashboard";
+import UserProfile from "@/pages/UserProfile";
+import TableList from "@/pages/TableList";
+import Icons from "@/pages/Icons";
+import Maps from "@/pages/Maps";
+import Notifications from "@/pages/Notifications";
+import AdminLogin from "@/pages/AdminLogin";
+import Groups from "@/pages/Groups";
+import NotFound from "@/pages/NotFound";
 const routes = [
   {
     path: "",
@@ -144,7 +145,18 @@ const routes = [
     ],
     meta: {
       requiresAuth: true,
-      is_admin: true
+      is_admin: true,
+      title: "Home",
+      metaTags: [
+        {
+          name: "description",
+          content: "The hoem page of AACE admin."
+        },
+        {
+          property: "og:description",
+          content: "The hoem page of AACE admin."
+        }
+      ]
     }
   },
   {
@@ -161,6 +173,24 @@ const routes = [
         {
           property: "og:description",
           content: "The login page of AACE admin."
+        }
+      ]
+    }
+  },
+  {
+    path: "*",
+    name: "Not Found",
+    component: NotFound,
+    meta: {
+      title: "Not Found",
+      metaTags: [
+        {
+          name: "description",
+          content: "The not found page of AACE admin."
+        },
+        {
+          property: "og:description",
+          content: "The not found page of AACE admin."
         }
       ]
     }

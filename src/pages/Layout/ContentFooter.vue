@@ -1,34 +1,28 @@
 <template>
   <footer class="footer">
     <div class="container">
-        <nav>
-            <ul>
-              <li>
-                <router-link :to="{path:'/dashboard'}">Home</router-link>
-              </li>
-                <li>
-                    <a href="#">
-                        Company
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        Portfolio
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        Blog
-                    </a>
-                </li>
-            </ul>
-        </nav>
-        <div class="copyright text-center">
-          &copy; {{ new Date().getFullYear() }} <a href="www.forcewing.com" target="_blank">Forcewing</a>
-        </div>
+      <nav>
+        <ul>
+          <li>
+            <router-link :to="{path:'/dashboard'}">Home</router-link>
+          </li>
+          <li>
+            <a href="#">Company</a>
+          </li>
+          <li>
+            <a href="#">Portfolio</a>
+          </li>
+          <li>
+            <a href="#">Blog</a>
+          </li>
+        </ul>
+      </nav>
+      <div class="copyright text-center">
+        &copy; {{ new Date().getFullYear() }}
+        <a href="https://forcewing.com" target="_blank">Forcewing</a>
+      </div>
     </div>
   </footer>
-
 </template>
 <script>
 export default {};
