@@ -1,69 +1,200 @@
-import DashboardLayout from "@/pages/Layout/DashboardLayout.vue";
+import DashboardLayout from "@/pages/Layout/DashboardLayout";
 
-import Dashboard from "@/pages/Dashboard.vue";
-import UserProfile from "@/pages/UserProfile.vue";
-import TableList from "@/pages/TableList.vue";
-import Icons from "@/pages/Icons.vue";
-import Maps from "@/pages/Maps.vue";
-import Notifications from "@/pages/Notifications.vue";
-import AdminLogin from "@/pages/AdminLogin.vue";
-import Groups from "@/pages/Groups.vue";
+import Dashboard from "@/pages/Dashboard";
+import UserProfile from "@/pages/UserProfile";
+import TableList from "@/pages/TableList";
+import Icons from "@/pages/Icons";
+import Maps from "@/pages/Maps";
+import Notifications from "@/pages/Notifications";
+import AdminLogin from "@/pages/AdminLogin";
+import Groups from "@/pages/Groups";
+import NotFound from "@/pages/NotFound";
 const routes = [
   {
-    path: "/",
+    path: "",
     component: DashboardLayout,
     // redirect: "/dashboard",
     children: [
       {
-        path: "dashboard",
+        path: "/dashboard",
         name: "Dashboard",
-        component: Dashboard
-      },
-      {
-        path: "user/:id",
-        name: "User Profile",
-        component: UserProfile
-      },
-      {
-        path: "groups",
-        name: "Groups",
-        component: Groups
-      },
-      {
-        path: "table",
-        name: "Table List",
-        component: TableList
-      },
-      {
-        path: "icons",
-        name: "Icons",
-        component: Icons
-      },
-      {
-        path: "maps",
-        name: "Maps",
+        component: Dashboard,
         meta: {
-          hideFooter: true
-        },
-        component: Maps
+          title: "Dashboard",
+          metaTags: [
+            {
+              name: "description",
+              content: "The dashboard page of AACE admin."
+            },
+            {
+              property: "og:description",
+              content: "The dashboard page of AACE admin."
+            }
+          ]
+        }
       },
       {
-        path: "notifications",
+        path: "/user/:id",
+        name: "User Profile",
+        component: UserProfile,
+        meta: {
+          title: "User Profile",
+          metaTags: [
+            {
+              name: "description",
+              content: "The user profile page of AACE admin."
+            },
+            {
+              property: "og:description",
+              content: "The user profile page of AACE admin."
+            }
+          ]
+        }
+      },
+      {
+        path: "/groups",
+        name: "Groups",
+        component: Groups,
+        meta: {
+          title: "Groups",
+          metaTags: [
+            {
+              name: "description",
+              content: "The groups page of AACE admin."
+            },
+            {
+              property: "og:description",
+              content: "The groups page of AACE admin."
+            }
+          ]
+        }
+      },
+      {
+        path: "/table",
+        name: "Table List",
+        component: TableList,
+        meta: {
+          title: "Table List",
+          metaTags: [
+            {
+              name: "description",
+              content: "The table list page of AACE admin."
+            },
+            {
+              property: "og:description",
+              content: "The table list page of AACE admin."
+            }
+          ]
+        }
+      },
+      {
+        path: "/icons",
+        name: "Icons",
+        component: Icons,
+        meta: {
+          title: "Icons",
+          metaTags: [
+            {
+              name: "description",
+              content: "The icons page of AACE admin."
+            },
+            {
+              property: "og:description",
+              content: "The icons page of AACE admin."
+            }
+          ]
+        }
+      },
+      {
+        path: "/maps",
+        name: "Maps",
+        component: Maps,
+        meta: {
+          hideFooter: true,
+          title: "Maps",
+          metaTags: [
+            {
+              name: "description",
+              content: "The maps page of AACE admin."
+            },
+            {
+              property: "og:description",
+              content: "The maps page of AACE admin."
+            }
+          ]
+        }
+      },
+      {
+        path: "/notifications",
         name: "Notifications",
-        component: Notifications
+        component: Notifications,
+        meta: {
+          title: "Notifications",
+          metaTags: [
+            {
+              name: "description",
+              content: "The notifications page of AACE admin."
+            },
+            {
+              property: "og:description",
+              content: "The notifications page of AACE admin."
+            }
+          ]
+        }
       }
     ],
-    meta: { 
+    meta: {
       requiresAuth: true,
-      is_admin : true
+      is_admin: true,
+      title: "Home",
+      metaTags: [
+        {
+          name: "description",
+          content: "The hoem page of AACE admin."
+        },
+        {
+          property: "og:description",
+          content: "The hoem page of AACE admin."
+        }
+      ]
     }
   },
   {
     path: "/login",
     name: "AdminLogin",
-    component: AdminLogin
+    component: AdminLogin,
+    meta: {
+      title: "Login",
+      metaTags: [
+        {
+          name: "description",
+          content: "The login page of AACE admin."
+        },
+        {
+          property: "og:description",
+          content: "The login page of AACE admin."
+        }
+      ]
+    }
+  },
+  {
+    path: "*",
+    name: "Not Found",
+    component: NotFound,
+    meta: {
+      title: "Not Found",
+      metaTags: [
+        {
+          name: "description",
+          content: "The not found page of AACE admin."
+        },
+        {
+          property: "og:description",
+          content: "The not found page of AACE admin."
+        }
+      ]
+    }
   }
 ];
-
 
 export default routes;

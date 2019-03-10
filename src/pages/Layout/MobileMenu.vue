@@ -6,9 +6,11 @@
         <md-input v-model="search" type="text"></md-input>
       </md-field>
     </li>
-    <li><a href="#" class="dropdown-toggle" data-toggle="dropdown">
-      <i class="material-icons">dashboard</i>
-      <p>Dashboard</p></a>
+    <li>
+      <router-link :to="{name: 'Dashboard'}" class="dropdown-toggle" data-toggle="dropdown">
+        <i class="material-icons">dashboard</i>
+        <p>Dashboard</p>
+      </router-link>
     </li>
     <li>
       <drop-down>
@@ -18,18 +20,30 @@
           <p>Notifications</p>
         </a>
         <ul class="dropdown-menu dropdown-menu-right">
-          <li><a href="#">Mike John responded to your email</a></li>
-          <li><a href="#">You have 5 new tasks</a></li>
-          <li><a href="#">You're now friend with Andrew</a></li>
-          <li><a href="#">Another Notification</a></li>
-          <li><a href="#">Another One</a></li>
+          <li>
+            <a href="#">Mike John responded to your email</a>
+          </li>
+          <li>
+            <a href="#">You have 5 new tasks</a>
+          </li>
+          <li>
+            <a href="#">You're now friend with Andrew</a>
+          </li>
+          <li>
+            <a href="#">Another Notification</a>
+          </li>
+          <li>
+            <a href="#">Another One</a>
+          </li>
         </ul>
       </drop-down>
     </li>
-    <li>
-      <a href="#" data-toggle="dropdown" class="dropdown-toggle"><i class="material-icons">person</i>
-      <p>Profile</p></a>
-    </li>
+    <!-- <li>
+      <a href="#" data-toggle="dropdown" class="dropdown-toggle">
+        <i class="material-icons">person</i>
+        <p>Profile</p>
+      </a>
+    </li>-->
   </ul>
 </template>
 <script>

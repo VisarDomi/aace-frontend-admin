@@ -1,11 +1,11 @@
 <template>
   <div class="row">
-        <div class="login">
-            <input type="text" placeholder="Email" id="username" v-model="username">  
-        <input type="password" placeholder="password" id="password" v-model="password">  
-        <input type="submit" value="Sign In" @click="login(username,password)">
-        </div>
-        <div class="shadow"></div>
+    <div class="login">
+      <input type="text" placeholder="Email" id="username" v-model="username">
+      <input type="password" placeholder="password" id="password" v-model="password">
+      <input type="submit" value="Sign In" @click="login(username,password)">
+    </div>
+    <div class="shadow"></div>
   </div>
 </template>
 
@@ -57,7 +57,7 @@ body {
       rgba(92, 100, 111, 1) 0%,
       rgba(31, 35, 40, 1) 100%
     ),
-    url("http://i.minus.com/io97fW9I0NqJq.png");
+    url("https://i.minus.com/io97fW9I0NqJq.png");
 }
 .login {
   background: #eceeee;
@@ -83,7 +83,8 @@ body {
 }
 input[type="password"],
 input[type="text"] {
-  background: url("http://i.minus.com/ibhqW9Buanohx2.png") center left no-repeat,
+  background: url("https://i.minus.com/ibhqW9Buanohx2.png") center left
+      no-repeat,
     linear-gradient(top, #d6d7d7, #dee0e0);
   border: 1px solid #a1a3a3;
   border-radius: 4px;
@@ -119,7 +120,7 @@ input[type="checkbox"]:checked {
   width: 58px;
 }
 .toggle {
-  background: url(http://i.minus.com/ibitS19pe8PVX6.png) no-repeat;
+  background: url(https://i.minus.com/ibitS19pe8PVX6.png) no-repeat;
   display: block;
   height: 16px;
   margin-top: -20px;
