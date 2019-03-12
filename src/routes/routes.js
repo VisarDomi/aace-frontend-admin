@@ -9,6 +9,7 @@ import Notifications from "@/pages/Notifications";
 import AdminLogin from "@/pages/AdminLogin";
 import Groups from "@/pages/Groups";
 import NotFound from "@/pages/NotFound";
+import Communication from "@/pages/Communication";
 const routes = [
   {
     path: "",
@@ -65,6 +66,24 @@ const routes = [
             {
               property: "og:description",
               content: "The groups page of AACE admin."
+            }
+          ]
+        }
+      },
+      {
+        path: "/communication",
+        name: "Communication",
+        component: Communication,
+        meta: {
+          title: "Communication",
+          metaTags: [
+            {
+              name: "description",
+              content: "The communication page of AACE admin."
+            },
+            {
+              property: "og:description",
+              content: "The communication page of AACE admin."
             }
           ]
         }

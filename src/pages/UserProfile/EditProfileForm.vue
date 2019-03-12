@@ -75,14 +75,14 @@
               <md-input v-model="profile.phone" disabled></md-input>
             </md-field>
           </div>
-          <div class="md-layout-item md-size-100">
+          <!-- <div class="md-layout-item md-size-100">
             <md-field maxlength="5">
               <label>Komento aplikimin</label>
               <md-textarea v-model="comment_from_administrator" placeholder="Bashkangjisni nje koment qe shpjegon vendimin."></md-textarea>
             </md-field>
           </div>
 
-          <div class="md-layout-item md-size-100 text-right"></div>
+          <div class="md-layout-item md-size-100 text-right"></div> -->
         </div>
       </md-card-content>
     </md-card>
@@ -200,7 +200,30 @@
     </md-card>
   </form>
 
-            <div class="md-layout-item md-size-100 text-center">
+      <form>
+    <md-card>
+      <md-card-header :data-background-color="dataBackgroundColor">
+        <h4 class="title">Comment the application</h4>
+        <p class="category">Review the applicant</p>
+      </md-card-header>
+
+      <md-card-content>
+        <div class="md-layout">
+          
+          <div class="md-layout-item md-size-100">
+            <md-field maxlength="5">
+              <label>Komento aplikimin</label>
+              <md-textarea v-model="comment_from_administrator" placeholder="Bashkangjisni nje koment qe shpjegon vendimin."></md-textarea>
+            </md-field>
+          </div>
+
+          <div class="md-layout-item md-size-100 text-right"></div>
+        </div>
+      </md-card-content>
+    </md-card>
+  </form>        
+  
+  <div class="md-layout-item md-size-100 text-center">
             <md-button
               class="md-raised md-danger text-left" style="margin-right: 10px;"
               @click="rejectApplication(comment_from_administrator)"
@@ -214,7 +237,9 @@
               @click="acceptApplication(comment_from_administrator)"
             >Accept Applicant</md-button>
           </div>
-</div>
+
+
+  </div>
 </template>
 <script>
 

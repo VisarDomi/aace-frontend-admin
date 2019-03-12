@@ -8,8 +8,9 @@
             <nav-tabs-card>
               <template slot="content">
                 <span class="md-nav-tabs-title">Groups:</span>
-                <md-tabs md-sync-route class="md-primary" md-alignment="left">
-                  <md-tab v-for="group in groups" :md-label="group.name" :key="group.id"  @click="retrieveGroupMembers(group.id)">
+                <md-tabs md-sync-route class="md-primary" md-alignment="centered" md-active-tab="my">
+                  <md-tab v-for="group in groups" :md-label="group.name" :key="group.id" @click="retrieveGroupMembers(group.id, group.name)">
+                    <h4 id="groupTitle">{{currentGroupName}}</h4>
                     <nav-tabs-table :tableGroupId="group.id"></nav-tabs-table>
                   </md-tab>
                 </md-tabs>
@@ -62,6 +63,7 @@ export default {
     return {
       selectedGroup: null,
       oldId: null,
+      currentGroupName: ""
     };
   },
   computed: {
@@ -69,11 +71,14 @@ export default {
   },
   created() {
     this.$store.dispatch(FETCH_GROUPS, { slug: "all" });
+    this.$store.dispatch(FETCH_GROUP_MEMBERS, {slug: "1"});
+    this.currentGroupName = "anetaret";
   },
   methods: {
-    retrieveGroupMembers: function(id){
+    retrieveGroupMembers: function(id, gName){
       this.oldId = id;
       this.$store.dispatch(FETCH_GROUP_MEMBERS, {slug : id})
+      this.currentGroupName = gName;
     },
     displaceMember: function(newGroupId){
       if(newGroupId!=this.oldId){
@@ -90,5 +95,11 @@ export default {
   width: auto;
   margin-right: auto;
   margin-left: 20px;
+}
+
+#groupTitle{
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 600;
 }
 </style>

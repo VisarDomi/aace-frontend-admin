@@ -16,6 +16,10 @@
         <md-icon>content_paste</md-icon>
         <p>Groups</p>
       </sidebar-link>
+      <sidebar-link to="/communication">
+        <md-icon>content_paste</md-icon>
+        <p>Communication</p>
+      </sidebar-link>
       <!-- <sidebar-link to="/typography">
         <md-icon>library_books</md-icon>
         <p>Typography</p>
