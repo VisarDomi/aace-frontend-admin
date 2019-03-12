@@ -20,3 +20,6 @@ export const REJECT_APPLICANT = "rejectApplicant";
 export const REBUTT_APPLICANT = "rebuttApplicant";
 export const FETCH_GROUPS = "fetchGroups";
 export const FETCH_MEMBER_NAMES = "fetchMemberNames";
+export const FETCH_GROUP_MEMBERS = "fetchGroupMembers";
+export const SELECT_GROUP_MEMBERS = "selectGroupMembers";
+export const DISPLACE_MEMBER_IN_GROUP = "displaceMemberInGroup";

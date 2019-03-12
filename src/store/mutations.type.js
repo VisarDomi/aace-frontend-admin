@@ -16,3 +16,7 @@ export const SET_COMM_DOCS = "setCommDocs";
 export const SET_MEMBER_NAMES = "setMemberNamess";
 export const SET_MEMBERS = "setMembers";
 export const SET_GROUPS = "setGroups";
+export const SET_GROUP_MEMBERS = "setGroupMembers";
+export const SET_SELECTED_GROUP_MEMBERS = "setSelectedGroupMembers";
+export const FETCH_START = "fetchStart";
+export const FETCH_END = "fetchEnd";
