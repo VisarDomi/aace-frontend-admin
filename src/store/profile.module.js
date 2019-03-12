@@ -1,4 +1,3 @@
-
 import UserService from "@/common/userstorage.service";
 import {
   MemberService,
@@ -59,7 +58,7 @@ const getters = {
   members(state) {
     return state.members;
   },
-  memberNames(state){
+  memberNames(state) {
     return state.memberNames;
   }
 };
@@ -118,25 +117,34 @@ const actions = {
   async [ACCEPT_APPLICANT](context, payload) {
     const { id } = payload.id;
     const { comment_from_administrator } = payload;
-    MemberService.changeStatus(id, { comment_from_administrator , register_status: "approved"});
+    MemberService.changeStatus(id, {
+      comment_from_administrator,
+      register_status: "accepted"
+    });
   },
   async [REBUTT_APPLICANT](context, payload) {
     const { id } = payload.id;
     const { comment_from_administrator } = payload;
-    MemberService.changeStatus(id, { comment_from_administrator , register_status: "rebutted"});
+    MemberService.changeStatus(id, {
+      comment_from_administrator,
+      register_status: "rebutted"
+    });
   },
   async [REJECT_APPLICANT](context, payload) {
     const { id } = payload.id;
     const { comment_from_administrator } = payload;
-    MemberService.changeStatus(id, { comment_from_administrator , register_status: "rejected"});
+    MemberService.changeStatus(id, {
+      comment_from_administrator,
+      register_status: "rejected"
+    });
   },
-  async [FETCH_MEMBER_NAMES](context){
-    const { data } = await MemberService.get('all');
+  async [FETCH_MEMBER_NAMES](context) {
+    const { data } = await MemberService.get("all");
     var memberNames = [];
     for (var name in data) {
       memberNames.push(data[name].first_name + " " + data[name].last_name);
     }
-    context.commit(SET_MEMBER_NAMES, memberNames)
+    context.commit(SET_MEMBER_NAMES, memberNames);
   }
 };
 

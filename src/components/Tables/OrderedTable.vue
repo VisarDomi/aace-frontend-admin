@@ -3,7 +3,7 @@
     <div class="row text-center" >
       <md-button class="md-raised md-info text-right" @click="get_applying" style="margin-right:5px;">Applying</md-button>
       <md-button class="md-raised md-warning text-right" @click="get_rebutted" style="margin-right:5px;">Rebutted</md-button>
-      <md-button class="md-raised md-success text-right" @click="get_approved" style="margin-right:5px;">Accepted</md-button>
+      <md-button class="md-raised md-success text-right" @click="get_accepted" style="margin-right:5px;">Accepted</md-button>
       <md-button class="md-raised md-danger text-right" @click="get_rejected">Rejected</md-button>
     </div>
     <br>
@@ -12,7 +12,7 @@
         slot="md-table-row"
         slot-scope="{ item }"
         @click="open_user_profile(item)"
-        :class="{ 'table-success': item.register_status == 'approved',
+        :class="{ 'table-success': item.register_status == 'accepted',
           'table-info' : item.register_status =='applying',
           'table-info2' : item.register_status =='reapplying',
           'table-danger' : item.register_status =='rejected',
@@ -49,8 +49,8 @@ export default {
     get_rebutted: function(){
       this.$store.dispatch(FETCH_MEMBERS, { users: "rebutted" });
     },
-    get_approved: function(){
-      this.$store.dispatch(FETCH_MEMBERS, { users: "approved" });
+    get_accepted: function(){
+      this.$store.dispatch(FETCH_MEMBERS, { users: "accepted" });
     },
     get_rejected: function(){
       this.$store.dispatch(FETCH_MEMBERS, { users: "rejected" });
