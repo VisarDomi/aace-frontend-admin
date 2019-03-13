@@ -72,7 +72,7 @@ export const MemberService = {
   getMember(slug) {
     return ApiService.get("admin/user", slug);
   },
-  changeStatus(slug, params){
+  changeStatus(slug, params) {
     return ApiService.put(`admin/user/${slug}`, params);
   }
 };
@@ -111,16 +111,20 @@ export const CommunicationService = {
 };
 
 export const GroupService = {
-  getGroup(slug){
-    return ApiService.get("organizationgroup", slug)
+  getGroup(slug) {
+    return ApiService.get("organizationgroup", slug);
   },
-  getGroupMembers(slug){
+  getGroupMembers(slug) {
     return ApiService.get("organizationgroup", `${slug}/user/all`);
   },
-  setGroupMember(slug, user){
-    return ApiService.put(`organizationgroup/${slug}/user/${user.id}`)
+  setGroupMembers(slug, users) {
+    return ApiService.put(`organizationgroup/${slug}/user`, users);
   },
-  removeGroupMember(group, user){
-    return ApiService.delete(`organizationgroup/${group}/user/${user.id}`)
+  removeGroupMembers(group, users) {
+    return Vue.axios
+      .delete(`organizationgroup/${group}/user`, { data: users })
+      .catch(error => {
+        throw new Error(`[RWV] ApiService ${error}`);
+      });
   }
-}
+};

@@ -30,38 +30,33 @@ export const actions = {
     const { slug } = payload;
     const { data } = await GroupService.getGroup(slug);
     context.commit(SET_GROUPS, data);
+
   },
   async [FETCH_GROUP_MEMBERS](context, payload) {
     context.commit(FETCH_START);
     const { slug } = payload;
     const { data } = await GroupService.getGroupMembers(slug);
     context.commit(SET_GROUP_MEMBERS, data);
+
   },
   [SELECT_GROUP_MEMBERS](context, payload) {
     context.commit(SET_SELECTED_GROUP_MEMBERS, payload);
   },
-  [DISPLACE_MEMBER_IN_GROUP](context, payload) {
+  async [DISPLACE_MEMBER_IN_GROUP](context, payload) {
     context.commit(FETCH_START);
     const { oldId, newId } = payload;
-    for (var member in state.selectedGroupMembers) {
-      console.log("moving user:")
-      console.log(state.selectedGroupMembers[member].id)
-      console.log("from old id: " + oldId);
-      console.log("to new id " + newId);
-      GroupService.removeGroupMember(oldId, state.selectedGroupMembers[member])
-        .then(() => {
-          GroupService.setGroupMember(
-            newId,
-            state.selectedGroupMembers[member]
-          );
-        })
-        .catch(error => {
-          console.log(error);
-        });
-    }
-    context.commit(FETCH_END);
+    let userIds = state.selectedGroupMembers.map(member => member.id);
+    await GroupService.removeGroupMembers(oldId, { ids: userIds })
+      .then(() => {})
+      .catch(error => {
+        console.log(error);
+      });
+    await GroupService.setGroupMembers(newId, { ids: userIds });
+
   }
 };
+
+//fetch end is redundant in this case
 
 export const mutations = {
   [FETCH_START](state) {

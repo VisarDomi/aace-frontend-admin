@@ -30,7 +30,7 @@
           </div>
           <div class="md-layout-item md-layout">
             <md-field>
-              <md-button class="md-primary md-layout-item" v-for="group in groups" :key="group.id" @click="displaceMember(group.id)">{{group.name}}</md-button>
+              <md-button class="md-primary md-layout-item" v-for="group in groups" :key="group.id" @click="displaceMember(group.id, group.name)">{{group.name}}</md-button>
             </md-field>
           </div>
         </div>
@@ -71,8 +71,11 @@ export default {
   },
   created() {
     this.$store.dispatch(FETCH_GROUPS, { slug: "all" });
-    this.$store.dispatch(FETCH_GROUP_MEMBERS, {slug: "1"});
-    this.currentGroupName = "anetaret";
+    this.$store.dispatch(FETCH_GROUP_MEMBERS, {slug: "1"}).then(()=>{
+
+      this.currentGroupName = "anetaret";
+    });
+    this.oldId = 1;
   },
   methods: {
     retrieveGroupMembers: function(id, gName){
@@ -80,10 +83,14 @@ export default {
       this.$store.dispatch(FETCH_GROUP_MEMBERS, {slug : id})
       this.currentGroupName = gName;
     },
-    displaceMember: function(newGroupId){
+    displaceMember: function(newGroupId, newGroupName){
       if(newGroupId!=this.oldId){
-              this.$store.dispatch(DISPLACE_MEMBER_IN_GROUP, {oldId : this.oldId, newId: newGroupId})
-      this.$store.dispatch(FETCH_GROUP_MEMBERS, {slug : newGroupId})
+        this.$store.dispatch(DISPLACE_MEMBER_IN_GROUP, {oldId : this.oldId, newId: newGroupId}).then(()=>{
+          this.$store.dispatch(FETCH_GROUP_MEMBERS, {slug : newGroupId})
+          this.oldId=newGroupId;
+          this.currentGroupName = newGroupName;
+        })
+      
       }
     }
   }
