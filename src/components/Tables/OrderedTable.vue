@@ -1,9 +1,26 @@
 <template>
   <div>
-    <div class="row text-center" >
-      <md-button class="md-raised md-info text-right" @click="get_applying" style="margin-right:5px;">Applying</md-button>
-      <md-button class="md-raised md-warning text-right" @click="get_rebutted" style="margin-right:5px;">Rebutted</md-button>
-      <md-button class="md-raised md-success text-right" @click="get_accepted" style="margin-right:5px;">Accepted</md-button>
+    <div class="row text-center">
+      <md-button
+        class="md-raised md-info text-right"
+        @click="get_applying"
+        style="margin-right:5px;"
+      >Applying</md-button>
+      <md-button
+        class="md-raised md-info2 text-right"
+        @click="get_reapplying"
+        style="margin-right:5px;"
+      >Reapplying</md-button>
+      <md-button
+        class="md-raised md-warning text-right"
+        @click="get_rebutted"
+        style="margin-right:5px;"
+      >Rebutted</md-button>
+      <md-button
+        class="md-raised md-success text-right"
+        @click="get_accepted"
+        style="margin-right:5px;"
+      >Accepted</md-button>
       <md-button class="md-raised md-danger text-right" @click="get_rejected">Rejected</md-button>
     </div>
     <br>
@@ -43,16 +60,19 @@ export default {
     }
   },
   methods: {
-    get_applying: function(){
+    get_applying: function() {
       this.$store.dispatch(FETCH_MEMBERS, { users: "applying" });
     },
-    get_rebutted: function(){
+    get_reapplying: function() {
+      this.$store.dispatch(FETCH_MEMBERS, { users: "reapplying" });
+    },
+    get_rebutted: function() {
       this.$store.dispatch(FETCH_MEMBERS, { users: "rebutted" });
     },
-    get_accepted: function(){
+    get_accepted: function() {
       this.$store.dispatch(FETCH_MEMBERS, { users: "accepted" });
     },
-    get_rejected: function(){
+    get_rejected: function() {
       this.$store.dispatch(FETCH_MEMBERS, { users: "rejected" });
     },
     open_user_profile: function(item) {
@@ -78,7 +98,7 @@ export default {
   background-color: #b8ecf3;
 }
 .table-info2 {
-  background-color: #91a8da;
+  background-color: #90ceeb;
 }
 
 .table-success {
@@ -92,5 +112,4 @@ export default {
 .table-warning {
   background-color: #fff9c8;
 }
-
 </style>
