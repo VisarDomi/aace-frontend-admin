@@ -1,6 +1,6 @@
 // import ApiService from "@/common/api.service";
 import { CommunicationService } from "@/common/api.service";
-import { FETCH_COMMS, FETCH_COMM } from "./actions.type";
+import { FETCH_COMMS, FETCH_COMM, MAKE_COMM } from "./actions.type";
 import { SET_COMM, SET_COMMS } from "./mutations.type";
 
 const initialState = {
@@ -28,6 +28,9 @@ export const actions = {
     const { id } = commId;
     const { data } = await CommunicationService.getCommunication(id);
     context.commit(SET_COMM, data);
+  },
+  [MAKE_COMM](context, payload){
+    CommunicationService.makeCommunication(payload);
   }
 };
 

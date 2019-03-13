@@ -100,7 +100,7 @@ import {
 
 import { mapGetters } from "vuex";
 import store from "@/store";
-import {} from "@/store/actions.type";
+import {MAKE_COMM} from "@/store/actions.type";
 
 export default {
   mixins: [validationMixin],
@@ -153,6 +153,7 @@ export default {
       this.sending = true;
 
       // Instead of this timeout, here you can call your API
+      this.$store.dispatch(MAKE_COMM, {name: this.form.title, description:this.form.description, body: this.form.text})
       this.communicationSaved = true;
       this.sending = false;
     },
