@@ -37,6 +37,14 @@ const ApiService = {
     return Vue.axios.post(`${resource}`, params);
   },
 
+  upload(resource, params){
+    return Vue.axios.post(`${resource}`, params, {
+      headers: {
+          'Content-Type': 'multipart/form-data'
+      }
+    })
+  },
+
   login(resource, params) {
     return Vue.axios.post(`${resource}`, {}, params);
   },
@@ -122,7 +130,7 @@ export const CommunicationService = {
     for (var p of files) {
       console.log(p);
     }
-    return ApiService.post(`officialcommunication/${commId}/media`, files);
+    return ApiService.upload(`officialcommunication/${commId}/media`, files);
   }
 };
 
