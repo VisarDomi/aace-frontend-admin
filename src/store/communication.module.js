@@ -29,8 +29,27 @@ export const actions = {
     const { data } = await CommunicationService.getCommunication(id);
     context.commit(SET_COMM, data);
   },
-  [MAKE_COMM](context, payload){
-    CommunicationService.makeCommunication(payload);
+  async [MAKE_COMM](context, payload) {
+    const { name, description, body, groups, files } = payload;
+    let commId;
+    console.log("starting make communication calls");
+    await CommunicationService.makeCommunication({
+      name: name,
+      description: description,
+      body: body
+    })
+      .then(({ data }) => {
+        console.log("starting to add communication to groups")
+        commId = data.id;
+        for (var group in groups) {
+          CommunicationService.addGroupToCommunication(commId,groups[group]);
+        }
+      })
+      .catch(() => {});
+
+      console.log("starting to upload files to communication")
+      console.log("comm id is still " + commId)
+      CommunicationService.uploadFiles(commId, files)
   }
 };
 

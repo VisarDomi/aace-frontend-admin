@@ -3,7 +3,7 @@
     <div class="content">
       <div class="md-layout">
         <div class="md-layout-item md-size-100 ">
-          <form novalidate class="md-layout md-alignment-top-center" @submit.prevent="validateCommunication">
+          <form novalidate class="md-layout md-alignment-top-center" @submit.prevent="validateCommunication" enctype="multipart/form-data">
             <md-card class="md-layout-item md-size-70 md-small-size-100">
               <md-card-header style="background-color:#9c27b0;">
                 <div class="md-title" style="text-align:center; color:white;">Communication</div>
@@ -56,7 +56,9 @@
                 <md-field>
 
               
-                <md-input type="file" multiple @change="handleCommUpload()" style="margin-bottom:50px;"/>
+                <!-- <md-input v-model="files" type="file" multiple @change="handleCommUpload()" style="margin-bottom:50px;"/> -->
+                          <input type="file" multiple ref="commfile" @change="handleCommUpload($event.target.name, $event.target.files);"
+             style="margin-bottom:50px;"/>
                 </md-field>
  </div>
                 </div>
@@ -64,10 +66,7 @@
                 <div class="md-layout ">
                   <div class="md-layout-item md-small-size-100">
                       <h3>Recipient groups: &nbsp;</h3>
-                    <md-checkbox v-model="recipientGroups" value="1">Anetaret</md-checkbox>
-                    <md-checkbox value="1">Bordi</md-checkbox>
-                    <md-checkbox value="1">Kryesia</md-checkbox>
-                    <md-checkbox value="1">Presidenti</md-checkbox>
+                    <md-checkbox v-model="recipientGroups" :value="group.id" v-for="group in groups" :key="group.id" style="text-transform: capitalize;">{{group.name}}</md-checkbox>
 
                  </div>
                 </div>
@@ -100,13 +99,13 @@ import {
 
 import { mapGetters } from "vuex";
 import store from "@/store";
-import {MAKE_COMM} from "@/store/actions.type";
+import {FETCH_GROUPS,MAKE_COMM} from "@/store/actions.type";
 
 export default {
   mixins: [validationMixin],
   data: () => ({
     recipientGroups: [],
-    files: null,
+    formData: null,
     hasFile: false,
     form: {
       title: null,
@@ -145,15 +144,23 @@ export default {
       this.$v.$reset();
       this.form.title = null;
       this.form.text = null;
+      this.form.description = null;
     },
-    handleCommUpload(){
-      //todo  
+    handleCommUpload(fieldName, fileList){
+      // handle file changes
+        let formData = new FormData();
+        if (!fileList.length) return;
+        let files = this.$refs.commfile.files
+        for(let i = 0; i < files.length; i++){
+            console.log(files[i])
+            formData.append(files[i].name, files[i])
+        }
+        this.formData = formData; 
     },
     communicationSent() {
       this.sending = true;
-
-      // Instead of this timeout, here you can call your API
-      this.$store.dispatch(MAKE_COMM, {name: this.form.title, description:this.form.description, body: this.form.text})
+      this.$store.dispatch(MAKE_COMM, {name: this.form.title, description:this.form.description, body: this.form.text, groups: this.recipientGroups, files: this.formData})
+      this.clearForm();
       this.communicationSaved = true;
       this.sending = false;
     },
@@ -167,9 +174,11 @@ export default {
   },
   name: "Communication",
   computed: {
-    ...mapGetters([])
+    ...mapGetters(["groups"])
   },
-  created() {}
+  created() {
+    this.$store.dispatch(FETCH_GROUPS, { slug: "all" });
+  }
 };
 </script>
 

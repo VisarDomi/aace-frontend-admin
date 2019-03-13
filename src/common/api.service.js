@@ -108,8 +108,21 @@ export const CommunicationService = {
   getCommunication(id) {
     return ApiService.get("officialcommunication", id);
   },
-  makeCommunication(comm){
+  makeCommunication(comm) {
     return ApiService.post("officialcommunication", comm);
+  },
+  addGroupToCommunication(commId, groupId) {
+    return ApiService.put(
+      `officialcommunication/${commId}/organizationgroup/${groupId}`
+    );
+  },
+  uploadFiles(commId, files){
+    console.log("files are")
+    console.log(files)
+    for (var p of files) {
+      console.log(p);
+    }
+    return ApiService.post(`officialcommunication/${commId}/media`, files);
   }
 };
 
