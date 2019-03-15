@@ -30,14 +30,12 @@ export const actions = {
     const { slug } = payload;
     const { data } = await GroupService.getGroup(slug);
     context.commit(SET_GROUPS, data);
-
   },
   async [FETCH_GROUP_MEMBERS](context, payload) {
     context.commit(FETCH_START);
     const { slug } = payload;
     const { data } = await GroupService.getGroupMembers(slug);
     context.commit(SET_GROUP_MEMBERS, data);
-
   },
   [SELECT_GROUP_MEMBERS](context, payload) {
     context.commit(SET_SELECTED_GROUP_MEMBERS, payload);
@@ -52,7 +50,6 @@ export const actions = {
         console.log(error);
       });
     await GroupService.setGroupMembers(newId, { ids: userIds });
-
   }
 };
 

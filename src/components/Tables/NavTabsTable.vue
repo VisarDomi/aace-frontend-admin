@@ -31,22 +31,19 @@ export default {
   name: "nav-tabs-table",
   props: ["tableGroupId"],
   data() {
-    return {
-    };
+    return {};
   },
-  created: function() {
-  },
+  created: function() {},
   methods: {
     onSelect: function(items) {
-      this.$store.dispatch(SELECT_GROUP_MEMBERS,items)
+      this.$store.dispatch(SELECT_GROUP_MEMBERS, items);
     }
   },
   computed: {
-    ...mapGetters(["groupMembers","isLoading"])
+    ...mapGetters(["groupMembers", "isLoading"])
   }
 };
 </script>
 
 <style scoped>
-
 </style>

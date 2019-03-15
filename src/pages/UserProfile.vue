@@ -19,13 +19,13 @@
 import { EditProfileForm, UserCard } from "@/pages";
 
 export default {
-  data(){
+  data() {
     return {
       user_id: ""
-    }
+    };
   },
   created() {
-    this.user_id = this.$route.params.id
+    this.user_id = this.$route.params.id;
   },
   components: {
     EditProfileForm,

@@ -39,17 +39,16 @@ export const actions = {
       body: body
     })
       .then(({ data }) => {
-        console.log("starting to add communication to groups")
         commId = data.id;
+        console.log("starting to upload files to communication");
+        console.log("comm id is still " + commId);
+        CommunicationService.uploadFiles(commId, files);
+        console.log("starting to add communication to groups");
         for (var group in groups) {
-          CommunicationService.addGroupToCommunication(commId,groups[group]);
+          CommunicationService.addGroupToCommunication(commId, groups[group]);
         }
       })
       .catch(() => {});
-
-      console.log("starting to upload files to communication")
-      console.log("comm id is still " + commId)
-      CommunicationService.uploadFiles(commId, files)
   }
 };
 

@@ -54,9 +54,7 @@
 
 <script>
 import { mapGetters } from "vuex";
-import {
-  FETCH_MEMBER_NAMES
-} from "@/store/actions.type";
+import { FETCH_MEMBER_NAMES } from "@/store/actions.type";
 import store from "@/store";
 export default {
   data() {
@@ -69,10 +67,12 @@ export default {
       this.$sidebar.displaySidebar(!this.$sidebar.showSidebar);
     },
     openProfile: function(members) {
-      
       var userId;
-      for(var i in members){
-        if( this.selectedMember == members[i].first_name + " " + members[i].last_name){
+      for (var i in members) {
+        if (
+          this.selectedMember ==
+          members[i].first_name + " " + members[i].last_name
+        ) {
           userId = members[i].id;
         }
       }
@@ -83,14 +83,12 @@ export default {
           id: userId
         }
       });
-      
-
     }
   },
   computed: {
-    ...mapGetters(["memberNames","members"])
+    ...mapGetters(["memberNames", "members"])
   },
-  mounted(){
+  mounted() {
     this.$store.dispatch(FETCH_MEMBER_NAMES);
   }
 };

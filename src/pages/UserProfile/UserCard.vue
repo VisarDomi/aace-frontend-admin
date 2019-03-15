@@ -76,15 +76,18 @@ export default {
           const blob = new Blob([res.data], {
             type: "application/pdf"
           });
-          FileSaver.saveAs(
-            blob,
-            docName
-          );
+          FileSaver.saveAs(blob, docName);
         });
     }
   },
   computed: {
-    ...mapGetters(["profilePicture", "profile", "educations", "experience", "profilePicture"])
+    ...mapGetters([
+      "profilePicture",
+      "profile",
+      "educations",
+      "experience",
+      "profilePicture"
+    ])
   }
 };
 </script>

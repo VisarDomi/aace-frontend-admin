@@ -55,7 +55,11 @@
 <script>
 import { mapGetters } from "vuex";
 import store from "@/store";
-import { FETCH_GROUPS, FETCH_GROUP_MEMBERS,DISPLACE_MEMBER_IN_GROUP } from "@/store/actions.type";
+import {
+  FETCH_GROUPS,
+  FETCH_GROUP_MEMBERS,
+  DISPLACE_MEMBER_IN_GROUP
+} from "@/store/actions.type";
 
 export default {
   name: "Groups",
@@ -67,30 +71,33 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(["groups","selectedGroupMembers","isLoading"])
+    ...mapGetters(["groups", "selectedGroupMembers", "isLoading"])
   },
   created() {
     this.$store.dispatch(FETCH_GROUPS, { slug: "all" });
-    this.$store.dispatch(FETCH_GROUP_MEMBERS, {slug: "1"}).then(()=>{
-
+    this.$store.dispatch(FETCH_GROUP_MEMBERS, { slug: "1" }).then(() => {
       this.currentGroupName = "anetaret";
     });
     this.oldId = 1;
   },
   methods: {
-    retrieveGroupMembers: function(id, gName){
+    retrieveGroupMembers: function(id, gName) {
       this.oldId = id;
-      this.$store.dispatch(FETCH_GROUP_MEMBERS, {slug : id})
+      this.$store.dispatch(FETCH_GROUP_MEMBERS, { slug: id });
       this.currentGroupName = gName;
     },
-    displaceMember: function(newGroupId, newGroupName){
-      if(newGroupId!=this.oldId){
-        this.$store.dispatch(DISPLACE_MEMBER_IN_GROUP, {oldId : this.oldId, newId: newGroupId}).then(()=>{
-          this.$store.dispatch(FETCH_GROUP_MEMBERS, {slug : newGroupId})
-          this.oldId=newGroupId;
-          this.currentGroupName = newGroupName;
-        })
-      
+    displaceMember: function(newGroupId, newGroupName) {
+      if (newGroupId != this.oldId) {
+        this.$store
+          .dispatch(DISPLACE_MEMBER_IN_GROUP, {
+            oldId: this.oldId,
+            newId: newGroupId
+          })
+          .then(() => {
+            this.$store.dispatch(FETCH_GROUP_MEMBERS, { slug: newGroupId });
+            this.oldId = newGroupId;
+            this.currentGroupName = newGroupName;
+          });
       }
     }
   }
@@ -98,15 +105,15 @@ export default {
 </script>
 
 <style scoped>
-.md-field{
+.md-field {
   width: auto;
   margin-right: auto;
   margin-left: 20px;
 }
 
-#groupTitle{
-    text-align: center;
-    text-transform: uppercase;
-    font-weight: 600;
+#groupTitle {
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: 600;
 }
 </style>

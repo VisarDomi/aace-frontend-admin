@@ -242,7 +242,6 @@
   </div>
 </template>
 <script>
-
 import { mapGetters } from "vuex";
 import {
   FETCH_PROFILE,
@@ -263,28 +262,40 @@ export default {
   data() {
     return {
       comment_from_administrator: ""
-    }
+    };
   },
   methods: {
     rejectApplication: function(comment_from_administrator) {
-      this.$store.dispatch(REJECT_APPLICANT, {id:this.$route.params,comment_from_administrator:comment_from_administrator})
-      .then(() => this.$router.push({ name: "Dashboard" }));
+      this.$store
+        .dispatch(REJECT_APPLICANT, {
+          id: this.$route.params,
+          comment_from_administrator: comment_from_administrator
+        })
+        .then(() => this.$router.push({ name: "Dashboard" }));
     },
     rebuttApplication: function(comment_from_administrator) {
-      this.$store.dispatch(REBUTT_APPLICANT, {id:this.$route.params,comment_from_administrator:comment_from_administrator})
-      .then(() => this.$router.push({ name: "Dashboard" }));
+      this.$store
+        .dispatch(REBUTT_APPLICANT, {
+          id: this.$route.params,
+          comment_from_administrator: comment_from_administrator
+        })
+        .then(() => this.$router.push({ name: "Dashboard" }));
     },
     acceptApplication: function(comment_from_administrator) {
-      this.$store.dispatch(ACCEPT_APPLICANT, {id:this.$route.params,comment_from_administrator:comment_from_administrator})
-      .then(() => this.$router.push({ name: "Dashboard" }));
+      this.$store
+        .dispatch(ACCEPT_APPLICANT, {
+          id: this.$route.params,
+          comment_from_administrator: comment_from_administrator
+        })
+        .then(() => this.$router.push({ name: "Dashboard" }));
     }
   },
   mounted() {
     this.$store.dispatch(FETCH_PROFILE, this.$route.params);
   },
   computed: {
-    ...mapGetters(["profile", "educations","experience"])
-  },  
+    ...mapGetters(["profile", "educations", "experience"])
+  },
   watch: {
     $route(to) {
       this.$store.dispatch(FETCH_PROFILE, to.params);

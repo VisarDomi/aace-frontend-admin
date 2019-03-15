@@ -78,9 +78,7 @@
 
 <script>
 import { mapGetters } from "vuex";
-import {
-  OrderedTable
-} from "@/components";
+import { OrderedTable } from "@/components";
 
 export default {
   components: {
@@ -88,6 +86,6 @@ export default {
   },
   computed: {
     ...mapGetters(["isLoading"])
-  },
+  }
 };
 </script>

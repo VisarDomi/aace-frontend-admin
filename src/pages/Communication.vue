@@ -2,8 +2,13 @@
   <div>
     <div class="content">
       <div class="md-layout">
-        <div class="md-layout-item md-size-100 ">
-          <form novalidate class="md-layout md-alignment-top-center" @submit.prevent="validateCommunication" enctype="multipart/form-data">
+        <div class="md-layout-item md-size-100">
+          <form
+            novalidate
+            class="md-layout md-alignment-top-center"
+            @submit.prevent="validateCommunication"
+            enctype="multipart/form-data"
+          >
             <md-card class="md-layout-item md-size-70 md-small-size-100">
               <md-card-header style="background-color:#9c27b0;">
                 <div class="md-title" style="text-align:center; color:white;">Communication</div>
@@ -28,12 +33,20 @@
                   <div class="md-layout-item md-small-size-100">
                     <md-field :class="getValidationClass('description')">
                       <label for="description">Description</label>
-                      <md-input name="description" id="description" v-model="form.description" :disabled="sending"/>
+                      <md-input
+                        name="description"
+                        id="description"
+                        v-model="form.description"
+                        :disabled="sending"
+                      />
                       <span
                         class="md-error"
                         v-if="!$v.form.description.required"
                       >The description name is required</span>
-                      <span class="md-error" v-else-if="!$v.form.description.minlength">Invalid description name</span>
+                      <span
+                        class="md-error"
+                        v-else-if="!$v.form.description.minlength"
+                      >Invalid description name</span>
                     </md-field>
                   </div>
                 </div>
@@ -53,22 +66,30 @@
 
                 <div class="md-layout md-gutter">
                   <div class="md-layout-item md-small-size-30">
-                <md-field>
-
-              
-                <!-- <md-input v-model="files" type="file" multiple @change="handleCommUpload()" style="margin-bottom:50px;"/> -->
-                          <input type="file" multiple ref="commfile" @change="handleCommUpload($event.target.name, $event.target.files);"
-             style="margin-bottom:50px;"/>
-                </md-field>
- </div>
+                    <md-field>
+                      <!-- <md-input v-model="files" type="file" multiple @change="handleCommUpload()" style="margin-bottom:50px;"/> -->
+                      <input
+                        type="file"
+                        multiple
+                        ref="commfile"
+                        @change="handleCommUpload($event.target.name, $event.target.files);"
+                        style="margin-bottom:50px;"
+                      >
+                    </md-field>
+                  </div>
                 </div>
 
-                <div class="md-layout ">
+                <div class="md-layout">
                   <div class="md-layout-item md-small-size-100">
-                      <h3>Recipient groups: &nbsp;</h3>
-                    <md-checkbox v-model="recipientGroups" :value="group.id" v-for="group in groups" :key="group.id" style="text-transform: capitalize;">{{group.name}}</md-checkbox>
-
-                 </div>
+                    <h3>Recipient groups: &nbsp;</h3>
+                    <md-checkbox
+                      v-model="recipientGroups"
+                      :value="group.id"
+                      v-for="group in groups"
+                      :key="group.id"
+                      style="text-transform: capitalize;"
+                    >{{group.name}}</md-checkbox>
+                  </div>
                 </div>
               </md-card-content>
 
@@ -91,15 +112,11 @@
 
 <script>
 import { validationMixin } from "vuelidate";
-import {
-  required,
-  minLength,
-  maxLength
-} from "vuelidate/lib/validators";
+import { required, minLength, maxLength } from "vuelidate/lib/validators";
 
 import { mapGetters } from "vuex";
 import store from "@/store";
-import {FETCH_GROUPS,MAKE_COMM} from "@/store/actions.type";
+import { FETCH_GROUPS, MAKE_COMM } from "@/store/actions.type";
 
 export default {
   mixins: [validationMixin],
@@ -126,7 +143,7 @@ export default {
         required
       },
       description: {
-          required
+        required
       }
     }
   },
@@ -146,20 +163,26 @@ export default {
       this.form.text = null;
       this.form.description = null;
     },
-    handleCommUpload(fieldName, fileList){
+    handleCommUpload(fieldName, fileList) {
       // handle file changes
-        let formData = new FormData();
-        if (!fileList.length) return;
-        let files = this.$refs.commfile.files
-        for(let i = 0; i < files.length; i++){
-            console.log(files[i])
-            formData.append(files[i].name, files[i])
-        }
-        this.formData = formData; 
+      let formData = new FormData();
+      if (!fileList.length) return;
+      let files = this.$refs.commfile.files;
+      for (let i = 0; i < files.length; i++) {
+        console.log(files[i]);
+        formData.append(files[i].name, files[i]);
+      }
+      this.formData = formData;
     },
     communicationSent() {
       this.sending = true;
-      this.$store.dispatch(MAKE_COMM, {name: this.form.title, description:this.form.description, body: this.form.text, groups: this.recipientGroups, files: this.formData})
+      this.$store.dispatch(MAKE_COMM, {
+        name: this.form.title,
+        description: this.form.description,
+        body: this.form.text,
+        groups: this.recipientGroups,
+        files: this.formData
+      });
       this.clearForm();
       this.communicationSaved = true;
       this.sending = false;
@@ -189,5 +212,4 @@ export default {
   right: 0;
   left: 0;
 }
-
 </style>
