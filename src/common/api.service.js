@@ -38,6 +38,8 @@ const ApiService = {
   },
 
   upload(resource, params) {
+    console.log("is gonna upload");
+    console.log(params);
     return Vue.axios.post(`${resource}`, params, {
       headers: {
         "Content-Type": "multipart/form-data"
@@ -142,6 +144,8 @@ export const GroupService = {
     return ApiService.get("organizationgroup", `${slug}/user/all`);
   },
   setGroupMembers(slug, users) {
+    console.log("setting group members to group " + slug);
+    console.log(users);
     return ApiService.put(`organizationgroup/${slug}/user`, users);
   },
   removeGroupMembers(group, users) {
