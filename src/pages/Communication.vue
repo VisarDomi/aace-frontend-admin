@@ -101,6 +101,9 @@ import { mapGetters } from "vuex";
 import store from "@/store";
 import {FETCH_GROUPS,MAKE_COMM} from "@/store/actions.type";
 
+import axios from "axios";
+
+
 export default {
   mixins: [validationMixin],
   data: () => ({
@@ -160,6 +163,24 @@ export default {
     communicationSent() {
       this.sending = true;
       this.$store.dispatch(MAKE_COMM, {name: this.form.title, description:this.form.description, body: this.form.text, groups: this.recipientGroups, files: this.formData})
+                    axios
+                .post(
+                  "https://aace.ml/api/officialcommunication/21/media",
+                  this.formData,
+                  {
+                    "Content-Type": "multipart/form-data",
+
+                  }
+                )
+                .then(res => {
+                  if (res.status == 200) {
+                    console.log("files updated sucessfully.");
+                    // this.$router.push({
+                    //   name: "Success"
+                    // });
+                  }
+                })
+                .catch(err => console.log(err));
       this.clearForm();
       this.communicationSaved = true;
       this.sending = false;

@@ -3,7 +3,8 @@ import {
   MemberService,
   MediaService,
   EducationService,
-  ExperienceService
+  ExperienceService,
+  GroupService
 } from "@/common/api.service";
 import {
   FETCH_PROFILE,
@@ -121,6 +122,7 @@ const actions = {
       comment_from_administrator,
       register_status: "accepted"
     });
+    GroupService.setGroupMembers(1, {ids: [id]}) //id 1 is members
   },
   async [REBUTT_APPLICANT](context, payload) {
     const { id } = payload.id;
