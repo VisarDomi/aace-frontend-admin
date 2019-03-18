@@ -49,6 +49,8 @@ export const actions = {
         }
       })
       .catch(() => {});
+
+    // CommunicationService.uploadFiles(commId, files)
   }
 };
 

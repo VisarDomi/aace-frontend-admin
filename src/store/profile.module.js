@@ -122,7 +122,9 @@ const actions = {
       comment_from_administrator,
       register_status: "accepted"
     });
-    GroupService.setGroupMembers(1, { ids: [id] }); //id 1 is members
+    GroupService.setGroupMembers(1, {ids: [id]}).catch((error)=>{
+      console.log("The user is already a member." + error)
+    }) //id 1 is members
   },
   async [REBUTT_APPLICANT](context, payload) {
     const { id } = payload.id;

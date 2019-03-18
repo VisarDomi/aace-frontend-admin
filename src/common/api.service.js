@@ -127,11 +127,6 @@ export const CommunicationService = {
     );
   },
   uploadFiles(commId, files) {
-    console.log("files are");
-    console.log(files);
-    for (var p of files) {
-      console.log(p);
-    }
     return ApiService.upload(`officialcommunication/${commId}/media`, files);
   }
 };
@@ -144,8 +139,6 @@ export const GroupService = {
     return ApiService.get("organizationgroup", `${slug}/user/all`);
   },
   setGroupMembers(slug, users) {
-    console.log("setting group members to group " + slug);
-    console.log(users);
     return ApiService.put(`organizationgroup/${slug}/user`, users);
   },
   removeGroupMembers(group, users) {
