@@ -47,9 +47,7 @@ export const actions = {
       })
       .catch(() => {});
 
-      console.log("starting to upload files to communication")
-      console.log("comm id is still " + commId)
-      CommunicationService.uploadFiles(commId, files)
+      // CommunicationService.uploadFiles(commId, files)
   }
 };
 

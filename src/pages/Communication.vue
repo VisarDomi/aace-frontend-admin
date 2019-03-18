@@ -53,13 +53,11 @@
 
                 <div class="md-layout md-gutter">
                   <div class="md-layout-item md-small-size-30">
-                <md-field>
 
-              
-                <!-- <md-input v-model="files" type="file" multiple @change="handleCommUpload()" style="margin-bottom:50px;"/> -->
+                <!-- <md-field>
                           <input type="file" multiple ref="commfile" @change="handleCommUpload($event.target.name, $event.target.files);"
              style="margin-bottom:50px;"/>
-                </md-field>
+                </md-field> -->
  </div>
                 </div>
 
@@ -163,24 +161,24 @@ export default {
     communicationSent() {
       this.sending = true;
       this.$store.dispatch(MAKE_COMM, {name: this.form.title, description:this.form.description, body: this.form.text, groups: this.recipientGroups, files: this.formData})
-                    axios
-                .post(
-                  "https://aace.ml/api/officialcommunication/21/media",
-                  this.formData,
-                  {
-                    "Content-Type": "multipart/form-data",
+                //     axios
+                // .post(
+                //   "https://aace.ml/api/officialcommunication/21/media",
+                //   this.formData,
+                //   {
+                //     "Content-Type": "multipart/form-data",
 
-                  }
-                )
-                .then(res => {
-                  if (res.status == 200) {
-                    console.log("files updated sucessfully.");
-                    // this.$router.push({
-                    //   name: "Success"
-                    // });
-                  }
-                })
-                .catch(err => console.log(err));
+                //   }
+                // )
+                // .then(res => {
+                //   if (res.status == 200) {
+                //     console.log("files updated sucessfully.");
+                //     // this.$router.push({
+                //     //   name: "Success"
+                //     // });
+                //   }
+                // })
+                // .catch(err => console.log(err));
       this.clearForm();
       this.communicationSaved = true;
       this.sending = false;
