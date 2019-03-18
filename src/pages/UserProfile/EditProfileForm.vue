@@ -200,6 +200,56 @@
     </md-card>
   </form>
 
+
+  <form>
+    <md-card>
+      <md-card-header :data-background-color="dataBackgroundColor">
+        <h4 class="title">Kualifikimet e aplikantit</h4>
+        <p class="category">Shqyrtoni kualifikimet</p>
+      </md-card-header>
+
+      <md-card-content v-for="(skill,index) in skills" :key="skill.id">
+        <h5>Kualifikimi {{index+1}}</h5>
+        <div class="md-layout">
+          
+          <div class="md-layout-item md-small-size-100 md-size-33">
+            <md-field>
+              <label>Emri i certifikimit</label>
+              <md-input v-model="skill.name" disabled></md-input>
+            </md-field>
+          </div>
+          <div class="md-layout-item md-small-size-100 md-size-33">
+            <md-field>
+              <label>Emri i leshuesit</label>
+              <md-input v-model="skill.releaser" disabled></md-input>
+            </md-field>
+          </div>
+          <div class="md-layout-item md-small-size-100 md-size-100">
+            <md-field>
+              <label>Pershkrimi</label>
+              <md-textarea v-model="skill.description" disabled></md-textarea>
+            </md-field>
+          </div>
+          <div class="md-layout-item md-small-size-100 md-size-50">
+            <md-field>
+              <label>Data e fillimit</label>
+              <md-input v-model="skill.from_date" disabled></md-input>
+            </md-field>
+          </div>
+          <div class="md-layout-item md-small-size-100 md-size-50">
+            <md-field>
+              <label>Data e mbarimit</label>
+              <md-input v-model="skill.to_date" disabled></md-input>
+            </md-field>
+          </div>
+
+          <br>
+        </div>
+      </md-card-content>
+    </md-card>
+  </form>
+
+
       <form>
     <md-card>
       <md-card-header :data-background-color="dataBackgroundColor">
@@ -283,7 +333,7 @@ export default {
     this.$store.dispatch(FETCH_PROFILE, this.$route.params);
   },
   computed: {
-    ...mapGetters(["profile", "educations","experience"])
+    ...mapGetters(["profile", "educations","experience", "skills"])
   },  
   watch: {
     $route(to) {

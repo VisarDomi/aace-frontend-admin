@@ -20,3 +20,4 @@ export const SET_GROUP_MEMBERS = "setGroupMembers";
 export const SET_SELECTED_GROUP_MEMBERS = "setSelectedGroupMembers";
 export const FETCH_START = "fetchStart";
 export const FETCH_END = "fetchEnd";
+export const SET_SKILLS = "setSkills";

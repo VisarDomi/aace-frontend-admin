@@ -4,7 +4,8 @@ import {
   MediaService,
   EducationService,
   ExperienceService,
-  GroupService
+  GroupService,
+  SkillService
 } from "@/common/api.service";
 import {
   FETCH_PROFILE,
@@ -24,7 +25,8 @@ import {
   SET_STATUS,
   //admin
   SET_MEMBERS,
-  SET_MEMBER_NAMES
+  SET_MEMBER_NAMES,
+  SET_SKILLS
 } from "./mutations.type";
 
 const state = {
@@ -36,7 +38,8 @@ const state = {
   status: "",
   //admin
   members: {},
-  memberNames: []
+  memberNames: [],
+  skills : {}
 };
 
 const getters = {
@@ -61,6 +64,9 @@ const getters = {
   },
   memberNames(state) {
     return state.memberNames;
+  },
+  skills(state){
+    return state.skills;
   }
 };
 
@@ -103,6 +109,10 @@ const actions = {
         context.commit(SET_EXPERIENCE, data);
       })
       .catch(() => {});
+
+      SkillService.getSkills(id).then(({data})=>{
+        context.commit(SET_SKILLS, data);
+      }).catch(()=>{});
   },
   //admin
   async [FETCH_MEMBERS](context, payload) {
@@ -156,6 +166,9 @@ const mutations = {
   // [SET_ERROR] (state, error) {
   //   state.errors = error
   // },
+  [SET_SKILLS](state, skills) {
+    state.skills = skills;
+  },
   [SET_PROFILE](state, profile) {
     state.profile = profile;
     state.errors = {};
