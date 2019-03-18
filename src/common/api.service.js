@@ -100,16 +100,22 @@ export const MediaService = {
 };
 
 export const EducationService = {
-  getEducation(slug) {
+  getEducations(slug) {
     return ApiService.get("user", `${slug}/education/all`);
   }
 };
 
 export const ExperienceService = {
-  getExperience(slug) {
+  getExperiences(slug) {
     return ApiService.get("user", `${slug}/experience/all`);
   }
 };
+
+export const SkillService = {
+  getSkills(slug) {
+    return ApiService.get("user", `${slug}/skill/all`);
+  }
+}
 
 export const CommunicationService = {
   getCommunications() {
@@ -149,9 +155,3 @@ export const GroupService = {
       });
   }
 };
-
-export const SkillService = {
-  getSkills(slug){
-    return ApiService.get(`user/${slug}/skill`, "all");
-  }
-}

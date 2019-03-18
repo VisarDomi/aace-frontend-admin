@@ -31,7 +31,7 @@
           </template>
         </template>
 
-        <template v-for="experience in experience">
+        <template v-for="experience in experiences">
           <template v-for="media_id in experience.media_experience_ids">
             <button
               :key="media_id"
@@ -149,7 +149,7 @@ export default {
       "profilePicture",
       "profile",
       "educations",
-      "experience",
+      "experiences",
       "skills"
     ])
   }

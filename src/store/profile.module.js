@@ -20,8 +20,8 @@ import {
 import {
   SET_PROFILE,
   SET_PICTURE,
-  SET_EDUCATION,
-  SET_EXPERIENCE,
+  SET_EDUCATIONS,
+  SET_EXPERIENCES,
   SET_SKILLS,
   SET_STATUS,
   //admin
@@ -34,12 +34,12 @@ const state = {
   profile: {},
   profilePicture: "",
   educations: {},
-  experience: {},
+  experiences: {},
+  skills: {},
   status: "",
   //admin
   members: {},
-  memberNames: [],
-  skills: {}
+  memberNames: []
 };
 
 const getters = {
@@ -52,8 +52,11 @@ const getters = {
   educations(state) {
     return state.educations;
   },
-  experience(state) {
-    return state.experience;
+  experiences(state) {
+    return state.experiences;
+  },
+  skills(state) {
+    return state.skills;
   },
   status(state) {
     return state.status;
@@ -64,9 +67,6 @@ const getters = {
   },
   memberNames(state) {
     return state.memberNames;
-  },
-  skills(state) {
-    return state.skills;
   }
 };
 
@@ -98,15 +98,15 @@ const actions = {
       })
       .catch(() => {});
 
-    EducationService.getEducation(id)
+    EducationService.getEducations(id)
       .then(({ data }) => {
-        context.commit(SET_EDUCATION, data);
+        context.commit(SET_EDUCATIONS, data);
       })
       .catch(() => {});
 
-    ExperienceService.getExperience(id)
+    ExperienceService.getExperiences(id)
       .then(({ data }) => {
-        context.commit(SET_EXPERIENCE, data);
+        context.commit(SET_EXPERIENCES, data);
       })
       .catch(() => {});
 
@@ -175,11 +175,11 @@ const mutations = {
   [SET_PICTURE](state, picture) {
     state.profilePicture = picture;
   },
-  [SET_EDUCATION](state, education) {
-    state.educations = education;
+  [SET_EDUCATIONS](state, educations) {
+    state.educations = educations;
   },
-  [SET_EXPERIENCE](state, experience) {
-    state.experience = experience;
+  [SET_EXPERIENCES](state, experiences) {
+    state.experiences = experiences;
   },
   [SET_SKILLS](state, skills) {
     state.skills = skills;

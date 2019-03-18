@@ -154,7 +154,7 @@
         <p class="category">Review the applicant's experience</p>
       </md-card-header>
 
-      <md-card-content v-for="(experience,index) in experience" :key="experience.id">
+      <md-card-content v-for="(experience,index) in experiences" :key="experience.id">
         <h5>Eksperienca {{index+1}}</h5>
         <div class="md-layout">
           <div class="md-layout-item md-small-size-100 md-size-33">
@@ -343,7 +343,7 @@ export default {
     this.$store.dispatch(FETCH_PROFILE, this.$route.params);
   },
   computed: {
-    ...mapGetters(["profile", "educations","experience", "skills"])
+    ...mapGetters(["profile", "educations","experiences", "skills"])
   },
   watch: {
     $route(to) {
