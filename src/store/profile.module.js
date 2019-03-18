@@ -2,9 +2,10 @@ import UserService from "@/common/userstorage.service";
 import {
   MemberService,
   MediaService,
+  GroupService,
   EducationService,
   ExperienceService,
-  GroupService
+  SkillService
 } from "@/common/api.service";
 import {
   FETCH_PROFILE,
@@ -21,6 +22,7 @@ import {
   SET_PICTURE,
   SET_EDUCATION,
   SET_EXPERIENCE,
+  SET_SKILLS,
   SET_STATUS,
   //admin
   SET_MEMBERS,
@@ -36,7 +38,8 @@ const state = {
   status: "",
   //admin
   members: {},
-  memberNames: []
+  memberNames: [],
+  skills: {}
 };
 
 const getters = {
@@ -61,6 +64,9 @@ const getters = {
   },
   memberNames(state) {
     return state.memberNames;
+  },
+  skills(state) {
+    return state.skills;
   }
 };
 
@@ -103,6 +109,12 @@ const actions = {
         context.commit(SET_EXPERIENCE, data);
       })
       .catch(() => {});
+
+    SkillService.getSkills(id)
+      .then(({ data }) => {
+        context.commit(SET_SKILLS, data);
+      })
+      .catch(() => {});
   },
   //admin
   async [FETCH_MEMBERS](context, payload) {
@@ -122,9 +134,9 @@ const actions = {
       comment_from_administrator,
       register_status: "accepted"
     });
-    GroupService.setGroupMembers(1, {ids: [id]}).catch((error)=>{
-      console.log("The user is already a member." + error)
-    }) //id 1 is members
+    GroupService.setGroupMembers(1, { ids: [id] }).catch(error => {
+      console.log("The user is already a member." + error);
+    }); //id 1 is members
   },
   async [REBUTT_APPLICANT](context, payload) {
     const { id } = payload.id;
@@ -168,6 +180,9 @@ const mutations = {
   },
   [SET_EXPERIENCE](state, experience) {
     state.experience = experience;
+  },
+  [SET_SKILLS](state, skills) {
+    state.skills = skills;
   },
   [SET_STATUS](state, status) {
     state.status = status;

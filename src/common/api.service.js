@@ -149,3 +149,9 @@ export const GroupService = {
       });
   }
 };
+
+export const SkillService = {
+  getSkills(slug){
+    return ApiService.get(`user/${slug}/skill`, "all");
+  }
+}

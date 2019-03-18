@@ -8,6 +8,7 @@ export const SET_PROFILE = "setProfile";
 export const SET_STATUS = "setStatus";
 export const SET_EDUCATION = "setEducation";
 export const SET_EXPERIENCE = "setExperience";
+export const SET_SKILLS = "setSkills";
 export const SET_PICTURE = "setPicture";
 export const SET_COMM = "setComm";
 export const SET_COMMS = "setComms";

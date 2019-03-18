@@ -4,7 +4,6 @@
       <div class="md-card-avatar">
         <img class="img" :src="profilePicture">
       </div>
-
       <md-card-content>
         <h6 class="category text-gray">{{profile.profession}}</h6>
         <h4 class="card-title">{{profile.first_name}} {{profile.last_name}}</h4>
@@ -15,33 +14,55 @@
 
     <md-card class="md-card-profile">
       <md-card-content>
-        <template v-for="education_media in educations">
-          <button
-            :key="education_media.id"
-            type="button"
-            class="md-button md-raised md-info text-right md-theme-default"
-            @click="downloadDoc(education_media.id,education_media.filename)"
-          >
-            <div class="md-ripple">
-              <i class="material-icons">attachment</i>
-              <div class="md-button-content">Download education_media {{education_media.id}}</div>
-              <span></span>
-            </div>
-          </button>
+        <template v-for="education in educations">
+          <template v-for="media_id in education.media_education_ids">
+            <button
+              :key="media_id"
+              type="button"
+              class="md-button md-raised md-info text-right md-theme-default"
+              @click="downloadDocument(media_id,profile.first_name + profile.last_name + '_arsim_' + media_id, 'education')"
+            >
+              <div class="md-ripple">
+                <i class="material-icons">attachment</i>
+                <div class="md-button-content">Download education_media {{education.id}}</div>
+                <span></span>
+              </div>
+            </button>
+          </template>
         </template>
-        <template v-for="experience_media in experience">
-          <button
-            :key="experience_media.id"
-            type="button"
-            class="md-button md-raised md-info text-right md-theme-default"
-            @click="downloadDoc(experience_media.id,experience_media.filename)"
-          >
-            <div class="md-ripple">
-              <i class="material-icons">attachment</i>
-              <div class="md-button-content">Download experience_media {{experience_media.id}}</div>
-              <span></span>
-            </div>
-          </button>
+
+        <template v-for="experience in experience">
+          <template v-for="media_id in experience.media_experience_ids">
+            <button
+              :key="media_id"
+              type="button"
+              class="md-button md-raised md-info text-right md-theme-default"
+              @click="downloadDocument(media_id, profile.first_name + profile.last_name + '_eksperience_' + media_id, 'experience')"
+            >
+              <div class="md-ripple">
+                <i class="material-icons">attachment</i>
+                <div class="md-button-content">Download experience_media {{experience.id}}</div>
+                <span></span>
+              </div>
+            </button>
+          </template>
+        </template>
+
+        <template v-for="skill in skills">
+          <template v-for="media_id in skill.media_skill_ids">
+            <button
+              :key="media_id"
+              type="button"
+              class="md-button md-raised md-info text-right md-theme-default"
+              @click="downloadDocument(media_id, profile.first_name + profile.last_name + '_kualifikim_' + media_id, 'skill')"
+            >
+              <div class="md-ripple">
+                <i class="material-icons">attachment</i>
+                <div class="md-button-content">Download skill_media {{media_id}}</div>
+                <span></span>
+              </div>
+            </button>
+          </template>
         </template>
       </md-card-content>
     </md-card>
@@ -61,9 +82,51 @@ export default {
     }
   },
   methods: {
-    downloadDoc(docID, docName) {
+    // downloadEducation(docID, docName) {
+    //   axios
+    //     .get("https://aace.ml/api/admin/media_education/" + docID, {
+    //       responseType: "arraybuffer",
+    //       headers: {
+    //         "Content-Type": "application/json",
+    //         Authorization: "Bearer " + JwtService.getToken(),
+    //         Accept: "application/pdf"
+    //       }
+    //     })
+    //     .then(res => {
+    //       // response.data is an empty object
+    //       const blob = new Blob([res.data], {
+    //         type: "application/pdf"
+    //       });
+    //       FileSaver.saveAs(
+    //         blob,
+    //         docName
+    //       );
+    //     });
+    // },
+    // downloadExperience(docID, docName) {
+    //   axios
+    //     .get("https://aace.ml/api/admin/media_experience/" + docID, {
+    //       responseType: "arraybuffer",
+    //       headers: {
+    //         "Content-Type": "application/json",
+    //         Authorization: "Bearer " + JwtService.getToken(),
+    //         Accept: "application/pdf"
+    //       }
+    //     })
+    //     .then(res => {
+    //       // response.data is an empty object
+    //       const blob = new Blob([res.data], {
+    //         type: "application/pdf"
+    //       });
+    //       FileSaver.saveAs(
+    //         blob,
+    //         docName
+    //       );
+    //     });
+    // },
+    downloadDocument(docID, docName, type) {
       axios
-        .get("https://aace.ml/api/admin/media_education/" + docID, {
+        .get("https://aace.ml/api/admin/media_" + type + "/" + docID, {
           responseType: "arraybuffer",
           headers: {
             "Content-Type": "application/json",
@@ -73,8 +136,9 @@ export default {
         })
         .then(res => {
           // response.data is an empty object
+          console.log(res.headers["content-type"]);
           const blob = new Blob([res.data], {
-            type: "application/pdf"
+            type: res.headers["content-type"]
           });
           FileSaver.saveAs(blob, docName);
         });
@@ -86,7 +150,7 @@ export default {
       "profile",
       "educations",
       "experience",
-      "profilePicture"
+      "skills"
     ])
   }
 };
