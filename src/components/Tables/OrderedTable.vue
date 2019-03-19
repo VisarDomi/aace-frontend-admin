@@ -29,18 +29,18 @@
         slot="md-table-row"
         slot-scope="{ item }"
         @click="open_user_profile(item)"
-        :class="{ 'table-success': item.register_status == 'accepted',
-          'table-info' : item.register_status =='applying',
-          'table-info2' : item.register_status =='reapplying',
-          'table-danger' : item.register_status =='rejected',
-          'table-warning' : item.register_status =='rebutted' }"
+        :class="{ 'table-success': item.application_status == 'accepted',
+          'table-info' : item.application_status =='applying',
+          'table-info2' : item.application_status =='reapplying',
+          'table-danger' : item.application_status =='rejected',
+          'table-warning' : item.application_status =='rebutted' }"
       >
         <md-table-cell md-label="ID">{{ item.id }}</md-table-cell>
         <md-table-cell md-label="Name">{{ item.first_name }}</md-table-cell>
         <md-table-cell md-label="Surname">{{ item.last_name }}</md-table-cell>
         <md-table-cell md-label="Phone">{{ item.phone }}</md-table-cell>
         <md-table-cell md-label="Email">{{ item.email }}</md-table-cell>
-        <md-table-cell md-label="Status">{{ item.register_status }}</md-table-cell>
+        <md-table-cell md-label="Status">{{ item.application_status }}</md-table-cell>
       </md-table-row>
     </md-table>
   </div>

@@ -74,7 +74,7 @@ const actions = {
   async [FETCH_STATUS](context) {
     const id = UserService.getUser().id;
     const { data } = await MemberService.get(id);
-    context.commit(SET_STATUS, data.register_status);
+    context.commit(SET_STATUS, data.application_status);
   },
   [FETCH_PROFILE](context, payload) {
     const { id } = payload;
@@ -132,7 +132,7 @@ const actions = {
     const { comment_from_administrator } = payload;
     MemberService.changeStatus(id, {
       comment_from_administrator,
-      register_status: "accepted"
+      application_status: "accepted"
     });
     GroupService.setGroupMembers(1, { ids: [id] }).catch(error => {
       console.log("The user is already a member." + error);
@@ -143,7 +143,7 @@ const actions = {
     const { comment_from_administrator } = payload;
     MemberService.changeStatus(id, {
       comment_from_administrator,
-      register_status: "rebutted"
+      application_status: "rebutted"
     });
   },
   async [REJECT_APPLICANT](context, payload) {
@@ -151,7 +151,7 @@ const actions = {
     const { comment_from_administrator } = payload;
     MemberService.changeStatus(id, {
       comment_from_administrator,
-      register_status: "rejected"
+      application_status: "rejected"
     });
   },
   async [FETCH_MEMBER_NAMES](context) {
