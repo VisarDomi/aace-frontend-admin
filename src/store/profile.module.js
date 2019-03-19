@@ -5,7 +5,8 @@ import {
   GroupService,
   EducationService,
   ExperienceService,
-  SkillService
+  SkillService,
+  PaymentService
 } from "@/common/api.service";
 import {
   FETCH_PROFILE,
@@ -23,7 +24,8 @@ import {
   SET_EDUCATIONS,
   SET_EXPERIENCES,
   SET_SKILLS,
-  SET_STATUS,
+  SET_APPLICATION_STATUS,
+  SET_PAYMENT_STATUS,
   //admin
   SET_MEMBERS,
   SET_MEMBER_NAMES
@@ -36,7 +38,8 @@ const state = {
   educations: {},
   experiences: {},
   skills: {},
-  status: "",
+  applicationStatus: "",
+  paymentStatus: "",
   //admin
   members: {},
   memberNames: []
@@ -58,8 +61,8 @@ const getters = {
   skills(state) {
     return state.skills;
   },
-  status(state) {
-    return state.status;
+  applicationStatus(state) {
+    return state.applicationStatus;
   },
   //admin
   members(state) {
@@ -74,7 +77,7 @@ const actions = {
   async [FETCH_STATUS](context) {
     const id = UserService.getUser().id;
     const { data } = await MemberService.get(id);
-    context.commit(SET_STATUS, data.application_status);
+    context.commit(SET_APPLICATION_STATUS, data.application_status);
   },
   [FETCH_PROFILE](context, payload) {
     const { id } = payload;
@@ -184,8 +187,8 @@ const mutations = {
   [SET_SKILLS](state, skills) {
     state.skills = skills;
   },
-  [SET_STATUS](state, status) {
-    state.status = status;
+  [SET_APPLICATION_STATUS](state, applicationStatus) {
+    state.applicationStatus = applicationStatus;
   },
   //admin
   [SET_MEMBERS](state, data) {

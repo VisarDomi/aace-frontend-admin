@@ -19,7 +19,10 @@
       </nav>
       <div class="copyright text-center">
         &copy; {{ new Date().getFullYear() }}
-        <a href="https://forcewing.com" target="_blank">Forcewing</a>
+        <a
+          href="https://forcewing.com"
+          target="_blank"
+        >Forcewing</a>
       </div>
     </div>
   </footer>

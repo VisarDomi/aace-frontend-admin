@@ -5,15 +5,25 @@
         <h3 class="md-title">{{$route.name}}</h3>
       </div>
       <div class="md-toolbar-section-end">
-        <md-button class="md-just-icon md-simple md-toolbar-toggle" :class="{toggled: $sidebar.showSidebar}" @click="toggleSidebar">
+        <md-button
+          class="md-just-icon md-simple md-toolbar-toggle"
+          :class="{toggled: $sidebar.showSidebar}"
+          @click="toggleSidebar"
+        >
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </md-button>
 
         <div class="md-collapse">
-          <div class="md-autocomplete" >
-            <md-autocomplete class="search" v-model="selectedMember"  @md-selected="openProfile(members)" :md-open-on-focus="false" :md-options="memberNames">
+          <div class="md-autocomplete">
+            <md-autocomplete
+              class="search"
+              v-model="selectedMember"
+              @md-selected="openProfile(members)"
+              :md-open-on-focus="false"
+              :md-options="memberNames"
+            >
               <label>Search...</label>
             </md-autocomplete>
           </div>
@@ -31,11 +41,31 @@
                   <p class="hidden-lg hidden-md">Notifications</p>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-right">
-                  <li><a href="#">Mike John sent an application form &nbsp;<md-icon>assignment</md-icon> </a></li>
-                  <li><a href="#">John Doe followed up on his application form &nbsp;<md-icon>assignment </md-icon></a></li>
-                  <li><a href="#">A user has been reported from the community&nbsp;<md-icon>announcement </md-icon></a></li>
-                  <li><a href="#">A new event has been created &nbsp;<md-icon>event</md-icon></a></li>
-                  <li><a href="#">Group Civil Engineers has been created &nbsp;<md-icon>group</md-icon></a></li>
+                  <li>
+                    <a href="#">Mike John sent an application form &nbsp;
+                      <md-icon>assignment</md-icon>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">John Doe followed up on his application form &nbsp;
+                      <md-icon>assignment</md-icon>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">A user has been reported from the community&nbsp;
+                      <md-icon>announcement</md-icon>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">A new event has been created &nbsp;
+                      <md-icon>event</md-icon>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">Group Civil Engineers has been created &nbsp;
+                      <md-icon>group</md-icon>
+                    </a>
+                  </li>
                 </ul>
               </drop-down>
             </md-list-item>
@@ -43,12 +73,11 @@
             <!-- <md-list-item to="/user">
               <i class="material-icons">person</i>
               <p class="hidden-lg hidden-md">Profile</p>
-            </md-list-item> -->
+            </md-list-item>-->
           </md-list>
         </div>
       </div>
     </div>
-
   </md-toolbar>
 </template>
 

@@ -1,6 +1,5 @@
 <template>
-  <md-list-item @click="hideSidebar"
-                v-bind="$attrs">
+  <md-list-item @click="hideSidebar" v-bind="$attrs">
     <slot>
       <md-icon>{{link.icon}}</md-icon>
       <p>{{link.name}}</p>

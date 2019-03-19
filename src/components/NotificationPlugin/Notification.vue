@@ -6,14 +6,9 @@
     role="alert"
     :class="[verticalAlign, horizontalAlign, alertType]"
     :style="customPosition"
-    data-notify-position="top-center">
-    <button
-      type="button"
-      aria-hidden="true"
-      class="close"
-      data-notify="dismiss"
-      @click="close">×
-    </button>
+    data-notify-position="top-center"
+  >
+    <button type="button" aria-hidden="true" class="close" data-notify="dismiss" @click="close">×</button>
     <i data-notify="icon" class="material-icons">{{icon}}</i>
     <span data-notify="message" v-html="message"></span>
   </div>

@@ -115,7 +115,13 @@ export const SkillService = {
   getSkills(slug) {
     return ApiService.get("user", `${slug}/skill/all`);
   }
-}
+};
+
+export const PaymentService = {
+  getPayments(slug) {
+    return ApiService.get("user", `${slug}/payment/all`);
+  }
+};
 
 export const CommunicationService = {
   getCommunications() {

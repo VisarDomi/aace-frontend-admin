@@ -150,7 +150,8 @@ export default {
       "profile",
       "educations",
       "experiences",
-      "skills"
+      "skills",
+      "payments"
     ])
   }
 };
