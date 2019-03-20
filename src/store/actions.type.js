@@ -16,8 +16,11 @@ export const FETCH_DOCS = "fetchDocs";
 //admin
 export const FETCH_MEMBERS = "fetchMembers";
 export const ACCEPT_APPLICANT = "acceptApplicant";
+export const ACCEPT_APPLICATION = "acceptApplication";
 export const REJECT_APPLICANT = "rejectApplicant";
 export const REBUTT_APPLICANT = "rebuttApplicant";
+export const ACCEPT_PAYMENT = "acceptPayment";
+export const REBUTT_PAYMENT = "rebuttPayment";
 export const FETCH_GROUPS = "fetchGroups";
 export const FETCH_MEMBER_NAMES = "fetchMemberNames";
 export const FETCH_GROUP_MEMBERS = "fetchGroupMembers";

@@ -64,6 +64,23 @@
             </button>
           </template>
         </template>
+
+        <template v-for="payment in payments">
+          <template v-for="media_id in payment.media_payment_ids">
+            <button
+              :key="media_id"
+              type="button"
+              class="md-button md-raised md-info text-right md-theme-default"
+              @click="downloadDocument(media_id, profile.first_name + profile.last_name + '_vertetim_pagese_' + media_id, 'payment')"
+            >
+              <div class="md-ripple">
+                <i class="material-icons">attachment</i>
+                <div class="md-button-content">Download payment_media {{media_id}}</div>
+                <span></span>
+              </div>
+            </button>
+          </template>
+        </template>
       </md-card-content>
     </md-card>
   </div>

@@ -15,8 +15,11 @@ import {
   FETCH_MEMBERS,
   FETCH_MEMBER_NAMES,
   ACCEPT_APPLICANT,
+  ACCEPT_APPLICATION,
   REJECT_APPLICANT,
-  REBUTT_APPLICANT
+  REBUTT_APPLICANT,
+  ACCEPT_PAYMENT,
+  REBUTT_PAYMENT
 } from "./actions.type";
 import {
   SET_PROFILE,
@@ -24,6 +27,7 @@ import {
   SET_EDUCATIONS,
   SET_EXPERIENCES,
   SET_SKILLS,
+  SET_PAYMENTS,
   SET_APPLICATION_STATUS,
   SET_PAYMENT_STATUS,
   //admin
@@ -38,6 +42,7 @@ const state = {
   educations: {},
   experiences: {},
   skills: {},
+  payments: {},
   applicationStatus: "",
   paymentStatus: "",
   //admin
@@ -61,8 +66,14 @@ const getters = {
   skills(state) {
     return state.skills;
   },
+  payments(state) {
+    return state.payments;
+  },
   applicationStatus(state) {
     return state.applicationStatus;
+  },
+  paymentStatus(state) {
+    return state.paymentStatus;
   },
   //admin
   members(state) {
@@ -78,6 +89,7 @@ const actions = {
     const id = UserService.getUser().id;
     const { data } = await MemberService.get(id);
     context.commit(SET_APPLICATION_STATUS, data.application_status);
+    context.commit(SET_PAYMENT_STATUS, data.payment_status);
   },
   [FETCH_PROFILE](context, payload) {
     const { id } = payload;
@@ -118,6 +130,12 @@ const actions = {
         context.commit(SET_SKILLS, data);
       })
       .catch(() => {});
+
+    PaymentService.getPayments(id)
+      .then(({ data }) => {
+        context.commit(SET_PAYMENTS, data);
+      })
+      .catch(() => {});
   },
   //admin
   async [FETCH_MEMBERS](context, payload) {
@@ -141,6 +159,14 @@ const actions = {
       console.log("The user is already a member." + error);
     }); //id 1 is members
   },
+  async [ACCEPT_APPLICATION](context, payload) {
+    const { id } = payload.id;
+    const { comment_from_administrator } = payload;
+    MemberService.changeStatus(id, {
+      comment_from_administrator,
+      application_status: "accepted_application"
+    });
+  },
   async [REBUTT_APPLICANT](context, payload) {
     const { id } = payload.id;
     const { comment_from_administrator } = payload;
@@ -155,6 +181,22 @@ const actions = {
     MemberService.changeStatus(id, {
       comment_from_administrator,
       application_status: "rejected"
+    });
+  },
+  async [REBUTT_PAYMENT](context, payload) {
+    const { id } = payload.id;
+    const { comment_from_administrator } = payload;
+    MemberService.changeStatus(id, {
+      comment_from_administrator,
+      payment_status: "rebutted_payment"
+    });
+  },
+  async [ACCEPT_PAYMENT](context, payload) {
+    const { id } = payload.id;
+    const { comment_from_administrator } = payload;
+    MemberService.changeStatus(id, {
+      comment_from_administrator,
+      payment_status: "accepted_payment"
     });
   },
   async [FETCH_MEMBER_NAMES](context) {
@@ -187,8 +229,14 @@ const mutations = {
   [SET_SKILLS](state, skills) {
     state.skills = skills;
   },
+  [SET_PAYMENTS](state, payments) {
+    state.payments = payments;
+  },
   [SET_APPLICATION_STATUS](state, applicationStatus) {
     state.applicationStatus = applicationStatus;
+  },
+  [SET_PAYMENT_STATUS](state, paymentStatus) {
+    state.paymentStatus = paymentStatus;
   },
   //admin
   [SET_MEMBERS](state, data) {

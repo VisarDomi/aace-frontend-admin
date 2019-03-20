@@ -275,15 +275,30 @@
         class="md-raised md-danger text-left"
         style="margin-right: 10px;"
         @click="rejectApplication(comment_from_administrator)"
-      >Reject Applicant</md-button>
+      >Reject Application</md-button>
       <md-button
         class="md-raised md-warning text-right"
         style="margin-right: 10px;"
         @click="rebuttApplication(comment_from_administrator)"
-      >Rebutt Applicant</md-button>
+      >Rebutt Application</md-button>
       <md-button
         class="md-raised md-success text-right"
+        style="margin-right: 10px;"
         @click="acceptApplication(comment_from_administrator)"
+      >Accept Application</md-button>
+      <md-button
+        class="md-raised md-warning text-right"
+        style="margin-right: 10px;"
+        @click="rebuttPayment(comment_from_administrator)"
+      >Rebutt Payment</md-button>
+      <md-button
+        class="md-raised md-success text-right"
+        style="margin-right: 10px;"
+        @click="acceptPayment(comment_from_administrator)"
+      >Accept Payment</md-button>
+      <md-button
+        class="md-raised md-success text-right"
+        @click="acceptApplicant(comment_from_administrator)"
       >Accept Applicant</md-button>
     </div>
   </div>
@@ -294,6 +309,9 @@ import {
   FETCH_PROFILE,
   REJECT_APPLICANT,
   REBUTT_APPLICANT,
+  ACCEPT_APPLICATION,
+  REBUTT_PAYMENT,
+  ACCEPT_PAYMENT,
   ACCEPT_APPLICANT
 } from "@/store/actions.type";
 import store from "@/store";
@@ -330,6 +348,30 @@ export default {
     },
     acceptApplication: function(comment_from_administrator) {
       this.$store
+        .dispatch(ACCEPT_APPLICATION, {
+          id: this.$route.params,
+          comment_from_administrator: comment_from_administrator
+        })
+        .then(() => this.$router.push({ name: "Dashboard" }));
+    },
+    rebuttPayment: function(comment_from_administrator) {
+      this.$store
+        .dispatch(REBUTT_PAYMENT, {
+          id: this.$route.params,
+          comment_from_administrator: comment_from_administrator
+        })
+        .then(() => this.$router.push({ name: "Dashboard" }));
+    },
+    acceptPayment: function(comment_from_administrator) {
+      this.$store
+        .dispatch(ACCEPT_PAYMENT, {
+          id: this.$route.params,
+          comment_from_administrator: comment_from_administrator
+        })
+        .then(() => this.$router.push({ name: "Dashboard" }));
+    },
+    acceptApplicant: function(comment_from_administrator) {
+      this.$store
         .dispatch(ACCEPT_APPLICANT, {
           id: this.$route.params,
           comment_from_administrator: comment_from_administrator
@@ -345,8 +387,7 @@ export default {
       "profile",
       "educations",
       "experiences",
-      "skills",
-      "payments"
+      "skills"
     ])
   },
   watch: {
