@@ -13,11 +13,11 @@
     </md-card>
 
     <md-card class="md-card-profile">
-      <md-card-title>
+      <md-card-header>
         <h3>Dokumentat e aplikimit</h3>
-      </md-card-title>
-      <md-card-content>
-        <template v-for="education in educations">
+      </md-card-header>
+      <md-card-content v-if="educations.length || experiences.length || skills.length">
+        <template v-for="(education, index) in educations">
           <template v-for="media_id in education.media_education_ids">
             <button
               :key="media_id + '-education'"
@@ -27,14 +27,14 @@
             >
               <div class="md-ripple">
                 <i class="material-icons">attachment</i>
-                <div class="md-button-content">Shkarko dokumentat e arsimit nr. {{education.id}}</div>
+                <div class="md-button-content">Shkarko dokumentat e arsimit nr. {{index+1}}</div>
                 <span></span>
               </div>
             </button>
           </template>
         </template>
 
-        <template v-for="experience in experiences">
+        <template v-for="(experience, index) in experiences">
           <template v-for="media_id in experience.media_experience_ids">
             <button
               :key="media_id + '-experience'"
@@ -44,16 +44,14 @@
             >
               <div class="md-ripple">
                 <i class="material-icons">attachment</i>
-                <div
-                  class="md-button-content"
-                >Shkarko dokumentat e eksperiences nr. {{experience.id}}</div>
+                <div class="md-button-content">Shkarko dokumentat e eksperiences nr. {{index+1}}</div>
                 <span></span>
               </div>
             </button>
           </template>
         </template>
 
-        <template v-for="skill in skills">
+        <template v-for="(skill, index) in skills">
           <template v-for="media_id in skill.media_skill_ids">
             <button
               :key="media_id + '-skill'"
@@ -63,21 +61,24 @@
             >
               <div class="md-ripple">
                 <i class="material-icons">attachment</i>
-                <div class="md-button-content">Shkarko dokumentat e kualifikimit nr. {{skill.id}}</div>
+                <div class="md-button-content">Shkarko dokumentat e kualifikimit nr. {{index+1}}</div>
                 <span></span>
               </div>
             </button>
           </template>
         </template>
       </md-card-content>
+      <md-card-content v-else>
+        <md-card>S'ka dokumenta pagese</md-card>
+      </md-card-content>
     </md-card>
 
     <md-card class="md-card-profile">
-      <md-card-title>
+      <md-card-header>
         <h3>Dokumentat e mandat pageses</h3>
-      </md-card-title>
-      <md-card-content>
-        <template v-for="payment in payments">
+      </md-card-header>
+      <md-card-content v-if="payments.length">
+        <template v-for="(payment, index) in payments">
           <template v-for="media_id in payment.media_payment_ids">
             <button
               :key="media_id + '-payment'"
@@ -87,12 +88,15 @@
             >
               <div class="md-ripple">
                 <i class="material-icons">attachment</i>
-                <div class="md-button-content">Shkarko dokumentat e pageses nr. {{payment.id}}</div>
+                <div class="md-button-content">Shkarko dokumentat e pageses nr. {{index+1}}</div>
                 <span></span>
               </div>
             </button>
           </template>
         </template>
+      </md-card-content>
+      <md-card-content v-else>
+        <md-card>S'ka dokumenta pagese</md-card>
       </md-card-content>
     </md-card>
   </div>
