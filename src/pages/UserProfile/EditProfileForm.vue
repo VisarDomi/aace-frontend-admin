@@ -274,28 +274,13 @@
       <md-button
         class="md-raised md-danger text-left"
         style="margin-right: 10px;"
-        @click="rejectApplication(comment_from_administrator)"
-      >Reject Application</md-button>
+        @click="rejectApplicant(comment_from_administrator)"
+      >Reject Applicant</md-button>
       <md-button
         class="md-raised md-warning text-right"
         style="margin-right: 10px;"
-        @click="rebuttApplication(comment_from_administrator)"
-      >Rebutt Application</md-button>
-      <md-button
-        class="md-raised md-success text-right"
-        style="margin-right: 10px;"
-        @click="acceptApplication(comment_from_administrator)"
-      >Accept Application</md-button>
-      <md-button
-        class="md-raised md-warning text-right"
-        style="margin-right: 10px;"
-        @click="rebuttPayment(comment_from_administrator)"
-      >Rebutt Payment</md-button>
-      <md-button
-        class="md-raised md-success text-right"
-        style="margin-right: 10px;"
-        @click="acceptPayment(comment_from_administrator)"
-      >Accept Payment</md-button>
+        @click="rebuttApplicant(comment_from_administrator)"
+      >Rebutt Applicant</md-button>
       <md-button
         class="md-raised md-success text-right"
         @click="acceptApplicant(comment_from_administrator)"
@@ -326,11 +311,11 @@ export default {
   },
   data() {
     return {
-      comment_from_administrator: ""
+      comment_from_administrator: "",
     };
   },
   methods: {
-    rejectApplication: function(comment_from_administrator) {
+    rejectApplicant(comment_from_administrator) {
       this.$store
         .dispatch(REJECT_APPLICANT, {
           id: this.$route.params,
@@ -338,7 +323,16 @@ export default {
         })
         .then(() => this.$router.push({ name: "Dashboard" }));
     },
-    rebuttApplication: function(comment_from_administrator) {
+    rebuttApplicant(comment_from_administrator) {
+      // this.paymentStatus is 'blank' initially,
+      // so we don't rebut unsent payments
+      if (this.paymentStatus != 'blank') {
+        this.$store.dispatch(REBUTT_PAYMENT, {
+          id: this.$route.params,
+          comment_from_administrator: comment_from_administrator
+        })
+      }
+
       this.$store
         .dispatch(REBUTT_APPLICANT, {
           id: this.$route.params,
@@ -346,31 +340,17 @@ export default {
         })
         .then(() => this.$router.push({ name: "Dashboard" }));
     },
-    acceptApplication: function(comment_from_administrator) {
-      this.$store
-        .dispatch(ACCEPT_APPLICATION, {
-          id: this.$route.params,
-          comment_from_administrator: comment_from_administrator
-        })
-        .then(() => this.$router.push({ name: "Dashboard" }));
-    },
-    rebuttPayment: function(comment_from_administrator) {
-      this.$store
-        .dispatch(REBUTT_PAYMENT, {
-          id: this.$route.params,
-          comment_from_administrator: comment_from_administrator
-        })
-        .then(() => this.$router.push({ name: "Dashboard" }));
-    },
-    acceptPayment: function(comment_from_administrator) {
+    acceptApplicant(comment_from_administrator) {
       this.$store
         .dispatch(ACCEPT_PAYMENT, {
           id: this.$route.params,
           comment_from_administrator: comment_from_administrator
         })
-        .then(() => this.$router.push({ name: "Dashboard" }));
-    },
-    acceptApplicant: function(comment_from_administrator) {
+      this.$store
+        .dispatch(ACCEPT_APPLICATION, {
+          id: this.$route.params,
+          comment_from_administrator: comment_from_administrator
+        })
       this.$store
         .dispatch(ACCEPT_APPLICANT, {
           id: this.$route.params,
@@ -387,7 +367,8 @@ export default {
       "profile",
       "educations",
       "experiences",
-      "skills"
+      "skills",
+      "paymentStatus"
     ])
   },
   watch: {

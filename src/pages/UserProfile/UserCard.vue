@@ -17,14 +17,14 @@
         <template v-for="education in educations">
           <template v-for="media_id in education.media_education_ids">
             <button
-              :key="media_id"
+              :key="media_id + '-education'"
               type="button"
               class="md-button md-raised md-info text-right md-theme-default"
               @click="downloadDocument(media_id,profile.first_name + profile.last_name + '_arsim_' + media_id, 'education')"
             >
               <div class="md-ripple">
                 <i class="material-icons">attachment</i>
-                <div class="md-button-content">Download education_media {{education.id}}</div>
+                <div class="md-button-content">Shkarko dokumentat e arsimit nr. {{education.id}}</div>
                 <span></span>
               </div>
             </button>
@@ -34,14 +34,14 @@
         <template v-for="experience in experiences">
           <template v-for="media_id in experience.media_experience_ids">
             <button
-              :key="media_id"
+              :key="media_id + '-experience'"
               type="button"
               class="md-button md-raised md-info text-right md-theme-default"
               @click="downloadDocument(media_id, profile.first_name + profile.last_name + '_eksperience_' + media_id, 'experience')"
             >
               <div class="md-ripple">
                 <i class="material-icons">attachment</i>
-                <div class="md-button-content">Download experience_media {{experience.id}}</div>
+                <div class="md-button-content">Shkarko dokumentat e eksperiences nr. {{experience.id}}</div>
                 <span></span>
               </div>
             </button>
@@ -51,14 +51,14 @@
         <template v-for="skill in skills">
           <template v-for="media_id in skill.media_skill_ids">
             <button
-              :key="media_id"
+              :key="media_id + '-skill'"
               type="button"
               class="md-button md-raised md-info text-right md-theme-default"
               @click="downloadDocument(media_id, profile.first_name + profile.last_name + '_kualifikim_' + media_id, 'skill')"
             >
               <div class="md-ripple">
                 <i class="material-icons">attachment</i>
-                <div class="md-button-content">Download skill_media {{media_id}}</div>
+                <div class="md-button-content">Shkarko dokumentat e kualifikimit nr. {{skill.id}}</div>
                 <span></span>
               </div>
             </button>
@@ -68,14 +68,14 @@
         <template v-for="payment in payments">
           <template v-for="media_id in payment.media_payment_ids">
             <button
-              :key="media_id"
+              :key="media_id + '-payment'"
               type="button"
               class="md-button md-raised md-info text-right md-theme-default"
               @click="downloadDocument(media_id, profile.first_name + profile.last_name + '_vertetim_pagese_' + media_id, 'payment')"
             >
               <div class="md-ripple">
                 <i class="material-icons">attachment</i>
-                <div class="md-button-content">Download payment_media {{media_id}}</div>
+                <div class="md-button-content">Shkarko dokumentat e pageses nr. {{payment.id}}</div>
                 <span></span>
               </div>
             </button>
