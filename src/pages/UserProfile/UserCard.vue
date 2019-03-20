@@ -13,6 +13,9 @@
     </md-card>
 
     <md-card class="md-card-profile">
+      <md-card-title>
+        <h3>Application documents</h3>
+      </md-card-title>
       <md-card-content>
         <template v-for="education in educations">
           <template v-for="media_id in education.media_education_ids">
@@ -65,7 +68,16 @@
           </template>
         </template>
 
-        <template v-for="payment in payments">
+
+      </md-card-content>
+    </md-card>
+
+    <md-card class="md-card-profile">
+      <md-card-title>
+        <h3>Payment documents</h3>
+      </md-card-title>
+      <md-card-content>
+                <template v-for="payment in payments">
           <template v-for="media_id in payment.media_payment_ids">
             <button
               :key="media_id + '-payment'"

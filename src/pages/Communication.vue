@@ -96,6 +96,8 @@
 
             <md-snackbar
               :md-active.sync="communicationSaved"
+              md-duration=10000
+              class="success-comm"
             >The communication was saved with success!</md-snackbar>
           </form>
         </div>
@@ -158,6 +160,7 @@ export default {
       this.form.title = null;
       this.form.text = null;
       this.form.description = null;
+      this.recipientGroups = [];
     },
     handleCommUpload(fieldName, fileList) {
       // handle file changes
@@ -225,5 +228,11 @@ export default {
   top: 0;
   right: 0;
   left: 0;
+}
+
+.success-comm{
+background-color: green !important;
+    height: 50%;
+    font-size: 17px;
 }
 </style>
