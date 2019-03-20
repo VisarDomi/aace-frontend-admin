@@ -99,7 +99,7 @@
 
             <md-snackbar
               :md-active.sync="communicationSaved"
-              md-duration="10000"
+              :md-duration="10000"
               class="success-comm"
             >Komunikimi u dergua me sukses!</md-snackbar>
           </form>
