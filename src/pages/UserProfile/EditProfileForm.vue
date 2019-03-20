@@ -347,11 +347,6 @@ export default {
           comment_from_administrator: comment_from_administrator
         })
       this.$store
-        .dispatch(ACCEPT_APPLICATION, {
-          id: this.$route.params,
-          comment_from_administrator: comment_from_administrator
-        })
-      this.$store
         .dispatch(ACCEPT_APPLICANT, {
           id: this.$route.params,
           comment_from_administrator: comment_from_administrator

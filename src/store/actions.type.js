@@ -16,7 +16,6 @@ export const FETCH_DOCS = "fetchDocs";
 //admin
 export const FETCH_MEMBERS = "fetchMembers";
 export const ACCEPT_APPLICANT = "acceptApplicant";
-export const ACCEPT_APPLICATION = "acceptApplication";
 export const REJECT_APPLICANT = "rejectApplicant";
 export const REBUTT_APPLICANT = "rebuttApplicant";
 export const ACCEPT_PAYMENT = "acceptPayment";

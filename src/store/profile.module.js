@@ -15,7 +15,6 @@ import {
   FETCH_MEMBERS,
   FETCH_MEMBER_NAMES,
   ACCEPT_APPLICANT,
-  ACCEPT_APPLICATION,
   REJECT_APPLICANT,
   REBUTT_APPLICANT,
   ACCEPT_PAYMENT,
@@ -158,14 +157,6 @@ const actions = {
     GroupService.setGroupMembers(1, { ids: [id] }).catch(error => {
       console.log("The user is already a member." + error);
     }); //id 1 is members
-  },
-  async [ACCEPT_APPLICATION](context, payload) {
-    const { id } = payload.id;
-    const { comment_from_administrator } = payload;
-    MemberService.changeStatus(id, {
-      comment_from_administrator,
-      application_status: "accepted_application"
-    });
   },
   async [REBUTT_APPLICANT](context, payload) {
     const { id } = payload.id;
