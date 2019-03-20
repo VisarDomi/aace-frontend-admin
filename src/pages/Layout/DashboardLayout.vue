@@ -3,7 +3,7 @@
     <notifications></notifications>
 
     <side-bar>
-      <mobile-menu slot="content"></mobile-menu>
+      <!-- <mobile-menu slot="content"></mobile-menu> -->
       <sidebar-link to="/dashboard">
         <md-icon>dashboard</md-icon>
         <p>Aplikimet</p>
@@ -18,7 +18,7 @@
       </sidebar-link>
       <sidebar-link to="/communication">
         <md-icon>content_paste</md-icon>
-        <p>Komunikimet</p>
+        <p>Komunikim</p>
       </sidebar-link>
       <!-- <sidebar-link to="/typography">
         <md-icon>library_books</md-icon>

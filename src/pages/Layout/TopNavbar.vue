@@ -15,7 +15,7 @@
           <span class="icon-bar"></span>
         </md-button>
 
-        <div class="md-collapse">
+        <!-- <div class="md-collapse">
           <div class="md-autocomplete">
             <md-autocomplete
               class="search"
@@ -69,13 +69,8 @@
                 </ul>
               </drop-down>
             </md-list-item>
-
-            <!-- <md-list-item to="/user">
-              <i class="material-icons">person</i>
-              <p class="hidden-lg hidden-md">Profile</p>
-            </md-list-item>-->
           </md-list>
-        </div>
+        </div> -->
       </div>
     </div>
   </md-toolbar>

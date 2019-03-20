@@ -11,7 +11,7 @@
           >
             <md-card class="md-layout-item md-size-70 md-small-size-100">
               <md-card-header style="background-color:#9c27b0;">
-                <div class="md-title" style="text-align:center; color:white;">Komunikimet</div>
+                <div class="md-title" style="text-align:center; color:white;">Komunikim</div>
               </md-card-header>
 
               <md-card-content>

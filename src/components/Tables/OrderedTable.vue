@@ -38,7 +38,7 @@
         <md-table-cell md-label="Nr. telefoni">{{ item.phone }}</md-table-cell>
         <md-table-cell md-label="Email">{{ item.email }}</md-table-cell>
         <md-table-cell md-label="Statusi i aplikimit">{{ item.application_status }}</md-table-cell>
-        <md-table-cell md-label="Statusi i pageses">{{ item.payment_status }}</md-table-cell>
+        <!-- <md-table-cell md-label="Statusi i pageses">{{ item.payment_status }}</md-table-cell> -->
       </md-table-row>
     </md-table>
   </div>
