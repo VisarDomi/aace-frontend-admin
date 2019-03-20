@@ -39,7 +39,7 @@ export const actions = {
       body: body
     })
       .then(({ data }) => {
-        // commId = data.id;
+        commId = data.id;
         // console.log("starting to upload files to communication");
         // console.log("comm id is still " + commId);
         // CommunicationService.uploadFiles(commId, files);
