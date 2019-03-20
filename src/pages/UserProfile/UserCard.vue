@@ -14,7 +14,7 @@
 
     <md-card class="md-card-profile">
       <md-card-title>
-        <h3>Application documents</h3>
+        <h3>Dokumentat e aplikimit</h3>
       </md-card-title>
       <md-card-content>
         <template v-for="education in educations">
@@ -44,7 +44,9 @@
             >
               <div class="md-ripple">
                 <i class="material-icons">attachment</i>
-                <div class="md-button-content">Shkarko dokumentat e eksperiences nr. {{experience.id}}</div>
+                <div
+                  class="md-button-content"
+                >Shkarko dokumentat e eksperiences nr. {{experience.id}}</div>
                 <span></span>
               </div>
             </button>
@@ -67,17 +69,15 @@
             </button>
           </template>
         </template>
-
-
       </md-card-content>
     </md-card>
 
     <md-card class="md-card-profile">
       <md-card-title>
-        <h3>Payment documents</h3>
+        <h3>Dokumentat e mandat pageses</h3>
       </md-card-title>
       <md-card-content>
-                <template v-for="payment in payments">
+        <template v-for="payment in payments">
           <template v-for="media_id in payment.media_payment_ids">
             <button
               :key="media_id + '-payment'"

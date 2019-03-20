@@ -3,51 +3,51 @@
     <form>
       <md-card>
         <md-card-header :data-background-color="dataBackgroundColor">
-          <h4 class="title">Applicant Profile</h4>
-          <p class="category">Review the applicant</p>
+          <h4 class="title">Profili i aplikuesit</h4>
+          <p class="category">Rishiko aplikantin</p>
         </md-card-header>
 
         <md-card-content>
           <div class="md-layout">
             <div class="md-layout-item md-small-size-100 md-size-33">
               <md-field>
-                <label>First Name</label>
+                <label>Emer</label>
                 <md-input v-model="profile.first_name" disabled></md-input>
               </md-field>
             </div>
             <div class="md-layout-item md-small-size-100 md-size-33">
               <md-field>
-                <label>Last Name</label>
+                <label>Mbiemer</label>
                 <md-input v-model="profile.last_name" disabled></md-input>
               </md-field>
             </div>
             <div class="md-layout-item md-small-size-100 md-size-33">
               <md-field>
-                <label>Profession</label>
+                <label>Profesioni</label>
                 <md-input v-model="profile.profession" disabled></md-input>
               </md-field>
             </div>
             <div class="md-layout-item md-small-size-100 md-size-50">
               <md-field>
-                <label>Summary</label>
+                <label>Pershkrim i shkurter</label>
                 <md-input v-model="profile.summary" disabled></md-input>
               </md-field>
             </div>
             <div class="md-layout-item md-small-size-100 md-size-50">
               <md-field>
-                <label>Country</label>
+                <label>Vendlindja</label>
                 <md-input v-model="profile.country" disabled></md-input>
               </md-field>
             </div>
             <div class="md-layout-item md-small-size-100 md-size-33">
               <md-field>
-                <label>Address</label>
+                <label>Adresa</label>
                 <md-input v-model="profile.address" disabled></md-input>
               </md-field>
             </div>
             <div class="md-layout-item md-small-size-100 md-size-33">
               <md-field>
-                <label>Website</label>
+                <label>Faqja e internetit</label>
                 <md-input v-model="profile.website" disabled></md-input>
               </md-field>
             </div>
@@ -59,19 +59,19 @@
             </div>
             <div class="md-layout-item md-small-size-100 md-size-33">
               <md-field>
-                <label>Gender</label>
+                <label>Gjinia</label>
                 <md-input v-model="profile.sex" disabled></md-input>
               </md-field>
             </div>
             <div class="md-layout-item md-small-size-100 md-size-33">
               <md-field>
-                <label>Birthday</label>
+                <label>Datelindja</label>
                 <md-input v-model="profile.birthday" disabled></md-input>
               </md-field>
             </div>
             <div class="md-layout-item md-small-size-100 md-size-33">
               <md-field>
-                <label>Phone</label>
+                <label>Numri i telefonit</label>
                 <md-input v-model="profile.phone" disabled></md-input>
               </md-field>
             </div>
@@ -91,40 +91,40 @@
     <form>
       <md-card>
         <md-card-header :data-background-color="dataBackgroundColor">
-          <h4 class="title">Applicant Education</h4>
-          <p class="category">Review the applicant's education</p>
+          <h4 class="title">Arsimi i aplikantit</h4>
+          <p class="category">Rishiko arsimin e aplikantit</p>
         </md-card-header>
 
         <md-card-content v-for="(education,index) in educations" :key="education.id">
-          <h5>Edukimi {{index+1}}</h5>
+          <h5>Arsimi {{index+1}}</h5>
           <div class="md-layout">
             <div class="md-layout-item md-small-size-100 md-size-33">
               <md-field>
-                <label>Lloji i edukimit</label>
+                <label>Lloji i arsimit</label>
                 <md-input v-model="education.education_type" disabled></md-input>
               </md-field>
             </div>
             <div class="md-layout-item md-small-size-100 md-size-33">
               <md-field>
-                <label>Niveli i edukimit</label>
+                <label>Tipi i diplomes</label>
                 <md-input v-model="education.degree" disabled></md-input>
               </md-field>
             </div>
             <div class="md-layout-item md-small-size-100 md-size-33">
               <md-field>
-                <label>Dega e studimit</label>
+                <label>Dega</label>
                 <md-input v-model="education.field_of_study" disabled></md-input>
               </md-field>
             </div>
             <div class="md-layout-item md-small-size-100 md-size-50">
               <md-field>
-                <label>Emri i institucionit</label>
+                <label>Emri i shkolles</label>
                 <md-input v-model="education.school" disabled></md-input>
               </md-field>
             </div>
             <div class="md-layout-item md-small-size-100 md-size-50">
               <md-field>
-                <label>Pershkrimi i deges</label>
+                <label>Pershkrimi i arsimit</label>
                 <md-input v-model="education.description" disabled></md-input>
               </md-field>
             </div>
@@ -149,17 +149,17 @@
     <form>
       <md-card>
         <md-card-header :data-background-color="dataBackgroundColor">
-          <h4 class="title">Applicant Experience</h4>
-          <p class="category">Review the applicant's experience</p>
+          <h4 class="title">Pervoja e punes e aplikantit</h4>
+          <p class="category">Rishiko pervojen e punes te aplikantit</p>
         </md-card-header>
 
         <md-card-content v-for="(experience,index) in experiences" :key="experience.id">
-          <h5>Eksperienca {{index+1}}</h5>
+          <h5>Pervoja e punes {{index+1}}</h5>
           <div class="md-layout">
             <div class="md-layout-item md-small-size-100 md-size-33">
               <md-field>
-                <label>Emri i kompanise</label>
-                <md-input v-model="experience.company" disabled></md-input>
+                <label>Titulli</label>
+                <md-input v-model="experience.title" disabled></md-input>
               </md-field>
             </div>
             <div class="md-layout-item md-small-size-100 md-size-33">
@@ -202,7 +202,7 @@
       <md-card>
         <md-card-header :data-background-color="dataBackgroundColor">
           <h4 class="title">Kualifikimet e aplikantit</h4>
-          <p class="category">Shqyrtoni kualifikimet</p>
+          <p class="category">Rishikoni kualifikimet e aplikantit</p>
         </md-card-header>
 
         <md-card-content v-for="(skill,index) in skills" :key="skill.id">
@@ -210,19 +210,19 @@
           <div class="md-layout">
             <div class="md-layout-item md-small-size-100 md-size-33">
               <md-field>
-                <label>Emri i certifikimit</label>
+                <label>Emri i kualifikimit</label>
                 <md-input v-model="skill.name" disabled></md-input>
               </md-field>
             </div>
             <div class="md-layout-item md-small-size-100 md-size-33">
               <md-field>
-                <label>Emri i leshuesit</label>
+                <label>Leshuesi i kualifikimit</label>
                 <md-input v-model="skill.releaser" disabled></md-input>
               </md-field>
             </div>
             <div class="md-layout-item md-small-size-100 md-size-100">
               <md-field>
-                <label>Pershkrimi</label>
+                <label>Pershkrim i kualifikimit</label>
                 <md-textarea v-model="skill.description" disabled></md-textarea>
               </md-field>
             </div>
@@ -248,8 +248,8 @@
     <form>
       <md-card>
         <md-card-header :data-background-color="dataBackgroundColor">
-          <h4 class="title">Comment the application</h4>
-          <p class="category">Review the applicant</p>
+          <h4 class="title">Shkruaj koment per aplikimin</h4>
+          <p class="category">Rishiko aplikantin</p>
         </md-card-header>
 
         <md-card-content>
@@ -275,16 +275,16 @@
         class="md-raised md-danger text-left"
         style="margin-right: 10px;"
         @click="rejectApplicant(comment_from_administrator)"
-      >Reject Applicant</md-button>
+      >Refuzo aplikantin</md-button>
       <md-button
         class="md-raised md-warning text-right"
         style="margin-right: 10px;"
         @click="rebuttApplicant(comment_from_administrator)"
-      >Rebutt Applicant</md-button>
+      >Dergo mbrapa per rishikim</md-button>
       <md-button
         class="md-raised md-success text-right"
         @click="acceptApplicant(comment_from_administrator)"
-      >Accept Applicant</md-button>
+      >Prano aplikantin</md-button>
     </div>
   </div>
 </template>

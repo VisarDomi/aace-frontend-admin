@@ -6,7 +6,7 @@
       <mobile-menu slot="content"></mobile-menu>
       <sidebar-link to="/dashboard">
         <md-icon>dashboard</md-icon>
-        <p>Dashboard</p>
+        <p>Aplikimet</p>
       </sidebar-link>
       <!-- <sidebar-link to="/user">
         <md-icon>person</md-icon>
@@ -14,11 +14,11 @@
       </sidebar-link>-->
       <sidebar-link to="/groups">
         <md-icon>content_paste</md-icon>
-        <p>Groups</p>
+        <p>Grupet</p>
       </sidebar-link>
       <sidebar-link to="/communication">
         <md-icon>content_paste</md-icon>
-        <p>Communication</p>
+        <p>Komunikimet</p>
       </sidebar-link>
       <!-- <sidebar-link to="/typography">
         <md-icon>library_books</md-icon>

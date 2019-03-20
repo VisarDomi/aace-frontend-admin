@@ -9,7 +9,7 @@
     <li>
       <router-link :to="{name: 'Dashboard'}" class="dropdown-toggle" data-toggle="dropdown">
         <i class="material-icons">dashboard</i>
-        <p>Dashboard</p>
+        <p>Aplikimet</p>
       </router-link>
     </li>
     <li>

@@ -11,20 +11,23 @@
           >
             <md-card class="md-layout-item md-size-70 md-small-size-100">
               <md-card-header style="background-color:#9c27b0;">
-                <div class="md-title" style="text-align:center; color:white;">Communication</div>
+                <div class="md-title" style="text-align:center; color:white;">Komunikimet</div>
               </md-card-header>
 
               <md-card-content>
                 <div class="md-layout md-gutter">
                   <div class="md-layout-item md-small-size-100">
                     <md-field :class="getValidationClass('title')">
-                      <label for="title">Title</label>
+                      <label for="title">Titull</label>
                       <md-input name="title" id="title" v-model="form.title" :disabled="sending"/>
                       <span
                         class="md-error"
                         v-if="!$v.form.title.required"
-                      >The title name is required</span>
-                      <span class="md-error" v-else-if="!$v.form.title.minlength">Invalid title name</span>
+                      >Titulli eshte i nevojshem</span>
+                      <span
+                        class="md-error"
+                        v-else-if="!$v.form.title.minlength"
+                      >Minimumi tre karaktere per titullin</span>
                     </md-field>
                   </div>
                 </div>
@@ -32,7 +35,7 @@
                 <div class="md-layout md-gutter">
                   <div class="md-layout-item md-small-size-100">
                     <md-field :class="getValidationClass('description')">
-                      <label for="description">Description</label>
+                      <label for="description">Pershkrim</label>
                       <md-input
                         name="description"
                         id="description"
@@ -42,17 +45,17 @@
                       <span
                         class="md-error"
                         v-if="!$v.form.description.required"
-                      >The description name is required</span>
+                      >Pershkrimi eshte i nevojshem</span>
                       <span
                         class="md-error"
                         v-else-if="!$v.form.description.minlength"
-                      >Invalid description name</span>
+                      >Minimumi tre karaktere per pershkrimin</span>
                     </md-field>
                   </div>
                 </div>
 
                 <md-field :class="getValidationClass('text')">
-                  <label for="text">Text</label>
+                  <label for="text">Teksti</label>
                   <md-textarea
                     type="text"
                     name="text"
@@ -60,8 +63,8 @@
                     v-model="form.text"
                     :disabled="sending"
                   />
-                  <span class="md-error" v-if="!$v.form.text.required">Some text is required</span>
-                  <span class="md-error" v-else-if="!$v.form.text.text">Invalid text</span>
+                  <span class="md-error" v-if="!$v.form.text.required">Teksti eshte i nevojshem</span>
+                  <span class="md-error" v-else-if="!$v.form.text.text">Tekst invalid</span>
                 </md-field>
 
                 <div class="md-layout md-gutter">
@@ -75,7 +78,7 @@
 
                 <div class="md-layout">
                   <div class="md-layout-item md-small-size-100">
-                    <h3>Recipient groups: &nbsp;</h3>
+                    <h3>Grupet qe do marrin kete komunikim: &nbsp;</h3>
                     <md-checkbox
                       v-model="recipientGroups"
                       :value="group.id"
@@ -90,15 +93,15 @@
               <md-progress-bar md-mode="indeterminate" v-if="sending"/>
 
               <md-card-actions style="justify-content:center;">
-                <md-button type="submit" class="md-primary" :disabled="sending">Create communication</md-button>
+                <md-button type="submit" class="md-primary" :disabled="sending">Krijo komunikimin</md-button>
               </md-card-actions>
             </md-card>
 
             <md-snackbar
               :md-active.sync="communicationSaved"
-              md-duration=10000
+              md-duration="10000"
               class="success-comm"
-            >The communication was saved with success!</md-snackbar>
+            >Komunikimi u dergua me sukses!</md-snackbar>
           </form>
         </div>
       </div>
@@ -230,9 +233,9 @@ export default {
   left: 0;
 }
 
-.success-comm{
-background-color: green !important;
-    height: 50%;
-    font-size: 17px;
+.success-comm {
+  background-color: green !important;
+  height: 50%;
+  font-size: 17px;
 }
 </style>

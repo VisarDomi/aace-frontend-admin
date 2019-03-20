@@ -3,20 +3,20 @@
     <div class="row text-center">
       <md-button
         class="md-raised md-info text-right"
-        @click="get_applying"
+        @click="get_applying_and_reapplying"
         style="margin-right:5px;"
-      >Applying</md-button>
+      >Duke aplikuar</md-button>
       <md-button
-        class="md-raised md-info2 text-right"
-        @click="get_reapplying"
+        class="md-raised md-warning text-right"
+        @click="get_rebutted"
         style="margin-right:5px;"
-      >Reapplying</md-button>
+      >Te kthyer mbrapa</md-button>
       <md-button
         class="md-raised md-success text-right"
         @click="get_accepted"
         style="margin-right:5px;"
-      >Accepted</md-button>
-      <md-button class="md-raised md-danger text-right" @click="get_rejected">Rejected</md-button>
+      >Te pranuar</md-button>
+      <md-button class="md-raised md-danger text-right" @click="get_rejected">Te refuzuar</md-button>
     </div>
     <br>
     <md-table v-model="members" :table-header-color="tableHeaderColor">
@@ -33,12 +33,12 @@
           }"
       >
         <md-table-cell md-label="ID">{{ item.id }}</md-table-cell>
-        <md-table-cell md-label="Name">{{ item.first_name }}</md-table-cell>
-        <md-table-cell md-label="Surname">{{ item.last_name }}</md-table-cell>
-        <md-table-cell md-label="Phone">{{ item.phone }}</md-table-cell>
+        <md-table-cell md-label="Emer">{{ item.first_name }}</md-table-cell>
+        <md-table-cell md-label="Mbiemer">{{ item.last_name }}</md-table-cell>
+        <md-table-cell md-label="Nr. telefoni">{{ item.phone }}</md-table-cell>
         <md-table-cell md-label="Email">{{ item.email }}</md-table-cell>
-        <md-table-cell md-label="ApplicationStatus">{{ item.application_status }}</md-table-cell>
-        <md-table-cell md-label="PaymentStatus">{{ item.payment_status }}</md-table-cell>
+        <md-table-cell md-label="Statusi i aplikimit">{{ item.application_status }}</md-table-cell>
+        <md-table-cell md-label="Statusi i pageses">{{ item.payment_status }}</md-table-cell>
       </md-table-row>
     </md-table>
   </div>
@@ -58,34 +58,19 @@ export default {
     }
   },
   methods: {
-    get_applying: function() {
-      this.$store.dispatch(FETCH_MEMBERS, { users: "applying" });
+    get_applying_and_reapplying() {
+      this.$store.dispatch(FETCH_MEMBERS, { users: "applying_and_reapplying" });
     },
-    get_reapplying: function() {
-      this.$store.dispatch(FETCH_MEMBERS, { users: "reapplying" });
-    },
-    get_rebutted: function() {
+    get_rebutted() {
       this.$store.dispatch(FETCH_MEMBERS, { users: "rebutted" });
     },
-    // get_accepted_application: function() {
-    //   this.$store.dispatch(FETCH_MEMBERS, { users: "accepted_application" });
-    // },
-    // get_rebutted_payment: function() {
-    //   this.$store.dispatch(FETCH_MEMBERS, { users: "rebutted_payment" });
-    // },
-    // get_accepted_payment: function() {
-    //   this.$store.dispatch(FETCH_MEMBERS, { users: "accepted_payment" });
-    // },
-    get_accepted: function() {
+    get_accepted() {
       this.$store.dispatch(FETCH_MEMBERS, { users: "accepted" });
     },
-    get_rejected: function() {
+    get_rejected() {
       this.$store.dispatch(FETCH_MEMBERS, { users: "rejected" });
     },
-    // get_blank: function() {
-    //   this.$store.dispatch(FETCH_MEMBERS, { users: "blank" });
-    // },
-    open_user_profile: function(item) {
+    open_user_profile(item) {
       this.$router.push({
         name: "User Profile",
         params: {
@@ -108,8 +93,11 @@ export default {
   background-color: #b8ecf3;
 }
 .table-info2 {
-  background-color: #90ceeb;
+  background-color: #b8ecf3;
 }
+/* .table-info2 {
+  background-color: #90ceeb;
+} */
 
 .table-success {
   background-color: #dff0d8;

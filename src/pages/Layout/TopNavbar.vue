@@ -30,7 +30,7 @@
           <md-list>
             <md-list-item to="/">
               <i class="material-icons">dashboard</i>
-              <p class="hidden-lg hidden-md">Dashboard</p>
+              <p class="hidden-lg hidden-md">Aplikimet</p>
             </md-list-item>
 
             <md-list-item to="#" class="dropdown">

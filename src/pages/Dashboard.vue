@@ -4,8 +4,8 @@
       <div class="md-layout-item md-medium-size-100 md-xsmall-size-100 md-size-100 lg-size-50">
         <md-card>
           <md-card-header data-background-color="orange">
-            <h4 class="title">Applicants</h4>
-            <p class="category">New applications for January, 2019</p>
+            <h4 class="title">Aplikues</h4>
+            <p class="category">Aplikime te reja</p>
           </md-card-header>
           <md-card-content>
             <ordered-table table-header-color="orange"></ordered-table>
