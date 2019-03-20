@@ -112,7 +112,7 @@ export default {
 }
 
 .table-success {
-  background-color: #6ca06e;
+  background-color: #dff0d8;
 }
 
 .table-danger {
