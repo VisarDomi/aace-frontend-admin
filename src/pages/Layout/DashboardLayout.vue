@@ -13,11 +13,11 @@
         <p>User Applications</p>
       </sidebar-link>-->
       <sidebar-link to="/groups">
-        <md-icon>content_paste</md-icon>
+        <md-icon>group</md-icon>
         <p>Grupet</p>
       </sidebar-link>
       <sidebar-link to="/communication">
-        <md-icon>content_paste</md-icon>
+        <md-icon>comment</md-icon>
         <p>Komunikim</p>
       </sidebar-link>
       <!-- <sidebar-link to="/typography">
