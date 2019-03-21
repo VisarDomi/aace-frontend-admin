@@ -13,9 +13,9 @@
     </md-card>
 
     <md-card class="md-card-profile">
-      <md-card-header>
+      <md-card-title>
         <h3>Dokumentat e aplikimit</h3>
-      </md-card-header>
+      </md-card-title>
       <md-card-content v-if="educations.length || experiences.length || skills.length">
         <template v-for="(education, index) in educations">
           <template v-for="media_id in education.media_education_ids">
@@ -74,9 +74,9 @@
     </md-card>
 
     <md-card class="md-card-profile">
-      <md-card-header>
+      <md-card-title>
         <h3>Dokumentat e mandat pageses</h3>
-      </md-card-header>
+      </md-card-title>
       <md-card-content v-if="payments.length">
         <template v-for="(payment, index) in payments">
           <template v-for="media_id in payment.media_payment_ids">
