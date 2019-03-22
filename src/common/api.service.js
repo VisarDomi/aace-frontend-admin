@@ -40,6 +40,9 @@ const ApiService = {
   upload(resource, params) {
     console.log("is gonna upload");
     console.log(params);
+    for(let param of params){
+      console.log(param)
+    }
     return Vue.axios.post(`${resource}`, params, {
       headers: {
         "Content-Type": "multipart/form-data"
@@ -138,8 +141,11 @@ export const CommunicationService = {
       `officialcommunication/${commId}/organizationgroup/${groupId}`
     );
   },
-  uploadFiles(commId, files) {
-    return ApiService.upload(`officialcommunication/${commId}/media`, files);
+  uploadFiles(commId, formData) {
+    return ApiService.upload(`officialcommunication/${commId}/media`, formData);
+  },
+  sendEmails(commId){
+    return Vue.axios.post(`officialcommunication/${commId}/email`, {});
   }
 };
 

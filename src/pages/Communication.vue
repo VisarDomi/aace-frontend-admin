@@ -69,10 +69,10 @@
 
                 <div class="md-layout md-gutter">
                   <div class="md-layout-item md-small-size-30">
-                    <!-- <md-field>
+                    <md-field>
                           <input type="file" multiple ref="commfile" @change="handleCommUpload($event.target.name, $event.target.files);"
              style="margin-bottom:50px;"/>
-                    </md-field>-->
+                    </md-field>
                   </div>
                 </div>
 
@@ -170,9 +170,10 @@ export default {
       let formData = new FormData();
       if (!fileList.length) return;
       let files = this.$refs.commfile.files;
-      for (let i = 0; i < files.length; i++) {
-        console.log(files[i]);
-        formData.append(files[i].name, files[i]);
+      for (let file of files) {
+      // for (let i = 0; i < files.length; i++) {
+        console.log(file);
+        formData.append(file.name, file);
       }
       this.formData = formData;
     },

@@ -88,7 +88,7 @@
             >
               <div class="md-ripple">
                 <i class="material-icons">attachment</i>
-                <div class="md-button-content">Shkarko dokumentat e pageses nr. {{index+1}}</div>
+                <div class="md-button-content">Shkarko dokumentin e pageses nr. {{index+1}}</div>
                 <span></span>
               </div>
             </button>
