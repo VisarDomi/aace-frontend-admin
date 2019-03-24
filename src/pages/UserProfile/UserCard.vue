@@ -13,82 +13,82 @@
     </md-card>
 
     <md-card class="md-card-profile">
-      <md-card-title>
+      <md-card-content>
         <h3>Dokumentat e aplikimit</h3>
-      </md-card-title>
+      </md-card-content>
       <md-card-content v-if="educations.length || experiences.length || skills.length">
         <template v-for="(education, index) in educations">
-          <template v-for="media_id in education.media_education_ids">
+          <template v-for="media in education.education_medias">
             <button
-              :key="media_id + '-education'"
+              :key="'education' + media.id"
               type="button"
               class="md-button md-raised md-info text-right md-theme-default"
-              @click="downloadDocument(media_id,profile.first_name + profile.last_name + '_arsim_' + media_id, 'education')"
+              @click="downloadDocument(media.id, profile.first_name + profile.last_name + '_arsim_' + media.id, 'education')"
             >
               <div class="md-ripple">
                 <i class="material-icons">attachment</i>
-                <div class="md-button-content">Shkarko dokumentat e arsimit nr. {{index+1}}</div>
-                <span></span>
+                <div class="md-button-content">Arsimi nr. {{index+1}}</div>
+                <span>{{media.timestamp}}</span>
               </div>
             </button>
           </template>
         </template>
 
         <template v-for="(experience, index) in experiences">
-          <template v-for="media_id in experience.media_experience_ids">
+          <template v-for="media in experience.experience_medias">
             <button
-              :key="media_id + '-experience'"
+              :key="'experience' + media.id"
               type="button"
               class="md-button md-raised md-info text-right md-theme-default"
-              @click="downloadDocument(media_id, profile.first_name + profile.last_name + '_eksperience_' + media_id, 'experience')"
+              @click="downloadDocument(media.id, profile.first_name + profile.last_name + '_eksperience_' + media.id, 'experience')"
             >
               <div class="md-ripple">
                 <i class="material-icons">attachment</i>
-                <div class="md-button-content">Shkarko dokumentat e eksperiences nr. {{index+1}}</div>
-                <span></span>
+                <div class="md-button-content">Eksperienca nr. {{index+1}}</div>
+                <span>{{media.timestamp}}</span>
               </div>
             </button>
           </template>
         </template>
 
         <template v-for="(skill, index) in skills">
-          <template v-for="media_id in skill.media_skill_ids">
+          <template v-for="media in skill.skill_medias">
             <button
-              :key="media_id + '-skill'"
+              :key="'skill' + media.id"
               type="button"
               class="md-button md-raised md-info text-right md-theme-default"
-              @click="downloadDocument(media_id, profile.first_name + profile.last_name + '_kualifikim_' + media_id, 'skill')"
+              @click="downloadDocument(media.id, profile.first_name + profile.last_name + '_kualifikim_' + media.id, 'skill')"
             >
               <div class="md-ripple">
                 <i class="material-icons">attachment</i>
-                <div class="md-button-content">Shkarko dokumentat e kualifikimit nr. {{index+1}}</div>
-                <span></span>
+                <div class="md-button-content">Kualifikimit nr. {{index+1}}</div>
+                <span>{{media.timestamp}}</span>
               </div>
             </button>
           </template>
         </template>
       </md-card-content>
       <md-card-content v-else>
-        <md-card>S'ka dokumenta pagese</md-card>
+        <md-card>S'ka dokumenta</md-card>
       </md-card-content>
     </md-card>
 
     <md-card class="md-card-profile">
-      <md-card-title>
+      <md-card-content>
         <h3>Dokumentat e mandat pageses</h3>
-      </md-card-title>
+      </md-card-content>
       <md-card-content v-if="payments.length">
         <template v-for="(payment, index) in payments">
-          <template v-for="media_id in payment.media_payment_ids">
+          <template v-for="media in payment.payment_medias">
             <button
-              :key="media_id + '-payment'"
+              :key="media.id + '-payment'"
               type="button"
               class="md-button md-raised md-info text-right md-theme-default"
-              @click="downloadDocument(media_id, profile.first_name + profile.last_name + '_vertetim_pagese_' + media_id, 'payment')"
+              @click="downloadDocument(media.id, profile.first_name + profile.last_name + '_mandat_pagese_' + media.id, 'payment')"
             >
               <div class="md-ripple">
                 <i class="material-icons">attachment</i>
-                <div class="md-button-content">Shkarko dokumentin e pageses nr. {{index+1}}</div>
+                <div class="md-button-content">Pageses nr. {{index+1}}</div>
                 <span></span>
               </div>
             </button>

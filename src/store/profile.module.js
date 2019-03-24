@@ -1,3 +1,4 @@
+import { yearFormat, hourFormat } from "@/common/date.filter";
 import UserService from "@/common/userstorage.service";
 import {
   MemberService,
@@ -205,6 +206,8 @@ const mutations = {
   //   state.errors = error
   // },
   [SET_PROFILE](state, profile) {
+    const { birthday } = profile;
+    profile.birthday = yearFormat(birthday);
     state.profile = profile;
     state.errors = {};
   },
@@ -212,15 +215,35 @@ const mutations = {
     state.profilePicture = picture;
   },
   [SET_EDUCATIONS](state, educations) {
+    for (let education of educations) {
+      for (let media of education.education_medias) {
+        media.timestamp = hourFormat(media.timestamp);
+      }
+    }
     state.educations = educations;
   },
   [SET_EXPERIENCES](state, experiences) {
+    for (let experience of experiences) {
+      for (let media of experience.experience_medias) {
+        media.timestamp = hourFormat(media.timestamp);
+      }
+    }
     state.experiences = experiences;
   },
   [SET_SKILLS](state, skills) {
+    for (let skill of skills) {
+      for (let media of skill.skill_medias) {
+        media.timestamp = hourFormat(media.timestamp);
+      }
+    }
     state.skills = skills;
   },
   [SET_PAYMENTS](state, payments) {
+    for (let payment of payments) {
+      for (let media of payment.payment_medias) {
+        media.timestamp = hourFormat(media.timestamp);
+      }
+    }
     state.payments = payments;
   },
   [SET_APPLICATION_STATUS](state, applicationStatus) {

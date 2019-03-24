@@ -311,10 +311,11 @@ export default {
   },
   data() {
     return {
-      comment_from_administrator: "",
+      comment_from_administrator: ""
     };
   },
   methods: {
+
     rejectApplicant(comment_from_administrator) {
       this.$store
         .dispatch(REJECT_APPLICANT, {
@@ -326,11 +327,11 @@ export default {
     rebuttApplicant(comment_from_administrator) {
       // this.paymentStatus is 'blank' initially,
       // so we don't rebut unsent payments
-      if (this.paymentStatus != 'blank') {
+      if (this.paymentStatus != "blank") {
         this.$store.dispatch(REBUTT_PAYMENT, {
           id: this.$route.params,
           comment_from_administrator: comment_from_administrator
-        })
+        });
       }
 
       this.$store
@@ -341,11 +342,10 @@ export default {
         .then(() => this.$router.push({ name: "Dashboard" }));
     },
     acceptApplicant(comment_from_administrator) {
-      this.$store
-        .dispatch(ACCEPT_PAYMENT, {
-          id: this.$route.params,
-          comment_from_administrator: comment_from_administrator
-        })
+      this.$store.dispatch(ACCEPT_PAYMENT, {
+        id: this.$route.params,
+        comment_from_administrator: comment_from_administrator
+      });
       this.$store
         .dispatch(ACCEPT_APPLICANT, {
           id: this.$route.params,

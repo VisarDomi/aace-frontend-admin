@@ -58,13 +58,6 @@ const actions = {
     if (JwtService.getToken()) {
       ApiService.setHeader();
       context.commit(SET_AUTH, UserService.getUser());
-      //   ApiService.get("user",state.user.id)
-      //     .then(({ data }) => {
-      //       context.commit(SET_AUTH, data);
-      //     })
-      //     .catch(({ response }) => {
-      //       context.commit(SET_ERROR, response.data.errors);
-      //     });
     } else {
       context.commit(PURGE_AUTH);
     }
