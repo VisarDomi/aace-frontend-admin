@@ -7,8 +7,7 @@ import { API_URL } from "@/common/config";
 const ApiService = {
   init() {
     axios.defaults.headers.common = {
-      "Secure-Api-Key":
-        "asdfasdfetyeq" /* unsecure, because by definition keys aren't meant to be on the frontend */,
+      "Secure-Api-Key": "asdfasdfetyeq",
       "Content-Type": "application/json"
     };
     Vue.use(VueAxios, axios);
@@ -40,8 +39,8 @@ const ApiService = {
   upload(resource, params) {
     console.log("is gonna upload");
     console.log(params);
-    for(let param of params){
-      console.log(param)
+    for (let param of params) {
+      console.log(param);
     }
     return Vue.axios.post(`${resource}`, params, {
       headers: {
@@ -144,7 +143,7 @@ export const CommunicationService = {
   uploadFiles(commId, formData) {
     return ApiService.upload(`officialcommunication/${commId}/media`, formData);
   },
-  sendEmails(commId){
+  sendEmails(commId) {
     return Vue.axios.post(`officialcommunication/${commId}/email`, {});
   }
 };

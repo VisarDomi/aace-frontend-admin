@@ -15,7 +15,7 @@ import GlobalDirectives from "./globalDirectives";
 import Notifications from "./components/NotificationPlugin";
 
 import ApiService from "./common/api.service";
-import DateFilter from "./common/date.filter";
+import { yearFormat, hourFormat } from "./common/date.filter";
 import ErrorFilter from "./common/error.filter";
 
 // MaterialDashboard plugin
@@ -56,7 +56,8 @@ Vue.use(Notifications);
 
 Vue.prototype.$Chartist = Chartist;
 
-Vue.filter("date", DateFilter);
+Vue.filter("yearFormat", yearFormat);
+Vue.filter("hourFormat", hourFormat);
 Vue.filter("error", ErrorFilter);
 
 // dinamically change title and other metadata
