@@ -20,6 +20,11 @@
         <md-icon>comment</md-icon>
         <p>Komunikim</p>
       </sidebar-link>
+
+      <sidebar-link @click="logout" to="/login">
+        <md-icon>logout</md-icon>
+        <p>Dil</p>
+      </sidebar-link>
       <!-- <sidebar-link to="/typography">
         <md-icon>library_books</md-icon>
         <p>Typography</p>
@@ -59,7 +64,19 @@ import ContentFooter from "./ContentFooter.vue";
 import DashboardContent from "./Content.vue";
 import MobileMenu from "@/pages/Layout/MobileMenu.vue";
 
+import {
+  LOGOUT
+} from "@/store/actions.type";
+import store from "@/store";
+
 export default {
+  methods: {
+    logout() {
+      this.$store.dispatch(LOGOUT).then(() => {
+        this.$router.push({ name: "Home" });
+      });
+    }
+  },
   components: {
     TopNavbar,
     DashboardContent,
