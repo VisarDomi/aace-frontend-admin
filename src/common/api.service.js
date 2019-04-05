@@ -20,7 +20,9 @@ const ApiService = {
       "Authorization"
     ] = `Bearer ${JwtService.getToken()}`;
   },
-
+  setHeaderMultipart() {
+    Vue.axios.defaults.headers.common["Content-Type"] = "multipart/form-data";
+  },
   query(resource, params) {
     return Vue.axios.get(resource, params).catch(error => {
       throw new Error(`[RWV] ApiService ${error}`);
@@ -40,14 +42,11 @@ const ApiService = {
   upload(resource, params) {
     console.log("is gonna upload");
     console.log(params);
+    ApiService.setHeaderMultipart();
     for(let param of params){
       console.log(param)
     }
-    return Vue.axios.post(`${resource}`, params, {
-      headers: {
-        "Content-Type": "multipart/form-data"
-      }
-    });
+    return Vue.axios.post(`${resource}`, params);
   },
 
   login(resource, params) {

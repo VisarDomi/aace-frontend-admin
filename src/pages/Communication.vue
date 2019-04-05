@@ -64,7 +64,7 @@
                     :disabled="sending"
                   />
                   <span class="md-error" v-if="!$v.form.text.required">Teksti eshte i nevojshem</span>
-                  <span class="md-error" v-else-if="!$v.form.text.text">Tekst invalid</span>
+                  <span class="md-error" v-else-if="!$v.form.text.text">Tekst jo i sakte</span>
                 </md-field>
 
                 <div class="md-layout md-gutter">
@@ -173,8 +173,9 @@ export default {
       for (let file of files) {
       // for (let i = 0; i < files.length; i++) {
         console.log(file);
-        formData.append(file.name, file);
+        formData.append('file', file);
       }
+      console.log(formData.entries())
       this.formData = formData;
     },
     communicationSent() {
@@ -186,14 +187,11 @@ export default {
         groups: this.recipientGroups,
         files: this.formData
       });
+      // console.log("sending from bare axios")
       //     axios
       // .post(
-      //   "https://aace.ml/api/officialcommunication/21/media",
-      //   this.formData,
-      //   {
-      //     "Content-Type": "multipart/form-data",
-
-      //   }
+      //   "https://aace.ml/api/officialcommunication/37/media",
+      //   this.formData
       // )
       // .then(res => {
       //   if (res.status == 200) {
@@ -204,6 +202,11 @@ export default {
       //   }
       // })
       // .catch(err => console.log(err));
+
+
+
+
+
       this.clearForm();
       this.communicationSaved = true;
       this.sending = false;
