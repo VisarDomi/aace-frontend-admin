@@ -106,7 +106,7 @@ const actions = {
     MediaService.getPicture(id)
       .then(({ data }) => {
         if (data.length != 0) {
-          context.commit(SET_PICTURE, data[0].url);
+          context.commit(SET_PICTURE, data.pop().url);
         } else {
           context.commit(SET_PICTURE, "https://aace.ml/static/dpi.jpg");
         }
