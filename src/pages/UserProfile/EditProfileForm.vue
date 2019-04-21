@@ -286,6 +286,8 @@
         @click="acceptApplicant(comment_from_administrator)"
       >Prano aplikantin</md-button>
     </div>
+    <br>
+    <br>
   </div>
 </template>
 <script>

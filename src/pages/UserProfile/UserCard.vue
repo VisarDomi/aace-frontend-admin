@@ -28,9 +28,9 @@
               <div class="md-ripple">
                 <i class="material-icons">attachment</i>
                 <div class="md-button-content">Arsimi nr. {{index+1}}</div>
-                <span>{{media.timestamp}}</span>
+                <!-- <span>{{media.timestamp}}</span> -->
               </div>
-            </button>
+            </button> &nbsp;
           </template>
         </template>
 
@@ -45,9 +45,9 @@
               <div class="md-ripple">
                 <i class="material-icons">attachment</i>
                 <div class="md-button-content">Eksperienca nr. {{index+1}}</div>
-                <span>{{media.timestamp}}</span>
+                <!-- <span>{{media.timestamp}}</span> -->
               </div>
-            </button>
+            </button> &nbsp;
           </template>
         </template>
 
@@ -62,9 +62,9 @@
               <div class="md-ripple">
                 <i class="material-icons">attachment</i>
                 <div class="md-button-content">Kualifikimit nr. {{index+1}}</div>
-                <span>{{media.timestamp}}</span>
+                <!-- <span>{{media.timestamp}}</span> -->
               </div>
-            </button>
+            </button> &nbsp;
           </template>
         </template>
       </md-card-content>
@@ -91,7 +91,7 @@
                 <div class="md-button-content">Pageses nr. {{index+1}}</div>
                 <span></span>
               </div>
-            </button>
+            </button> &nbsp;
           </template>
         </template>
       </md-card-content>
