@@ -53,11 +53,10 @@ html {
 }
 body {
   background-image: radial-gradient(
-      cover,
-      rgba(92, 100, 111, 1) 0%,
-      rgba(31, 35, 40, 1) 100%
-    ),
-    url("https://i.minus.com/io97fW9I0NqJq.png");
+    cover,
+    rgba(92, 100, 111, 1) 0%,
+    rgba(31, 35, 40, 1) 100%
+  );
 }
 .login {
   background: #eceeee;
@@ -83,9 +82,7 @@ body {
 }
 input[type="password"],
 input[type="text"] {
-  background: url("https://i.minus.com/ibhqW9Buanohx2.png") center left
-      no-repeat,
-    linear-gradient(top, #d6d7d7, #dee0e0);
+  background: center left no-repeat, linear-gradient(top, #d6d7d7, #dee0e0);
   border: 1px solid #a1a3a3;
   border-radius: 4px;
   box-shadow: 0 1px #fff;
@@ -120,7 +117,7 @@ input[type="checkbox"]:checked {
   width: 58px;
 }
 .toggle {
-  background: url(https://i.minus.com/ibitS19pe8PVX6.png) no-repeat;
+  background: no-repeat;
   display: block;
   height: 16px;
   margin-top: -20px;
