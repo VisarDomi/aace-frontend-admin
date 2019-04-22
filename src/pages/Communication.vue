@@ -178,9 +178,9 @@ export default {
       console.log(formData.entries())
       this.formData = formData;
     },
-    communicationSent() {
+    async communicationSent() {
       this.sending = true;
-      this.$store.dispatch(MAKE_COMM, {
+      await this.$store.dispatch(MAKE_COMM, {
         name: this.form.title,
         description: this.form.description,
         body: this.form.text,

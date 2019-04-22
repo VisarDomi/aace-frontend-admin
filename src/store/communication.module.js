@@ -30,7 +30,7 @@ export const actions = {
     context.commit(SET_COMM, data);
   },
   async [MAKE_COMM](context, payload) {
-    context.commit(FETCH_START)
+    context.commit(FETCH_START);
     const { name, description, body, groups, files } = payload;
     let commId;
     await CommunicationService.makeCommunication({
@@ -46,10 +46,14 @@ export const actions = {
         }
       })
       .catch(() => {});
-      console.log("comm id is: ", commId)
-      await CommunicationService.uploadFiles(commId, files);
-      console.log("finished making communication and assigning it to groups")
-      await CommunicationService.sendEmails(commId);
+    console.log("comm id is: ", commId);
+    console.log("files are:", files);
+    if (files.length) {
+      console.log("send files ok");
+    }
+    await CommunicationService.uploadFiles(commId, files);
+    console.log("finished making communication and assigning it to groups");
+    await CommunicationService.sendEmails(commId);
     context.commit(FETCH_END);
   }
 };
