@@ -19,6 +19,7 @@
       <md-card-content v-if="educations.length || experiences.length || skills.length">
         <template v-for="(education, index) in educations">
           <template v-for="media in education.education_medias">
+            <div>
             <button
               :key="'education' + media.id"
               type="button"
@@ -27,15 +28,17 @@
             >
               <div class="md-ripple">
                 <i class="material-icons">attachment</i>
-                <div class="md-button-content">Arsimi nr. {{index+1}}</div>
-                <span>{{media.timestamp}}</span>
+                <div class="md-button-content">Arsimi nr. {{index+1}} -</div>
+                
+                <div style="font-size:12px;">&nbsp;{{media.timestamp}}</div>
               </div>
-            </button> &nbsp;
+            </button> &nbsp;</div>
           </template>
         </template>
 
         <template v-for="(experience, index) in experiences">
           <template v-for="media in experience.experience_medias">
+            <div>
             <button
               :key="'experience' + media.id"
               type="button"
@@ -44,15 +47,16 @@
             >
               <div class="md-ripple">
                 <i class="material-icons">attachment</i>
-                <div class="md-button-content">Eksperienca nr. {{index+1}}</div>
-                <span>{{media.timestamp}}</span>
+                <div class="md-button-content">Eksperienca nr. {{index+1}} -</div>
+                <div style="font-size:12px;">&nbsp;{{media.timestamp}}</div>
               </div>
-            </button> &nbsp;
+            </button> &nbsp;</div>
           </template>
         </template>
 
         <template v-for="(skill, index) in skills">
           <template v-for="media in skill.skill_medias">
+            <div>
             <button
               :key="'skill' + media.id"
               type="button"
@@ -61,10 +65,10 @@
             >
               <div class="md-ripple">
                 <i class="material-icons">attachment</i>
-                <div class="md-button-content">Kualifikimit nr. {{index+1}}</div>
-                <span>{{media.timestamp}}</span>
+                <div class="md-button-content">Kualifikimit nr. {{index+1}} -</div>
+                <div style="font-size:12px;">&nbsp;{{media.timestamp}}</div>
               </div>
-            </button> &nbsp;
+            </button> &nbsp;</div>
           </template>
         </template>
       </md-card-content>
@@ -80,6 +84,7 @@
       <md-card-content v-if="payments.length">
         <template v-for="(payment, index) in payments">
           <template v-for="media in payment.payment_medias">
+            <div>
             <button
               :key="media.id + '-payment'"
               type="button"
@@ -88,10 +93,10 @@
             >
               <div class="md-ripple">
                 <i class="material-icons">attachment</i>
-                <div class="md-button-content">Pageses nr. {{index+1}}</div>
-                <span>{{media.timestamp}}</span>
+                <div class="md-button-content">Pageses nr. {{index+1}} -</div>
+                <div style="font-size:12px;">&nbsp;{{media.timestamp}}</div>
               </div>
-            </button> &nbsp;
+            </button> &nbsp;</div>
           </template>
         </template>
       </md-card-content>
