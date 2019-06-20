@@ -23,10 +23,9 @@ export default {
     };
   },
   methods: {
-    login(username, password) {
-      this.$store
-        .dispatch(LOGIN, { username, password })
-        .then(() => this.$router.push({ name: "Dashboard" }));
+    async login(username, password) {
+      await this.$store.dispatch(LOGIN, { username, password });
+      this.$router.push({ name: "Dashboard" });
     }
   },
   computed: {
@@ -130,7 +129,6 @@ input[type="checkbox"]:checked + .toggle {
 .forgot {
   color: #7f7f7f;
   display: inline-block;
-  float: right;
   font: 12px/1 sans-serif;
   left: -19px;
   position: relative;

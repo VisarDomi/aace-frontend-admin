@@ -41,7 +41,7 @@ export const mutations = {
     if (data.length != 0) {
       state.profilePictures.push(data[0].url);
     } else {
-      state.profilePictures.push("https://aace.ml/static/dpi.jpg");
+      state.profilePictures.push("https://aace.ml/static/dpi.png");
     }
   },
   [DELETE_PICTURES](state) {
