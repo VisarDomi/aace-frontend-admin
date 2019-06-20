@@ -7,7 +7,7 @@ import store from "./store";
 import "./registerServiceWorker";
 import JwtService from "@/common/jwt.service";
 // router setup
-import routes from "./routes/routes";
+import routes from "./routes";
 
 // Plugins
 import GlobalComponents from "./globalComponents";
@@ -28,7 +28,7 @@ ApiService.init();
 // configure router
 const router = new VueRouter({
   mode: "history",
-  routes, // short for routes: routes
+  routes,
   linkExactActiveClass: "nav-item active"
 });
 

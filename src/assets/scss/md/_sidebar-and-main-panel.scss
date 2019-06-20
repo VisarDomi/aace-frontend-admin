@@ -25,7 +25,7 @@
     left: 0;
     z-index: 1;
     @include shadow-big();
-    background-size: cover;
+    background-size: farthest-corner;
     background-position: center center;
     @extend .animation-transition-general;
 

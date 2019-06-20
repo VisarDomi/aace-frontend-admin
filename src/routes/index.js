@@ -10,11 +10,11 @@ import AdminLogin from "@/pages/AdminLogin";
 import Groups from "@/pages/Groups";
 import NotFound from "@/pages/NotFound";
 import Communication from "@/pages/Communication";
+
 const routes = [
   {
     path: "",
     component: DashboardLayout,
-    // redirect: "/dashboard",
     children: [
       {
         path: "/dashboard",

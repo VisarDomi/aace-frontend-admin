@@ -53,7 +53,7 @@ html {
 }
 body {
   background-image: radial-gradient(
-    cover,
+    farthest-corner,
     rgba(92, 100, 111, 1) 0%,
     rgba(31, 35, 40, 1) 100%
   );
@@ -67,7 +67,7 @@ body {
   width: 298px;
 }
 .login h1 {
-  background-image: linear-gradient(top, #f1f3f3, #d4dae0);
+  background-image: linear-gradient(#f1f3f3, #d4dae0);
   border-bottom: 1px solid #a6abaf;
   border-radius: 6px 6px 0 0;
   box-sizing: border-box;
@@ -82,7 +82,7 @@ body {
 }
 input[type="password"],
 input[type="text"] {
-  background: center left no-repeat, linear-gradient(top, #d6d7d7, #dee0e0);
+  background: center left no-repeat, linear-gradient(#d6d7d7, #dee0e0);
   border: 1px solid #a1a3a3;
   border-radius: 4px;
   box-shadow: 0 1px #fff;
@@ -159,7 +159,7 @@ input[type="submit"] {
   cursor: pointer;
   border: none;
   background-color: #37a69b;
-  background-image: linear-gradient(top, #3db0a6, #3111);
+  background-image: linear-gradient(#3db0a6, #3111);
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
