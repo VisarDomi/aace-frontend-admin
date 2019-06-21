@@ -62,7 +62,7 @@ const actions = {
       context.commit(PURGE_AUTH);
     }
   },
-  [UPDATE_USER](context, payload) {
+  async [UPDATE_USER](context, payload) {
     const { email, username, password, image, bio } = payload;
     const user = {
       email,
@@ -74,9 +74,8 @@ const actions = {
       user.password = password;
     }
 
-    return ApiService.put("user", user).then(({ data }) => {
+    await ApiService.put("user", user).then(({ data }) => {
       context.commit(SET_AUTH, data.user);
-      return data;
     });
   }
 };
