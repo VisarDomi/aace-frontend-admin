@@ -40,7 +40,7 @@ export const actions = {
     })
       .then(({ data }) => {
         commId = data.id;
-
+        console.log("comm created successfully.")
         for (var group in groups) {
           CommunicationService.addGroupToCommunication(commId, groups[group]);
         }
@@ -48,11 +48,13 @@ export const actions = {
       .catch(() => {});
     console.log("comm id is: ", commId);
     console.log("files are:", files);
-    if (files.length) {
-      console.log("send files ok");
+    
+    if (files!=null) {
+      console.log("there are files to send");
+      await CommunicationService.uploadFiles(commId, files);
+      console.log("finished sending files to communication and assigning it to groups");
     }
-    await CommunicationService.uploadFiles(commId, files);
-    console.log("finished making communication and assigning it to groups");
+
     await CommunicationService.sendEmails(commId);
     context.commit(FETCH_END);
   }

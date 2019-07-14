@@ -27,11 +27,7 @@
               <label>Search...</label>
             </md-autocomplete>
           </div>
-          <!-- <md-list>
-            <md-list-item to="/">
-              <i class="material-icons">dashboard</i>
-              <p class="hidden-lg hidden-md">Aplikimet</p>
-            </md-list-item>
+          <md-list>
 
             <md-list-item to="#" class="dropdown">
               <drop-down>
@@ -69,7 +65,7 @@
                 </ul>
               </drop-down>
             </md-list-item>
-          </md-list> -->
+          </md-list>
         </div>
       </div>
     </div>

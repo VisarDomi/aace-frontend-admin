@@ -9,7 +9,9 @@ import Notifications from "@/pages/Notifications";
 import AdminLogin from "@/pages/AdminLogin";
 import Groups from "@/pages/Groups";
 import NotFound from "@/pages/NotFound";
-import Communication from "@/pages/Communication";
+import CreateCommunication from "@/pages/CreateCommunication";
+import Communications from "@/pages/Communications";
+import CommunicationDetails from "@/pages/CommunicationDetails";
 
 const routes = [
   {
@@ -54,6 +56,24 @@ const routes = [
         }
       },
       {
+        path: "/communication/:id",
+        name: "CommunicationDetails",
+        component: CommunicationDetails,
+        meta: {
+          title: "Communication Details",
+          metaTags: [
+            {
+              name: "description",
+              content: "The communication detail page of AACE admin."
+            },
+            {
+              property: "og:description",
+              content: "The communication detail page of AACE admin."
+            }
+          ]
+        }
+      },
+      {
         path: "/groups",
         name: "Groups",
         component: Groups,
@@ -72,19 +92,37 @@ const routes = [
         }
       },
       {
-        path: "/communication",
-        name: "Communication",
-        component: Communication,
+        path: "/communications",
+        name: "Communications",
+        component: Communications,
         meta: {
-          title: "Communication",
+          title: "Communications",
           metaTags: [
             {
               name: "description",
-              content: "The communication page of AACE admin."
+              content: "The communications page of AACE admin."
             },
             {
               property: "og:description",
-              content: "The communication page of AACE admin."
+              content: "The communications page of AACE admin."
+            }
+          ]
+        }
+      },      
+      {
+        path: "/createcommunication",
+        name: "CreateCommunication",
+        component: CreateCommunication,
+        meta: {
+          title: "Create Communication",
+          metaTags: [
+            {
+              name: "description",
+              content: "The create communications page of AACE admin."
+            },
+            {
+              property: "og:description",
+              content: "The create communications page of AACE admin."
             }
           ]
         }

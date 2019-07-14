@@ -16,9 +16,9 @@
         <md-icon>group</md-icon>
         <p>Grupet</p>
       </sidebar-link>
-      <sidebar-link to="/communication">
+      <sidebar-link to="/communications">
         <md-icon>comment</md-icon>
-        <p>Komunikim</p>
+        <p>Komunikime zyrtare</p>
       </sidebar-link>
 
       <sidebar-link @click="logout" to="/login">

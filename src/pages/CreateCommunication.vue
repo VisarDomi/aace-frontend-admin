@@ -78,7 +78,13 @@
 
                 <div class="md-layout">
                   <div class="md-layout-item md-small-size-100">
-                    <h3>Grupet qe do marrin kete komunikim: &nbsp;</h3>
+                    <h4>Grupet qe do marrin kete komunikim: &nbsp;</h4>
+                    <md-checkbox 
+                    v-model="recipientGroups"
+                    value="all"
+                    >
+                      Te gjithe
+                    </md-checkbox>
                     <md-checkbox
                       v-model="recipientGroups"
                       :value="group.id"
@@ -180,6 +186,19 @@ export default {
     },
     async communicationSent() {
       this.sending = true;
+      if(this.recipientGroups=="all"){
+        this.recipientGroups=[]
+        console.log("sending to all groups..: ", this.recipientGroups);
+        console.log("this gropus is: ", this.groups)
+        for(var group of this.groups){
+          this.recipientGroups.push(group.id);
+        }
+        console.log("loaded recipient groups with all: ", this.recipientGroups);
+      }else{
+        console.log("usually groups look like this: ", this.recipientGroups);
+      }
+
+
       await this.$store.dispatch(MAKE_COMM, {
         name: this.form.title,
         description: this.form.description,
@@ -190,7 +209,7 @@ export default {
       // console.log("sending from bare axios")
       //     axios
       // .post(
-      //   "https://aace.ml/api/officialcommunication/37/media",
+      //   "https://aace.ml/api/communication/37/media",
       //   this.formData
       // )
       // .then(res => {
@@ -219,7 +238,7 @@ export default {
       }
     }
   },
-  name: "Communication",
+  name: "CreateCommunication",
   computed: {
     ...mapGetters(["groups"])
   },

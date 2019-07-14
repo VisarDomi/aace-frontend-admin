@@ -93,7 +93,7 @@ export const MediaService = {
     return ApiService.get("user", `${slug}/media/all`);
   },
   getCommunicationDocuments(slug) {
-    return ApiService.get("officialcommunication", `${slug}/media/all`);
+    return ApiService.get("communication", `${slug}/media/all`);
   }
   //setUserEducation(){},
   //setUserExperience(){},
@@ -126,24 +126,24 @@ export const PaymentService = {
 
 export const CommunicationService = {
   getCommunications() {
-    return ApiService.get("officialcommunication", "all");
+    return ApiService.get("communication", "all");
   },
   getCommunication(id) {
-    return ApiService.get("officialcommunication", id);
+    return ApiService.get("communication", id);
   },
   makeCommunication(comm) {
-    return ApiService.post("officialcommunication", comm);
+    return ApiService.post("communication", comm);
   },
   addGroupToCommunication(commId, groupId) {
     return ApiService.put(
-      `officialcommunication/${commId}/organizationgroup/${groupId}`
+      `communication/${commId}/organizationgroup/${groupId}`
     );
   },
   uploadFiles(commId, formData) {
-    return ApiService.upload(`officialcommunication/${commId}/media`, formData);
+    return ApiService.upload(`communication/${commId}/media`, formData);
   },
   sendEmails(commId) {
-    return Vue.axios.post(`officialcommunication/${commId}/email`, {});
+    return Vue.axios.post(`communication/${commId}/email`, {});
   }
 };
 
