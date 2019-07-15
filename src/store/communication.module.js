@@ -1,6 +1,6 @@
 // import ApiService from "@/common/api.service";
 import { CommunicationService } from "@/common/api.service";
-import { FETCH_COMMS, FETCH_COMM, MAKE_COMM } from "./actions.type";
+import { FETCH_COMMS, FETCH_COMM, MAKE_COMM, DELETE_COMM } from "./actions.type";
 import { SET_COMM, SET_COMMS, FETCH_START, FETCH_END } from "./mutations.type";
 
 const initialState = {
@@ -29,9 +29,20 @@ export const actions = {
     const { data } = await CommunicationService.getCommunication(id);
     context.commit(SET_COMM, data);
   },
+  async [DELETE_COMM](context, id){
+    
+    await CommunicationService.deleteCommunication({id: id}).then(({data})=>{
+      console.log(data);
+      // CommunicationService.getCommunications().then(({data})=>{
+      //   context.commit(SET_COMMS, data);
+      // });
+      
+    });
+  },
   async [MAKE_COMM](context, payload) {
     context.commit(FETCH_START);
     const { name, description, body, groups, files } = payload;
+    console.log("editor body is: ", body)
     let commId;
     await CommunicationService.makeCommunication({
       name: name,

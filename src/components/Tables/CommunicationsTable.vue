@@ -41,10 +41,13 @@
         @click="openCommunication(item)"
         
       >
-        <md-table-cell md-label="ID" md-numeric>{{ item.id }}</md-table-cell>
+        <md-table-cell md-label="ID"  style="text-align:left;">{{ item.id }}</md-table-cell>
         <md-table-cell md-label="Titull" md-sort-by="name">{{ item.name }}</md-table-cell>
         <md-table-cell md-label="Pershkrim" md-sort-by="description">{{ item.description }}</md-table-cell>
         <md-table-cell md-label="Data" md-sort-by="timestamp">{{ item.timestamp | yearFormat }}</md-table-cell>
+        <md-table-cell md-label="Veprime">
+          <md-button class="md-danger md-sm" @click.stop="deleteCommunication(item)" >Fshi</md-button>
+        </md-table-cell>
         <!-- <md-table-cell md-label="Statusi i pageses">{{ item.payment_status }}</md-table-cell> -->
       </md-table-row>
     </md-table>
@@ -59,10 +62,10 @@
 
 import { mapGetters } from "vuex";
 import store from "@/store";
-import { FETCH_COMMS } from "@/store/actions.type";
+import { FETCH_COMMS,DELETE_COMM } from "@/store/actions.type";
 
 import axios from "axios";
-
+var deletingItem = false;
 const toLower = text => {
     return text.toString().toLowerCase()
   }
@@ -96,6 +99,20 @@ export default {
         searchOnTable () {
       console.log("search is: ", this.search)
         this.searched = searchByName(this.communications, this.search)
+      },
+      deleteCommunication(item){
+        console.log("deleting item: ", this.deletingItem);
+        this.$store.dispatch(DELETE_COMM, item.id).then(response=>{
+              this.$store.dispatch(FETCH_COMMS, { slug: "all" }).then(response =>{
+            this.communications.forEach(function(communication){
+              if(communication.name == null || communication.description == null){
+                console.log("we got a null title or desc")
+              }
+            });
+            this.searched = this.communications 
+        });
+
+        });
       },
     openCommunication(item) {
       this.$router.push({
@@ -141,5 +158,10 @@ export default {
   background-color: green !important;
   height: 50%;
   font-size: 17px;
+}
+
+
+.md-table-head.md-numeric {
+    text-align: left;
 }
 </style>

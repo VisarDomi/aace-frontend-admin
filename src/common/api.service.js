@@ -134,6 +134,10 @@ export const CommunicationService = {
   makeCommunication(comm) {
     return ApiService.post("communication", comm);
   },
+  deleteCommunication(payload){
+    console.log("payload in delete: ", payload);
+    return ApiService.delete(`communication/${payload.id}`);
+  },
   addGroupToCommunication(commId, groupId) {
     return ApiService.put(
       `communication/${commId}/organizationgroup/${groupId}`

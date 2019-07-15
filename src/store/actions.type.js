@@ -11,6 +11,7 @@ export const FETCH_PICTURES = "fetchPictures";
 export const CLEAN_PICTURES = "cleanPictures";
 export const FETCH_COMMS = "fetchComms";
 export const FETCH_COMM = "fetchComm";
+export const DELETE_COMM = "deleteComm";
 export const FETCH_STATUS = "fetchStatus";
 export const FETCH_DOCS = "fetchDocs";
 //admin

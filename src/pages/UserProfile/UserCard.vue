@@ -1,8 +1,12 @@
 <template>
   <div>
+
     <md-card class="md-card-profile">
       <div class="md-card-avatar">
-        <img class="img" :src="profilePicture">
+            <expandable-image
+    class="img"
+   :src="profilePicture"
+  ></expandable-image>
       </div>
       <md-card-content>
         <h6 class="category text-gray">{{profile.profession}}</h6>

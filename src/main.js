@@ -9,6 +9,15 @@ import JwtService from "@/common/jwt.service";
 // router setup
 import routes from "./routes";
 
+
+import VueExpandableImage from 'vue-expandable-image'
+Vue.use(VueExpandableImage)
+
+import CKEditor from '@ckeditor/ckeditor5-vue';
+
+Vue.use( CKEditor );
+
+
 // Plugins
 import GlobalComponents from "./globalComponents";
 import GlobalDirectives from "./globalDirectives";
