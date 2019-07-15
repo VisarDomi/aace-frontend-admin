@@ -54,18 +54,7 @@
                   </div>
                 </div>
 
-                <md-field :class="getValidationClass('text')">
-                  <label for="text">Teksti</label>
-                  <md-textarea
-                    type="text"
-                    name="text"
-                    id="text"
-                    v-model="form.text"
-                    :disabled="sending"
-                  />
-                  <span class="md-error" v-if="!$v.form.text.required">Teksti eshte i nevojshem</span>
-                  <span class="md-error" v-else-if="!$v.form.text.text">Tekst jo i sakte</span>
-                </md-field>
+<ckeditor :editor="editor" v-model="editorData" :config="editorConfig"></ckeditor>
 
                 <div class="md-layout md-gutter">
                   <div class="md-layout-item md-small-size-30">
@@ -118,7 +107,7 @@
 <script>
 import { validationMixin } from "vuelidate";
 import { required, minLength, maxLength } from "vuelidate/lib/validators";
-
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { mapGetters } from "vuex";
 import store from "@/store";
 import { FETCH_GROUPS, MAKE_COMM } from "@/store/actions.type";
@@ -133,9 +122,13 @@ export default {
     hasFile: false,
     form: {
       title: null,
-      text: null,
       description: null
     },
+                    editor: ClassicEditor,
+                editorData: '<p>Rich-text editor content.</p>',
+                editorConfig: {
+                    // The configuration of the rich-text editor.
+                },
     communicationSaved: false,
     sending: false,
     lastUser: null
@@ -145,9 +138,6 @@ export default {
       title: {
         required,
         minLength: minLength(3)
-      },
-      text: {
-        required
       },
       description: {
         required
@@ -167,7 +157,6 @@ export default {
     clearForm() {
       this.$v.$reset();
       this.form.title = null;
-      this.form.text = null;
       this.form.description = null;
       this.recipientGroups = [];
     },
@@ -202,7 +191,7 @@ export default {
       await this.$store.dispatch(MAKE_COMM, {
         name: this.form.title,
         description: this.form.description,
-        body: this.form.text,
+        body: this.editorData,
         groups: this.recipientGroups,
         files: this.formData
       });

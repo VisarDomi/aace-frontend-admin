@@ -9,11 +9,11 @@
             <p class="category">{{comm.timestamp | yearFormat}}</p>
           </md-card-header>
           <md-card-content>
-            <h2>{{comm.name}}</h2>
+            <h2>{{comm.name}}</h2> <hr>
             <br><br>
-            <h4>{{comm.description}}</h4>
+            <h4>{{comm.description}}</h4> <hr>
             <br><br>
-            <p>{{comm.body}}</p>
+            <span v-html="comm.body"></span>
           </md-card-content>
         </md-card>
     </div>
@@ -28,13 +28,24 @@ import { mapGetters } from "vuex";
 import store from "@/store";
 import { FETCH_COMM } from "@/store/actions.type";
 
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 export default {
     name: "CommunicationDetails",
+     data() {
+            return {
+                editor: ClassicEditor,
+                // This editor will be read–only when created.
+                editorDisabled: true,
+                editorData: '<p>Rich-text editor content.</p>',
+            };
+        },
   computed: {
     ...mapGetters(["comm"])
   },
     mounted() {
-    this.$store.dispatch(FETCH_COMM, this.$route.params);
+    this.$store.dispatch(FETCH_COMM, this.$route.params).then((data)=>{
+      this.editorData = this.comm.body;
+    });
   },
 };
 </script>
