@@ -41,13 +41,14 @@ export const actions = {
   },
   async [MAKE_EVENT](context, payload) {
     context.commit(FETCH_START);
-    const { name, description, body, groups, files } = payload;
+    const { name, description, body, groups, files, time_start } = payload;
     console.log("editor body is: ", body)
     let eventId;
     await EventService.makeEvent({
       name: name,
       description: description,
-      body: body
+      body: body,
+      time_start: time_start
     })
       .then(({ data }) => {
         eventId = data.id;

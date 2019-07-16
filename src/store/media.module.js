@@ -2,32 +2,42 @@
 
 import { MediaService } from "@/common/api.service";
 
-import { FETCH_DOCS } from "./actions.type";
-
-import { SET_COMM_DOCS } from "./mutations.type";
+import { FETCH_COMMUNICATION_DOCS } from "./actions.type";
+import { FETCH_EVENT_DOCS } from "./actions.type";
+import { SET_COMM_DOCS, SET_EVENT_DOCS } from "./mutations.type";
 
 const initialState = {
-  documents: []
+  communicationDocuments: [],
+  eventDocuments: [],
 };
 
 export const state = { ...initialState };
 
 export const actions = {
-  async [FETCH_DOCS](context, payload) {
+  async [FETCH_COMMUNICATION_DOCS](context, payload) {
     const { data } = await MediaService.getCommunicationDocuments(payload.id);
     context.commit(SET_COMM_DOCS, data);
-  }
-};
+  },
+  async [FETCH_EVENT_DOCS](context, payload) {
+    const { data } = await MediaService.getEventDocuments(payload.id);
+    context.commit(SET_EVENT_DOCS, data);
+  },};
 
 export const mutations = {
   [SET_COMM_DOCS](state, data) {
-    state.documents = data;
+    state.communicationDocuments = data;
+  },
+  [SET_EVENT_DOCS](state, data) {
+    state.eventDocuments = data;
   }
 };
 
 const getters = {
   communicationDocuments() {
-    return state.documents;
+    return state.communicationDocuments;
+  },
+  eventDocuments() {
+    return state.eventDocuments;
   }
 };
 

@@ -94,6 +94,9 @@ export const MediaService = {
   },
   getCommunicationDocuments(slug) {
     return ApiService.get("communication", `${slug}/media/all`);
+  },
+  getEventDocuments(slug) {
+    return ApiService.get("event", `${slug}/media/all`);
   }
   //setUserEducation(){},
   //setUserExperience(){},

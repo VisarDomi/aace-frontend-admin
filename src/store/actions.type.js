@@ -21,7 +21,8 @@ export const DELETE_EVENT = "deleteEvent";
 export const MAKE_EVENT = "makeEvent";
 
 export const FETCH_STATUS = "fetchStatus";
-export const FETCH_DOCS = "fetchDocs";
+export const FETCH_COMMUNICATION_DOCS = "fetchCommunicationDocs";
+export const FETCH_EVENT_DOCS = "fetchEventDocs";
 //admin
 export const FETCH_MEMBERS = "fetchMembers";
 export const ACCEPT_APPLICANT = "acceptApplicant";

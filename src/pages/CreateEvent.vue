@@ -33,7 +33,7 @@
                 </div>
 
                 <div class="md-layout md-gutter">
-                  <div class="md-layout-item md-small-size-100">
+                  <div class="md-layout-item md-small-size-100 md-size-100">
                     <md-field :class="getValidationClass('description')">
                       <label for="description">Pershkrim</label>
                       <md-input
@@ -52,6 +52,40 @@
                       >Minimumi tre karaktere per pershkrimin</span>
                     </md-field>
                   </div>
+
+
+                   <div class="md-layout-item md-small-size-100 md-size-33">
+                    <md-field>
+                    <label>Viti</label>
+                    <md-input v-model="year" type="number"></md-input>
+                    </md-field>
+                   </div>
+
+
+                    <div class="md-layout-item md-small-size-100 md-size-33">
+                    <md-field>
+                    <label>Muaji</label>
+                    <md-input v-model="month" type="number" ></md-input>
+                    </md-field>
+                    </div>
+
+
+                    <div class="md-layout-item md-small-size-100 md-size-33">
+                    <md-field>
+                    <label>Dita</label>
+                    <md-input v-model="day" type="number" ></md-input>
+                    </md-field>
+                    </div>
+
+                    <div class="md-layout-item md-small-size-100 md-size-33">
+                    <md-field>
+                    <label>Ora (16:00)</label>
+                    <md-input v-model="time" placeholder="19:30"></md-input>
+                    </md-field>
+                    </div>
+
+
+
                 </div>
 
                 <ckeditor :editor="editor" v-model="editorData" :config="editorConfig"></ckeditor>
@@ -129,6 +163,10 @@ import axios from "axios";
 export default {
   mixins: [validationMixin],
   data: () => ({
+    year: "",
+    month: "",
+    day: "",
+    time: "",
     recipientGroups: [],
     formData: null,
     hasFile: false,
@@ -203,6 +241,7 @@ export default {
       await this.$store.dispatch(MAKE_EVENT, {
         name: this.form.title,
         description: this.form.description,
+        time_start: this.year+"-"+this.month+"-"+this.day+" "+this.time,
         body: this.editorData,
         groups: this.recipientGroups,
         files: this.formData
