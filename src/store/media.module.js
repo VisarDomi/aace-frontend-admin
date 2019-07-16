@@ -4,11 +4,13 @@ import { MediaService } from "@/common/api.service";
 
 import { FETCH_COMMUNICATION_DOCS } from "./actions.type";
 import { FETCH_EVENT_DOCS } from "./actions.type";
-import { SET_COMM_DOCS, SET_EVENT_DOCS } from "./mutations.type";
+import { FETCH_POLL_DOCS } from "./actions.type";
+import { SET_COMM_DOCS, SET_EVENT_DOCS, SET_POLL_DOCS } from "./mutations.type";
 
 const initialState = {
   communicationDocuments: [],
   eventDocuments: [],
+  pollDocuments: []
 };
 
 export const state = { ...initialState };
@@ -21,7 +23,13 @@ export const actions = {
   async [FETCH_EVENT_DOCS](context, payload) {
     const { data } = await MediaService.getEventDocuments(payload.id);
     context.commit(SET_EVENT_DOCS, data);
-  },};
+  },
+  async [FETCH_POLL_DOCS](context, payload) {
+    const { data } = await MediaService.getPollDocuments(payload.id);
+    context.commit(SET_POLL_DOCS, data);
+  }
+
+};
 
 export const mutations = {
   [SET_COMM_DOCS](state, data) {
@@ -29,6 +37,9 @@ export const mutations = {
   },
   [SET_EVENT_DOCS](state, data) {
     state.eventDocuments = data;
+  },
+  [SET_POLL_DOCS](state, data) {
+    state.pollDocuments = data;
   }
 };
 
@@ -38,6 +49,9 @@ const getters = {
   },
   eventDocuments() {
     return state.eventDocuments;
+  },
+  pollDocuments() {
+    return state.pollDocuments;
   }
 };
 

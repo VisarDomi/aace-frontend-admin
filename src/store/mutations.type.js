@@ -15,8 +15,13 @@ export const SET_PICTURE = "setPicture";
 
 export const SET_COMM = "setComm";
 export const SET_COMMS = "setComms";
+
+export const SET_POLL = "setPoll";
+export const SET_POLLS = "setPolls";
+
 export const SET_COMM_DOCS = "setCommDocs";
 export const SET_EVENT_DOCS = "setEventDocs";
+export const SET_POLL_DOCS = "setPollDocs";
 
 export const SET_EVENT = "setEvent";
 export const SET_EVENTS = "setEvents";

@@ -9,6 +9,7 @@ import Notifications from "@/pages/Notifications";
 import AdminLogin from "@/pages/AdminLogin";
 import Groups from "@/pages/Groups";
 import NotFound from "@/pages/NotFound";
+
 import CreateCommunication from "@/pages/CreateCommunication";
 import Communications from "@/pages/Communications";
 import CommunicationDetails from "@/pages/CommunicationDetails";
@@ -16,6 +17,10 @@ import CommunicationDetails from "@/pages/CommunicationDetails";
 import CreateEvent from "@/pages/CreateEvent";
 import Events from "@/pages/Events";
 import EventDetails from "@/pages/EventDetails";
+
+import CreatePoll from "@/pages/CreatePoll";
+import Polls from "@/pages/Polls";
+import PollDetails from "@/pages/PollDetails";
 
 const routes = [
   {
@@ -96,6 +101,24 @@ const routes = [
         }
       },
       {
+        path: "/poll/:id",
+        name: "PollDetails",
+        component: PollDetails,
+        meta: {
+          title: "Poll Details",
+          metaTags: [
+            {
+              name: "description",
+              content: "The poll detail page of AACE admin."
+            },
+            {
+              property: "og:description",
+              content: "The poll detail page of AACE admin."
+            }
+          ]
+        }
+      },
+      {
         path: "/groups",
         name: "Groups",
         component: Groups,
@@ -127,6 +150,24 @@ const routes = [
             {
               property: "og:description",
               content: "The communications page of AACE admin."
+            }
+          ]
+        }
+      },
+      {
+        path: "/polls",
+        name: "Polls",
+        component: Polls,
+        meta: {
+          title: "Polls",
+          metaTags: [
+            {
+              name: "description",
+              content: "The polls page of AACE admin."
+            },
+            {
+              property: "og:description",
+              content: "The polls page of AACE admin."
             }
           ]
         }
@@ -176,11 +217,29 @@ const routes = [
           metaTags: [
             {
               name: "description",
-              content: "The create communications page of AACE admin."
+              content: "The create events page of AACE admin."
             },
             {
               property: "og:description",
-              content: "The create communications page of AACE admin."
+              content: "The create events page of AACE admin."
+            }
+          ]
+        }
+      },      
+      {
+        path: "/createpoll",
+        name: "CreatePoll",
+        component: CreatePoll,
+        meta: {
+          title: "Create Poll",
+          metaTags: [
+            {
+              name: "description",
+              content: "The create polls page of AACE admin."
+            },
+            {
+              property: "og:description",
+              content: "The create polls page of AACE admin."
             }
           ]
         }

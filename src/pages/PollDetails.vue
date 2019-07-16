@@ -5,25 +5,22 @@
       <br />
       <md-card>
         <md-card-header data-background-color="orange">
-          <h4 class="title">Eventi nr. {{event.id}}</h4>
-          <p class="category">{{event.timestamp | yearFormat}}</p>
+          <h4 class="title">Polli nr. {{poll.id}}</h4>
+          <p class="category">{{poll.timestamp | yearFormat}}</p>
         </md-card-header>
         <md-card-content>
-          <h2>{{event.name}}</h2>
+          <h2>{{poll.name}}</h2>
           <hr />
           <br />
-          <h4>{{event.description}}</h4>
+          <h4>{{poll.description}}</h4>
           <hr />
           <br />
-          <h4>{{event.time_start | hourFormat}}</h4>
-          <hr />
-          <br />
-          <span v-html="event.body"></span>
+          <span v-html="poll.body"></span>
         </md-card-content>
         <md-card-actions>
           <md-button
             class="item-block"
-            v-for="document in eventDocuments"
+            v-for="document in pollDocuments"
             :key="document.id"
             @click="downloadDoc(document.id, document.filename)"
           >
@@ -35,6 +32,29 @@
           </md-button>
         </md-card-actions>
       </md-card>
+
+      <chart-card
+          :chart-data="emailsSubscriptionChart.data"
+          :chart-options="emailsSubscriptionChart.options"
+          :chart-responsive-options="emailsSubscriptionChart.responsiveOptions"
+          :chart-type="'Bar'"
+          data-background-color="red">
+          <template slot="content">
+            <h4 class="title">Application rates</h4>
+              <p class="category">
+                Last Month Performance
+              </p>
+          </template>
+
+          <template slot="footer">
+            <div class="stats">
+              <md-icon>access_time</md-icon>
+              updated 10 days ago
+            </div>
+          </template>
+        </chart-card>
+
+        
     </div>
   </div>
 </template>
@@ -45,11 +65,11 @@ import { mapGetters } from "vuex";
 
 import FileSaver from "file-saver";
 import store from "@/store";
-import { FETCH_EVENT_DOCS, FETCH_EVENT } from "@/store/actions.type";
+import { FETCH_POLL_DOCS, FETCH_POLL } from "@/store/actions.type";
 import { getToken } from "@/common/jwt.service";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 export default {
-  name: "EventDetails",
+  name: "PollDetails",
   data() {
     return {
       word_extensions: ["doc", "docx"],
@@ -63,7 +83,7 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(["event", "eventDocuments"])
+    ...mapGetters(["poll", "pollDocuments"])
   },
   methods: {
     getExtension(document_filename) {
@@ -86,7 +106,7 @@ export default {
     },
     downloadDoc(docID, docName) {
       axios
-        .get("https://aace.ml/api/media/media_event/" + docID, {
+        .get("https://aace.ml/api/media/media_poll/" + docID, {
           responseType: "arraybuffer",
           headers: {
             "Content-Type": "application/json",
@@ -105,10 +125,10 @@ export default {
     }
   },
   mounted() {
-    this.$store.dispatch(FETCH_EVENT, this.$route.params).then(data => {
-      this.editorData = this.event.body;
+    this.$store.dispatch(FETCH_POLL, this.$route.params).then(data => {
+      this.editorData = this.poll.body;
     });
-    this.$store.dispatch(FETCH_EVENT_DOCS, this.$route.params);
+    this.$store.dispatch(FETCH_POLL_DOCS, this.$route.params);
   }
 };
 </script>

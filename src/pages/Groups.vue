@@ -21,7 +21,7 @@
                     @click="retrieveGroupMembers(group.id, group.name)"
                   >
                     <h4 id="groupTitle">{{currentGroupName}}</h4>
-                    <nav-tabs-table :tableGroupId="group.id"></nav-tabs-table>
+                    <nav-tabs-table :tableGroupId="group.id">|</nav-tabs-table>
                   </md-tab>
                 </md-tabs>
               </template>

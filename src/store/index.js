@@ -7,6 +7,7 @@ import media from "./media.module";
 import profile from "./profile.module";
 import communication from "./communication.module";
 import event from "./event.module";
+import poll from "./poll.module";
 import group from "./group.module";
 Vue.use(Vuex);
 
@@ -18,6 +19,7 @@ export default new Vuex.Store({
     profile,
     communication,
     event,
+    poll,
     group
   }
 });

@@ -43,7 +43,7 @@
         <md-table-cell md-label="ID"  style="text-align:left;">{{ item.id }}</md-table-cell>
         <md-table-cell md-label="Titull" md-sort-by="name">{{ item.name }}</md-table-cell>
         <md-table-cell md-label="Pershkrim" md-sort-by="description">{{ item.description }}</md-table-cell>
-        <md-table-cell md-label="Data" md-sort-by="timestamp">{{ item.timestamp | yearFormat }}</md-table-cell>
+        <md-table-cell md-label="Data e krijimit" md-sort-by="timestamp">{{ item.timestamp | yearFormat }}</md-table-cell>
         <md-table-cell md-label="Veprime">
           <md-button class="md-danger md-sm" @click.stop="deleteEvent(item)" >Fshi</md-button>
         </md-table-cell>
@@ -107,7 +107,7 @@ export default {
                 console.log("we got a null title or desc")
               }
             });
-            this.searched = this.event 
+            this.searched = this.events 
         });
 
         });

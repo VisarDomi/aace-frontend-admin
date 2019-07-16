@@ -5,7 +5,7 @@
 
     <div class="md-layout">
       <div class="md-layout-item">
-        <md-button class="md-success" @click="addCommunication()">Shto komunikim</md-button>
+        <md-button class="md-success" @click="addPoll()">Krijo anketim</md-button>
       </div>
     </div>
 
@@ -17,7 +17,7 @@
         </div> -->
 
         <md-field md-clearable class="md-toolbar-section-end">
-          <md-input placeholder="Kerko komunikim..." v-model="search" @input="searchOnTable" />
+          <md-input placeholder="Kerko anketim..." v-model="search" @input="searchOnTable" />
         </md-field>
       </md-table-toolbar>
 
@@ -37,7 +37,7 @@
       <md-table-row
         slot="md-table-row"
         slot-scope="{ item }"
-        @click="openCommunication(item)"
+        @click="openPoll(item)"
         
       >
         <md-table-cell md-label="ID"  style="text-align:left;">{{ item.id }}</md-table-cell>
@@ -45,7 +45,7 @@
         <md-table-cell md-label="Pershkrim" md-sort-by="description">{{ item.description }}</md-table-cell>
         <md-table-cell md-label="Data e krijimit" md-sort-by="timestamp">{{ item.timestamp | yearFormat }}</md-table-cell>
         <md-table-cell md-label="Veprime">
-          <md-button class="md-danger md-sm" @click.stop="deleteCommunication(item)" >Fshi</md-button>
+          <md-button class="md-danger md-sm" @click.stop="deletePoll(item)" >Fshi</md-button>
         </md-table-cell>
         <!-- <md-table-cell md-label="Statusi i pageses">{{ item.payment_status }}</md-table-cell> -->
       </md-table-row>
@@ -60,7 +60,7 @@
 
 import { mapGetters } from "vuex";
 import store from "@/store";
-import { FETCH_COMMS,DELETE_COMM } from "@/store/actions.type";
+import { FETCH_POLLS,DELETE_POLL } from "@/store/actions.type";
 
 import axios from "axios";
 var deletingItem = false;
@@ -91,51 +91,51 @@ export default {
     },
   },
   methods: {
-    addCommunication() {
-      this.$router.push({ name: "CreateCommunication" });
+    addPoll() {
+      this.$router.push({ name: "CreatePoll" });
     },
         searchOnTable () {
       console.log("search is: ", this.search)
-        this.searched = searchByName(this.communications, this.search)
+        this.searched = searchByName(this.polls, this.search)
       },
-      deleteCommunication(item){
+      deletePoll(item){
         console.log("deleting item: ", this.deletingItem);
-        this.$store.dispatch(DELETE_COMM, item.id).then(response=>{
-              this.$store.dispatch(FETCH_COMMS, { slug: "all" }).then(response =>{
-            this.communications.forEach(function(communication){
-              if(communication.name == null || communication.description == null){
+        this.$store.dispatch(DELETE_POLLS, item.id).then(response=>{
+              this.$store.dispatch(FETCH_POLLS, { slug: "all" }).then(response =>{
+            this.polls.forEach(function(poll){
+              if(poll.name == null || poll.description == null){
                 console.log("we got a null title or desc")
               }
             });
-            this.searched = this.communications 
+            this.searched = this.polls 
         });
 
         });
       },
-    openCommunication(item) {
+    openPoll(item) {
       this.$router.push({
-        name: "CommunicationDetails",
+        name: "PollDetails",
         params: {
           id: item.id
         }
       });
     }
   },
-  name: "communications-table",
+  name: "polls-table",
   computed: {
-    ...mapGetters(["communications"])
+    ...mapGetters(["polls"])
   },
 //   created() {
 //     this.$store.dispatch(FETCH_COMMS, { slug: "all" });
 //   },
     mounted() {
-    this.$store.dispatch(FETCH_COMMS, { slug: "all" }).then(response =>{
-      this.communications.forEach(function(communication){
-        if(communication.name == null || communication.description == null){
+    this.$store.dispatch(FETCH_POLLS, { slug: "all" }).then(response =>{
+      this.polls.forEach(function(poll){
+        if(poll.name == null || poll.description == null){
           console.log("we got a null title or desc")
         }
       });
-      this.searched = this.communications 
+      this.searched = this.polls
       console.log(this.searched)
       console.log("search is: ", this.search)
     });

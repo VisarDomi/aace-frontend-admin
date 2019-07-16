@@ -20,9 +20,16 @@ export const FETCH_EVENT = "fetchEvent";
 export const DELETE_EVENT = "deleteEvent";
 export const MAKE_EVENT = "makeEvent";
 
+export const FETCH_POLLS = "fetchPolls";
+export const FETCH_POLL = "fetchPoll";
+export const DELETE_POLL = "deletePoll";
+export const MAKE_POLL = "makePoll";
+
 export const FETCH_STATUS = "fetchStatus";
+
 export const FETCH_COMMUNICATION_DOCS = "fetchCommunicationDocs";
 export const FETCH_EVENT_DOCS = "fetchEventDocs";
+export const FETCH_POLL_DOCS = "fetchPollDocs";
 //admin
 export const FETCH_MEMBERS = "fetchMembers";
 export const ACCEPT_APPLICANT = "acceptApplicant";

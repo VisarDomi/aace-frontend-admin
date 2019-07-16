@@ -97,6 +97,9 @@ export const MediaService = {
   },
   getEventDocuments(slug) {
     return ApiService.get("event", `${slug}/media/all`);
+  },
+  getPollDocuments(slug) {
+    return ApiService.get("poll", `${slug}/media/all`);
   }
   //setUserEducation(){},
   //setUserExperience(){},
@@ -180,6 +183,35 @@ export const EventService = {
     return Vue.axios.post(`event/${eventId}/email`, {});
   }
 };
+
+
+export const PollService = {
+  getPolls() {
+    return ApiService.get("poll", "all");
+  },
+  getPoll(id) {
+    return ApiService.get("poll", id);
+  },
+  makePoll(poll) {
+    return ApiService.post("poll", poll);
+  },
+  deletePoll(payload){
+    console.log("payload in delete: ", payload);
+    return ApiService.delete(`poll/${payload.id}`);
+  },
+  addGroupToPoll(pollId, groupId) {
+    return ApiService.put(
+      `poll/${pollId}/organizationgroup/${groupId}`
+    );
+  },
+  uploadFiles(pollId, formData) {
+    return ApiService.upload(`poll/${pollId}/media`, formData);
+  },
+  sendEmails(pollId) {
+    return Vue.axios.post(`poll/${pollId}/email`, {});
+  }
+};
+
 
 export const GroupService = {
   getGroup(slug) {
