@@ -13,6 +13,10 @@ import CreateCommunication from "@/pages/CreateCommunication";
 import Communications from "@/pages/Communications";
 import CommunicationDetails from "@/pages/CommunicationDetails";
 
+import CreateEvent from "@/pages/CreateEvent";
+import Events from "@/pages/Events";
+import EventDetails from "@/pages/EventDetails";
+
 const routes = [
   {
     path: "",
@@ -74,6 +78,24 @@ const routes = [
         }
       },
       {
+        path: "/event/:id",
+        name: "EventDetails",
+        component: EventDetails,
+        meta: {
+          title: "Event Details",
+          metaTags: [
+            {
+              name: "description",
+              content: "The event detail page of AACE admin."
+            },
+            {
+              property: "og:description",
+              content: "The event detail page of AACE admin."
+            }
+          ]
+        }
+      },
+      {
         path: "/groups",
         name: "Groups",
         component: Groups,
@@ -108,6 +130,24 @@ const routes = [
             }
           ]
         }
+      },
+      {
+        path: "/events",
+        name: "Events",
+        component: Events,
+        meta: {
+          title: "Events",
+          metaTags: [
+            {
+              name: "description",
+              content: "The communications page of AACE admin."
+            },
+            {
+              property: "og:description",
+              content: "The communications page of AACE admin."
+            }
+          ]
+        }
       },      
       {
         path: "/createcommunication",
@@ -115,6 +155,24 @@ const routes = [
         component: CreateCommunication,
         meta: {
           title: "Create Communication",
+          metaTags: [
+            {
+              name: "description",
+              content: "The create communications page of AACE admin."
+            },
+            {
+              property: "og:description",
+              content: "The create communications page of AACE admin."
+            }
+          ]
+        }
+      },      
+      {
+        path: "/createevent",
+        name: "CreateEvent",
+        component: CreateEvent,
+        meta: {
+          title: "Create Event",
           metaTags: [
             {
               name: "description",

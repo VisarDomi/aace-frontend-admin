@@ -21,6 +21,18 @@
         <p>Komunikime zyrtare</p>
       </sidebar-link>
 
+
+      <sidebar-link to="/events">
+        <md-icon>date_range</md-icon>
+        <p>Evente</p>
+      </sidebar-link>
+
+
+      <sidebar-link to="/polls">
+        <md-icon>compare_arrows</md-icon>
+        <p>Anketa</p>
+      </sidebar-link>
+
       <sidebar-link @click="logout" to="/login">
         <md-icon>logout</md-icon>
         <p>Dil</p>

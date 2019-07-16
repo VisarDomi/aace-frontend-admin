@@ -4,11 +4,11 @@
       <div class="md-layout-item md-medium-size-100 md-xsmall-size-100 md-size-100 lg-size-50">
         <md-card>
           <md-card-header data-background-color="orange">
-            <h4 class="title">Komunikime</h4>
-            <p class="category">Komunikimet e derguara</p>
+            <h4 class="title">Evente</h4>
+            <p class="category">Evente te derguara</p>
           </md-card-header>
           <md-card-content>
-            <communications-table table-header-color="orange"></communications-table>
+            <events-table table-header-color="orange"></events-table>
           </md-card-content>
         </md-card>
       </div>
@@ -19,11 +19,11 @@
 
 <script>
 import { mapGetters } from "vuex";
-import { CommunicationsTable } from "@/components";
+import { EventsTable } from "@/components";
 
 export default {
   components: {
-    CommunicationsTable
+    EventsTable
   },
   computed: {
     ...mapGetters(["isLoading"])

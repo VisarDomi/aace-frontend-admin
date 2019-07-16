@@ -6,12 +6,12 @@
           <form
             novalidate
             class="md-layout md-alignment-top-center"
-            @submit.prevent="validateCommunication"
+            @submit.prevent="validateEvent"
             enctype="multipart/form-data"
           >
             <md-card class="md-layout-item md-size-70 md-small-size-100">
               <md-card-header style="background-color:#9c27b0;">
-                <div class="md-title" style="text-align:center; color:white;">Komunikim</div>
+                <div class="md-title" style="text-align:center; color:white;">Event</div>
               </md-card-header>
 
               <md-card-content>
@@ -59,7 +59,7 @@
                 <div class="md-layout md-gutter">
                   <div class="md-layout-item md-small-size-30">
                     <md-field>
-                          <input type="file" name="file" id="file" multiple ref="commfile" class="custom-file-upload" @change="handleCommUpload($event.target.name, $event.target.files);"
+                          <input type="file" name="file" id="file" multiple ref="eventfile" class="custom-file-upload" @change="handleEventUpload($event.target.name, $event.target.files);"
              style="margin-bottom:50px;"/>
                     </md-field>
                   </div>
@@ -79,7 +79,7 @@
 
                 <div class="md-layout">
                   <div class="md-layout-item md-small-size-100">
-                    <h4>Grupet qe do marrin kete komunikim: &nbsp;</h4>
+                    <h4>Grupet qe do marrin kete event: &nbsp;</h4>
                     <md-checkbox 
                     v-model="recipientGroups"
                     value="all"
@@ -100,15 +100,15 @@
               <md-progress-bar md-mode="indeterminate" v-if="sending"/>
 
               <md-card-actions style="justify-content:center;">
-                <md-button type="submit" class="md-primary" :disabled="sending">Krijo komunikimin</md-button>
+                <md-button type="submit" class="md-primary" :disabled="sending">Krijo eventin</md-button>
               </md-card-actions>
             </md-card>
 
             <md-snackbar
-              :md-active.sync="communicationSaved"
+              :md-active.sync="eventSaved"
               :md-duration="10000"
-              class="success-comm"
-            >Komunikimi u dergua me sukses!</md-snackbar>
+              class="success-event"
+            >Eventi u krijua me sukses!</md-snackbar>
           </form>
         </div>
       </div>
@@ -122,7 +122,7 @@ import { required, minLength, maxLength } from "vuelidate/lib/validators";
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { mapGetters } from "vuex";
 import store from "@/store";
-import { FETCH_GROUPS, MAKE_COMM } from "@/store/actions.type";
+import { FETCH_GROUPS, MAKE_EVENT } from "@/store/actions.type";
 
 import axios from "axios";
 
@@ -141,7 +141,7 @@ export default {
                 editorConfig: {
                     // The configuration of the rich-text editor.
                 },
-    communicationSaved: false,
+    eventSaved: false,
     sending: false,
     lastUser: null
   }),
@@ -172,11 +172,11 @@ export default {
       this.form.description = null;
       this.recipientGroups = [];
     },
-    handleCommUpload(fieldName, fileList) {
+    handleEventUpload(fieldName, fileList) {
       // handle file changes
       let formData = new FormData();
       if (!fileList.length) return;
-      let files = this.$refs.commfile.files;
+      let files = this.$refs.eventfile.files;
       for (let file of files) {
       // for (let i = 0; i < files.length; i++) {
         console.log(file);
@@ -185,7 +185,7 @@ export default {
       console.log(formData.entries())
       this.formData = formData;
     },
-    async communicationSent() {
+    async eventSent() {
       this.sending = true;
       if(this.recipientGroups=="all"){
         this.recipientGroups=[]
@@ -200,14 +200,14 @@ export default {
       }
 
 
-      await this.$store.dispatch(MAKE_COMM, {
+      await this.$store.dispatch(MAKE_EVENT, {
         name: this.form.title,
         description: this.form.description,
         body: this.editorData,
         groups: this.recipientGroups,
         files: this.formData
       }).then(()=>{
-        this.$router.push({ name: "Communications" });
+        this.$router.push({ name: "Events" });
       });
       // console.log("sending from bare axios")
       //     axios
@@ -230,18 +230,18 @@ export default {
 
 
       this.clearForm();
-      this.communicationSaved = true;
+      this.eventSaved = true;
       this.sending = false;
     },
-    validateCommunication() {
+    validateEvent() {
       this.$v.$touch();
 
       if (!this.$v.$invalid) {
-        this.communicationSent();
+        this.eventSent();
       }
     }
   },
-  name: "CreateCommunication",
+  name: "CreateEvent",
   computed: {
     ...mapGetters(["groups"])
   },
@@ -259,7 +259,7 @@ export default {
   left: 0;
 }
 
-.success-comm {
+.success-event {
   background-color: green !important;
   height: 50%;
   font-size: 17px;

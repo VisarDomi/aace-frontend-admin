@@ -42,9 +42,9 @@ const ApiService = {
     console.log("is gonna upload");
     console.log(params);
     ApiService.setHeaderMultipart();
-    for(let param of params){
-      console.log(param)
-    }
+    // for(let param of params){
+    //   console.log(param)
+    // }
     return Vue.axios.post(`${resource}`, params);
   },
 
@@ -148,6 +148,33 @@ export const CommunicationService = {
   },
   sendEmails(commId) {
     return Vue.axios.post(`communication/${commId}/email`, {});
+  }
+};
+
+export const EventService = {
+  getEvents() {
+    return ApiService.get("event", "all");
+  },
+  getEvent(id) {
+    return ApiService.get("event", id);
+  },
+  makeEvent(event) {
+    return ApiService.post("event", event);
+  },
+  deleteEvent(payload){
+    console.log("payload in delete: ", payload);
+    return ApiService.delete(`event/${payload.id}`);
+  },
+  addGroupToEvent(eventId, groupId) {
+    return ApiService.put(
+      `event/${eventId}/organizationgroup/${groupId}`
+    );
+  },
+  uploadFiles(eventId, formData) {
+    return ApiService.upload(`event/${eventId}/media`, formData);
+  },
+  sendEmails(eventId) {
+    return Vue.axios.post(`event/${eventId}/email`, {});
   }
 };
 

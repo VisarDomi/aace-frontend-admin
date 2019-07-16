@@ -12,9 +12,14 @@ export const SET_EXPERIENCES = "setExperiences";
 export const SET_SKILLS = "setSkills";
 export const SET_PAYMENTS = "setPayments";
 export const SET_PICTURE = "setPicture";
+
 export const SET_COMM = "setComm";
 export const SET_COMMS = "setComms";
 export const SET_COMM_DOCS = "setCommDocs";
+
+export const SET_EVENT = "setEvent";
+export const SET_EVENTS = "setEvents";
+export const SET_EVENT_DOCS = "setEventDocs";
 //admin
 export const SET_MEMBER_NAMES = "setMemberNames";
 export const SET_MEMBERS = "setMembers";
