@@ -33,36 +33,25 @@
         </md-card-actions>
       </md-card>
 
-      <chart-card
-          :chart-data="emailsSubscriptionChart.data"
-          :chart-options="emailsSubscriptionChart.options"
-          :chart-responsive-options="emailsSubscriptionChart.responsiveOptions"
-          :chart-type="'Bar'"
-          data-background-color="red">
-          <template slot="content">
-            <h4 class="title">Application rates</h4>
-              <p class="category">
-                Last Month Performance
-              </p>
-          </template>
 
-          <template slot="footer">
-            <div class="stats">
-              <md-icon>access_time</md-icon>
-              updated 10 days ago
-            </div>
-          </template>
-        </chart-card>
 
-        
+
+
+<GChart
+    type="ColumnChart"
+    :data="chartData"
+    :options="chartOptions"
+  />
+
+
     </div>
   </div>
 </template>
 
 <script>
+import { GChart } from 'vue-google-charts'
 import axios from "axios";
 import { mapGetters } from "vuex";
-
 import FileSaver from "file-saver";
 import store from "@/store";
 import { FETCH_POLL_DOCS, FETCH_POLL } from "@/store/actions.type";
@@ -70,8 +59,26 @@ import { getToken } from "@/common/jwt.service";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 export default {
   name: "PollDetails",
+  components: {
+    GChart
+  },
   data() {
     return {
+
+      chartData: [
+
+            ],
+      chartOptions: {
+        height: 700,
+        chart: {
+          height: 600,
+          title: 'Poll Results',
+          subtitle: 'Results for the poll',
+        }
+      },
+   
+
+
       word_extensions: ["doc", "docx"],
       excel_extensions: ["xls", "xlsx"],
       image_extensions: ["jpg", "png"],
@@ -126,7 +133,20 @@ export default {
   },
   mounted() {
     this.$store.dispatch(FETCH_POLL, this.$route.params).then(data => {
-      this.editorData = this.poll.body;
+      
+
+            var labels= ['Options']
+        var results =['Results']
+
+
+      var series = []
+      for(var desc of this.poll.options){
+        labels.push(desc.body);
+        results.push(desc.votes);
+      }
+      this.chartData.push(labels);
+      this.chartData.push(['Rezultati',4,10,3])
+
     });
     this.$store.dispatch(FETCH_POLL_DOCS, this.$route.params);
   }

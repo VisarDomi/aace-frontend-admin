@@ -17,6 +17,11 @@ import CKEditor from '@ckeditor/ckeditor5-vue';
 
 Vue.use( CKEditor );
 
+import VueGoogleCharts from 'vue-google-charts'
+
+Vue.use(VueGoogleCharts)
+
+
 
 // Plugins
 import GlobalComponents from "./globalComponents";
