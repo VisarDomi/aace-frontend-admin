@@ -145,7 +145,7 @@ export default {
         results.push(desc.votes);
       }
       this.chartData.push(labels);
-      this.chartData.push(['Rezultati',4,10,3])
+      this.chartData.push(results)
 
     });
     this.$store.dispatch(FETCH_POLL_DOCS, this.$route.params);
