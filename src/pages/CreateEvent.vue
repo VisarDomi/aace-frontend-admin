@@ -19,7 +19,7 @@
                   <div class="md-layout-item md-small-size-100">
                     <md-field :class="getValidationClass('title')">
                       <label for="title">Titull</label>
-                      <md-input name="title" id="title" v-model="form.title" :disabled="sending"/>
+                      <md-input name="title" id="title" v-model="form.title" :disabled="sending" />
                       <span
                         class="md-error"
                         v-if="!$v.form.title.required"
@@ -53,39 +53,33 @@
                     </md-field>
                   </div>
 
-
-                   <div class="md-layout-item md-small-size-100 md-size-33">
+                  <div class="md-layout-item md-small-size-100 md-size-33">
                     <md-field>
-                    <label>Viti</label>
-                    <md-input v-model="year" type="number"></md-input>
+                      <label>Viti</label>
+                      <md-input v-model="year" type="number"></md-input>
                     </md-field>
-                   </div>
+                  </div>
 
-
-                    <div class="md-layout-item md-small-size-100 md-size-33">
+                  <div class="md-layout-item md-small-size-100 md-size-33">
                     <md-field>
-                    <label>Muaji</label>
-                    <md-input v-model="month" type="number" ></md-input>
+                      <label>Muaji</label>
+                      <md-input v-model="month" type="number"></md-input>
                     </md-field>
-                    </div>
+                  </div>
 
-
-                    <div class="md-layout-item md-small-size-100 md-size-33">
+                  <div class="md-layout-item md-small-size-100 md-size-33">
                     <md-field>
-                    <label>Dita</label>
-                    <md-input v-model="day" type="number" ></md-input>
+                      <label>Dita</label>
+                      <md-input v-model="day" type="number"></md-input>
                     </md-field>
-                    </div>
+                  </div>
 
-                    <div class="md-layout-item md-small-size-100 md-size-33">
+                  <div class="md-layout-item md-small-size-100 md-size-33">
                     <md-field>
-                    <label>Ora (16:00)</label>
-                    <md-input v-model="time" placeholder="19:30"></md-input>
+                      <label>Ora (16:00)</label>
+                      <md-input v-model="time" placeholder="19:30"></md-input>
                     </md-field>
-                    </div>
-
-
-
+                  </div>
                 </div>
 
                 <ckeditor :editor="editor" v-model="editorData" :config="editorConfig"></ckeditor>
@@ -93,33 +87,24 @@
                 <div class="md-layout md-gutter">
                   <div class="md-layout-item md-small-size-30">
                     <md-field>
-                          <input type="file" name="file" id="file" multiple ref="eventfile" class="custom-file-upload" @change="handleEventUpload($event.target.name, $event.target.files);"
-             style="margin-bottom:50px;"/>
+                      <input
+                        type="file"
+                        name="file"
+                        id="file"
+                        multiple
+                        ref="eventfile"
+                        class="custom-file-upload"
+                        @change="handleEventUpload($event.target.name, $event.target.files);"
+                        style="margin-bottom:50px;"
+                      />
                     </md-field>
                   </div>
                 </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
                 <div class="md-layout">
                   <div class="md-layout-item md-small-size-100">
                     <h4>Grupet qe do marrin kete event: &nbsp;</h4>
-                    <md-checkbox 
-                    v-model="recipientGroups"
-                    value="all"
-                    >
-                      Te gjithe
-                    </md-checkbox>
+                    <md-checkbox v-model="recipientGroups" value="all">Te gjithe</md-checkbox>
                     <md-checkbox
                       v-model="recipientGroups"
                       :value="group.id"
@@ -131,7 +116,11 @@
                 </div>
               </md-card-content>
 
-              <md-progress-bar md-mode="indeterminate" v-if="sending"/>
+              <div v-if="sending">
+                <div class="progress">
+                  <div class="indeterminate"></div>
+                </div>
+              </div>
 
               <md-card-actions style="justify-content:center;">
                 <md-button type="submit" class="md-primary" :disabled="sending">Krijo eventin</md-button>
@@ -153,7 +142,7 @@
 <script>
 import { validationMixin } from "vuelidate";
 import { required, minLength, maxLength } from "vuelidate/lib/validators";
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import { mapGetters } from "vuex";
 import store from "@/store";
 import { FETCH_GROUPS, MAKE_EVENT } from "@/store/actions.type";
@@ -174,11 +163,11 @@ export default {
       title: null,
       description: null
     },
-                    editor: ClassicEditor,
-                editorData: '<p>Rich-text editor content.</p>',
-                editorConfig: {
-                    // The configuration of the rich-text editor.
-                },
+    editor: ClassicEditor,
+    editorData: "<p>Rich-text editor content.</p>",
+    editorConfig: {
+      // The configuration of the rich-text editor.
+    },
     eventSaved: false,
     sending: false,
     lastUser: null
@@ -216,38 +205,40 @@ export default {
       if (!fileList.length) return;
       let files = this.$refs.eventfile.files;
       for (let file of files) {
-      // for (let i = 0; i < files.length; i++) {
+        // for (let i = 0; i < files.length; i++) {
         console.log(file);
-        formData.append('file', file);
+        formData.append("file", file);
       }
-      console.log(formData.entries())
+      console.log(formData.entries());
       this.formData = formData;
     },
     async eventSent() {
       this.sending = true;
-      if(this.recipientGroups=="all"){
-        this.recipientGroups=[]
+      if (this.recipientGroups == "all") {
+        this.recipientGroups = [];
         console.log("sending to all groups..: ", this.recipientGroups);
-        console.log("this gropus is: ", this.groups)
-        for(var group of this.groups){
+        console.log("this gropus is: ", this.groups);
+        for (var group of this.groups) {
           this.recipientGroups.push(group.id);
         }
         console.log("loaded recipient groups with all: ", this.recipientGroups);
-      }else{
+      } else {
         console.log("usually groups look like this: ", this.recipientGroups);
       }
 
-
-      await this.$store.dispatch(MAKE_EVENT, {
-        name: this.form.title,
-        description: this.form.description,
-        time_start: this.year+"-"+this.month+"-"+this.day+" "+this.time,
-        body: this.editorData,
-        groups: this.recipientGroups,
-        files: this.formData
-      }).then(()=>{
-        this.$router.push({ name: "Events" });
-      });
+      await this.$store
+        .dispatch(MAKE_EVENT, {
+          name: this.form.title,
+          description: this.form.description,
+          time_start:
+            this.year + "-" + this.month + "-" + this.day + " " + this.time,
+          body: this.editorData,
+          groups: this.recipientGroups,
+          files: this.formData
+        })
+        .then(() => {
+          this.$router.push({ name: "Events" });
+        });
       // console.log("sending from bare axios")
       //     axios
       // .post(
@@ -263,10 +254,6 @@ export default {
       //   }
       // })
       // .catch(err => console.log(err));
-
-
-
-
 
       this.clearForm();
       this.eventSaved = true;
@@ -303,13 +290,11 @@ export default {
   height: 50%;
   font-size: 17px;
 }
-
-
 </style>
 
 <style>
 .ck-editor__editable {
-    min-height: 500px;
+  min-height: 500px;
 }
 </style>
 

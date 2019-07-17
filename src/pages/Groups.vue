@@ -3,7 +3,11 @@
     <div class="content">
       <div class="md-layout">
         <div class="md-layout-item md-size-100">
-          <div v-if="isLoading" class="article-preview">Duke ngarkuar grupet...</div>
+          <div v-if="isLoading">
+            <div class="progress">
+              <div class="indeterminate"></div>
+            </div>
+          </div>
           <div v-else>
             <nav-tabs-card>
               <template slot="content">

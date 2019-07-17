@@ -1,44 +1,36 @@
-// The Vue build version to load with the `import` command
-// (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from "vue";
 import VueRouter from "vue-router";
 import App from "./App";
 import store from "./store";
+import routes from "./routes";
 import "./registerServiceWorker";
 import JwtService from "@/common/jwt.service";
-// router setup
-import routes from "./routes";
-
-
-import VueExpandableImage from 'vue-expandable-image'
-Vue.use(VueExpandableImage)
-
-import CKEditor from '@ckeditor/ckeditor5-vue';
-
-Vue.use( CKEditor );
-
-import VueGoogleCharts from 'vue-google-charts'
-
-Vue.use(VueGoogleCharts)
-
-
-
-// Plugins
+import VueExpandableImage from "vue-expandable-image";
+import CKEditor from "@ckeditor/ckeditor5-vue";
+import VueGoogleCharts from "vue-google-charts";
 import GlobalComponents from "./globalComponents";
 import GlobalDirectives from "./globalDirectives";
 import Notifications from "./components/NotificationPlugin";
-
 import ApiService from "./common/api.service";
 import { yearFormat, hourFormat } from "./common/date.filter";
 import ErrorFilter from "./common/error.filter";
-
-// MaterialDashboard plugin
 import MaterialDashboard from "./material-dashboard";
-
 import Chartist from "chartist";
+
+// Plugins
+Vue.use(VueGoogleCharts);
+Vue.use(CKEditor);
+Vue.use(VueRouter);
+Vue.use(MaterialDashboard);
+Vue.use(GlobalComponents);
+Vue.use(GlobalDirectives);
+Vue.use(VueExpandableImage);
+Vue.use(CKEditor);
+Vue.use(Notifications);
 
 Vue.config.productionTip = false;
 ApiService.init();
+
 // configure router
 const router = new VueRouter({
   mode: "history",
@@ -62,12 +54,6 @@ router.beforeEach((to, from, next) => {
   }
 });
 
-Vue.use(VueRouter);
-Vue.use(MaterialDashboard);
-Vue.use(GlobalComponents);
-Vue.use(GlobalDirectives);
-Vue.use(Notifications);
-
 Vue.prototype.$Chartist = Chartist;
 
 Vue.filter("yearFormat", yearFormat);
@@ -82,7 +68,6 @@ router.beforeEach((to, from, next) => {
     .slice()
     .reverse()
     .find(r => r.meta && r.meta.title);
-
   // Find the nearest route element with meta tags.
   const nearestWithMeta = to.matched
     .slice()
@@ -92,35 +77,27 @@ router.beforeEach((to, from, next) => {
     .slice()
     .reverse()
     .find(r => r.meta && r.meta.metaTags);
-
   // If a route with a title was found, set the document (page) title to that value.
   if (nearestWithTitle) document.title = nearestWithTitle.meta.title;
-
   // Remove any stale meta tags from the document using the key attribute we set below.
   Array.from(document.querySelectorAll("[data-vue-router-controlled]")).map(
     el => el.parentNode.removeChild(el)
   );
-
   // Skip rendering meta tags if there are none.
   if (!nearestWithMeta) return next();
-
   // Turn the meta tag definitions into actual elements in the head.
   nearestWithMeta.meta.metaTags
     .map(tagDef => {
       const tag = document.createElement("meta");
-
       Object.keys(tagDef).forEach(key => {
         tag.setAttribute(key, tagDef[key]);
       });
-
       // We use this to track which meta tags we create, so we don't interfere with other ones.
       tag.setAttribute("data-vue-router-controlled", "");
-
       return tag;
     })
     // Add the meta tags to the document head.
     .forEach(tag => document.head.appendChild(tag));
-
   next();
 });
 
